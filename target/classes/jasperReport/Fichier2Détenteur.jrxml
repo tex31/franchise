@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Fichier2Détenteur" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="feac92ec-0b3d-4f27-b9f1-ddc0f160d5fb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="17fb21b8-0c9e-451d-97b7-c54618653d8b"/>
+	<parameter name="dépositaire" class="java.lang.String"/>
+	<parameter name="detenteur" class="java.lang.String"/>
+	<parameter name="nombreDet" class="java.lang.String"/>
+	<parameter name="valeur" class="java.lang.String"/>
+	<parameter name="filamatra" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="237" y="2" width="260" height="28" uuid="96bc1380-170c-47d5-8871-fde635dcc998"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ REPOBLIKAN’I MADAGASIKARA]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="670" y="0" width="81" height="67" uuid="33bf3558-7942-4a1f-9a41-b1dc893447bf"/>
+				<imageExpression><![CDATA["./mfb.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="237" y="52" width="260" height="18" uuid="3e8ee883-7a84-4f03-b1b6-71f9929f054a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[----------------]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="30" width="260" height="20" uuid="932ddc26-045c-4255-a4df-77a2614ea8ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filamatra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="237" height="95" uuid="03124018-1d64-4610-85f4-56d82597ee33"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[MINISTERE DES FINANCES ET DU BUDGET
+----------------------
+SECRETARIAT GENERAL
+----------------------
+DIRECTION GENERALE DES DOUANES
+-----------------------
+DIRECTION
+------------------
+SERVICE OU BUREAU
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="0" width="287" height="95" uuid="4fb51259-63f8-4dbe-8a9d-05022fba5f88"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[	ETAT DE DETENTEUR EFFECTIF]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="10" width="207" height="21" uuid="9945c35c-140c-45ec-8b95-722d71421829"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nom et fonction du dépositaire:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="31" width="207" height="20" uuid="e1210d75-19de-41f4-876c-b5b52569a565"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nom et fonction du détenteur effectif:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="10" width="132" height="20" uuid="58fa6821-dcb2-4bc8-9764-f41460f8111c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="31" width="132" height="20" uuid="d0ea9a71-2cc0-48ab-b74b-a78f291bf229"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="221" y="11" width="132" height="20" uuid="c9e925cc-9369-4881-89fd-94ece204b39e"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dépositaire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="31" width="132" height="20" uuid="84726eb2-dad8-40fd-a5e7-183ce029a53f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{detenteur}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="150" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="157" y="0" width="450" height="140" uuid="bc15b7df-153c-4e83-b74d-4cd6f01e0da8"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="8377edda-698f-4de3-accf-e659b7d35445">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="33125b07-e55d-477b-bcf5-b3289bfe3374">
+						<jr:tableHeader style="table_TH" height="45" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cba036a0-ae0d-44ab-a243-333b94579476"/>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[DÉSIGNATION ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="29" rowSpan="1">
+							<staticText>
+								<reportElement x="11" y="0" width="79" height="29" uuid="03bdd08b-9b71-4cb6-973a-aa9c86ac8195"/>
+								<textElement textAlignment="Right">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[ Total ]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="1cfcf831-1764-44a9-87ce-8f348d0d54ae">
+						<jr:tableHeader style="table_TH" height="45" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="45" uuid="01e7f3b6-39d7-4db0-b46a-ba96d7aa01c8"/>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[ESPÈCES DES UNITÉS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="29" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="638ef3ff-601b-4442-817d-f20444297c23">
+						<jr:tableHeader style="table_TH" height="45" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="63cae996-aecc-4a21-b46c-26d165867bf7"/>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[PRIX UNITAIRE]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="29" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="13bb35d0-8580-4eee-8291-b6ec27c82606">
+						<jr:tableHeader style="table_TH" height="45" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d8b5a522-d20a-40b8-b6db-03c85c6e6566"/>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[NOMBRE]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="29" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="515dad21-e786-4b0a-91d3-cd14dcb17d28">
+						<jr:tableHeader style="table_TH" height="45" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="45" uuid="e3f164dc-ba02-4a32-a5b1-8483c0b12d3f"/>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[VALEUR TOTALE]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table_CH" height="29" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="67">
+			<staticText>
+				<reportElement x="14" y="0" width="312" height="20" uuid="36323169-b11e-4ac5-816a-8abf6aa45e51"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Arrêté le présent état de détenteur effectif  au nombre de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="0" width="185" height="20" uuid="63d6a802-8675-4916-9556-6718b5ec0759"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="511" y="0" width="140" height="20" uuid="ef679414-7e05-4207-a959-ecdc435f09c7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Articles à une valeur de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="651" y="0" width="100" height="20" uuid="68057fbc-9b1b-4830-ba42-09df39b45d28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="751" y="0" width="47" height="20" uuid="e9f556a1-eb09-43d9-92cf-3fb111dd5680"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ariary.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="326" y="0" width="157" height="20" uuid="65bd5c52-ac64-4caa-b0bd-f17806a6298c"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreDet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="651" y="0" width="87" height="20" uuid="6626cb1b-8a7f-4b32-8f72-16af48a7d892"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valeur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="20" width="93" height="20" uuid="b5d8c465-375c-4b55-8a22-7efe63af54cd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Antananarivo, le]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="20" width="100" height="20" uuid="fd38eb27-386f-4c96-8286-5f96289ba3e8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="40" width="138" height="27" uuid="f74db7d7-118f-4009-998f-ce23a76050b1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Le dépositaire comptable]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

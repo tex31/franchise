@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+ <style>
+	div.devise{
+		padding-right : 10% !important;
+	}
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+<h:head></h:head>
+	<ui:include src="/pages/unsecure/components/header.xhtml">
+		<ui:param name="title" value="Formulaire Journal" />
+	</ui:include>
+	<div class="col-md-1"></div>
+	<h:form><div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+			<div class="col-md-12">
+				<!--  <h:graphicImage width="100%"
+                  value="/pages/unsecure/assets/images/mada.png" /> -->
+                <div class="row">
+                	<div class="col-lg-10 col-lg-offset-1 " style="padding-left:5%;"><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu value="#{JasperTableExampleBean.journal.filamatra}"  appendTo="@this">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                    </p:selectOneMenu>	                 
+                </f:view></div>
+ 				<br/>
+            </div>
+             <div class="col-md-12" style="text-align: center;">
+ 				BUDGET GENERAL<br/>
+ 				SECTION <p:inputText value ="#{JournalBean.section}" style="text-align: center;width:70%"></p:inputText> <br/>
+ 				CHAPITRE(1) <p:inputText value ="#{JasperTableExampleBean.journal.chapitre}" style="text-align: center;width: 25%"></p:inputText>
+ 				ARTICLE <p:inputText value ="#{JasperTableExampleBean.journal.article}" style="text-align: center;width: 25%"></p:inputText> <br></br>
+ 				(2) <p:inputText value ="#{JasperTableExampleBean.journal.num2}"  style="text-align: center;width: 70%"></p:inputText><br></br>
+ 				(3) <f:view contentType="text/html">
+ 				<p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.journal.num3}" appendTo="@this">
+                       <f:selectItems value="#{siseBean.mapDirection(JournalBean.dir, JournalBean.datF)}" />
+                 </p:selectOneMenu></f:view>
+ 				<!-- h:outputText value="#{JournalBean.direction}" /--><br></br> 
+ 				(4) <p:inputText  value ="#{JournalBean.quatre}" style="text-align: center;width: 70%"></p:inputText><br></br>
+ 				(5) <p:inputText  value ="#{JasperTableExampleBean.journal.num5}" style="text-align: center;width: 70%"></p:inputText><br></br>
+ 			</div>
+ 		</div>
+ 		<div class="col-md-1"></div>
+ 		<div class="col-md-2" style="background-color: #efefef;">
+ 			<div class="col-md-12" style="text-align: center;font-size: 11px;">
+ 				Modèle n°02<br/>
+				Article 33 de<br/>
+				L’Instruction Générale<br/>du<br/>22 juillet 1955<br/>	
+ 			</div>
+ 			<div class="col-md-12" style="font-size: 11px;">
+ 				(1) Numéro de chapitre<br/>
+				(2) Libellé de chapitre<br/>
+				(3) Subdivision du service<br/>
+				(4) Magasin ou matériel en service selon qu’il s’agit d’un matériel en approvisionnement ou matériel en service.<br/>
+				(5)	Indication du magasin ou de la catégorie du matériel en service auquel se rapporte le journal<br/>
+				(6) Signature du chef du service ou de son délégué<br/>
+ 			</div>
+ 		</div>
+         <div class="col-md-12" style="text-align: center;">
+            <h3>JOURNAL</h3>
+            <h5>EN QUANTITES ET EN VALEUR DES ENTREES ET DES SORTIES</h5>
+     	</div>
+     	<div class="col-md-12">
+ 			Nombre de feuillets  :  <p:inputText  value ="#{JasperTableExampleBean.journal.nbFeuillets}" style="text-align: center;width: 70%"></p:inputText>
+ 		</div>
+		<div class="col-md-12">
+	 		<div class="col-md-12">
+	 			A <h:outputText value="#{JournalBean.trois}" />, le <p:inputText value ="#{JasperTableExampleBean.journal.date}" style="text-align: center;"></p:inputText><br></br>
+	 		</div><br/>
+	 		<div class="col-md-12">
+	 			(6) <p:inputText value ="#{JasperTableExampleBean.journal.num6}" style="text-align: center;width: 50%" disabled="True"></p:inputText><br></br>
+        			 Commencé le : <h:outputText value="#{JournalBean.dateD}"/> Terminé le : <h:outputText value="#{JournalBean.dateF}"/>
+        				<!--<p:calendar value ="#{JasperTableExampleBean.journal.debutDate}" id="date1" locale="fr" navigator="true" pattern="yyyy-MMM-dd" /><br/>
+		 			   
+	        			<p:calendar value ="#{JasperTableExampleBean.journal.finDate}" id="date2" locale="fr" navigator="true" pattern="dd-MMM-yyyy" /><br/>
+        			 -->
+	 		</div><br/>
+	 		<div class="col-md-12">
+	 		<p:dataTable var="c" value="#{JournalBean.li}"
+			sortBy="#{c[0]}"
+			id="journaltable1"
+			emptyMessage="Aucun résultat"
+			style="font-size:10px"
+			>
+			<f:facet name="header">
+       			 <span>JOURNAL DES MOUVEMENTS D’ENTREE ET DE SORTIE</span>
+    		</f:facet>
+			<p:columnGroup type="header">
+			<p:row>
+				<p:column colspan="8" headerText="Renseignement" style=" text-align: center; word-wrap: break-word;"/>
+                <p:column colspan="2" headerText="Entrée" style=" text-align: center; word-wrap: break-word;"/>
+                <p:column colspan="2" headerText="Sortie" style=" text-align: center; word-wrap: break-word;"></p:column>
+			</p:row>
+			<p:row>
+				<p:column headerText="ID" sortBy="#{c[0]}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Numéro d'ordre des pièces justificatives" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Date des entrées et des sorties" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Origine des entrées et désignation des sorties" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Numéro d’ordre de la nomenclature sommaire" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Désignation des matières et objets" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Prix de l'unité" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Quantité" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Valeur" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Quantité" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Valeur" style=" text-align: center; word-wrap: break-word;"/>
+			</p:row>
+				
+			</p:columnGroup>
+			<p:column headerText="ID" sortBy="#{c[0]}" style=" text-align: center; word-wrap: break-word;"> 
+			<h:outputText value="#{c[0]}" />			
+			</p:column>
+			<p:column headerText="Numéro d'ordre des pièces justificatives" style=" text-align: center; word-wrap: break-word;">
+            	<h:outputText value="#{c[1]}" />
+			</p:column>
+			<p:column headerText="Date des entrées et des sorties" style=" text-align: center; word-wrap: break-word;">
+            	<h:outputText value="#{c[2]}">
+                	<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+                </h:outputText>
+        	</p:column>
+
+			<p:column headerText="Origine des entrées et désignation des sorties" style=" text-align: center; word-wrap: break-word;">		
+				<h:outputText value="#{c[3]}" />
+			</p:column>
+			<p:column headerText="Numéro d’ordre de la nomenclature sommaire" style=" text-align: center; word-wrap: break-word;">		
+				<h:outputText value="#{c[11].nomenMat.nomenclature}" />
+			</p:column>
+
+			<p:column headerText="Désignation des matières et objets" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[4]}" />
+			</p:column>
+
+			<p:column headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[5]}" />
+			</p:column>
+
+			<p:column headerText="Prix de l'unité" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[6]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>					
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Quantité" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[7]}" />
+			</p:column>
+			<p:column headerText="Valeur" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[8]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>		
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Quantité" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[9]}" />
+			</p:column>
+				
+			<p:column headerText="Valeur" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{c[10]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>		
+				</h:outputText>
+			</p:column>
+			<p:columnGroup type="footer">
+            <p:row>
+                <p:column colspan="9" style="text-align:right" footerText="Total :" />
+                <c:set var="somme" value="${suivieditionBean.getTotalJournal(JournalBean.li)}" />
+				
+                <p:column >
+                <f:facet name="footer" colspan="6">
+					<h:outputText value="${somme}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+				</f:facet>
+                
+				</p:column>
+            </p:row>
+        </p:columnGroup>
+
+		</p:dataTable></div>
+		
+ 		</div>
+ 		<div class="col-md-12">
+ 		 <p>Arrété le présent journal <p:inputText value ="#{JasperTableExampleBean.journal.arrete}"  style="text-align: center;width: 70%"></p:inputText> Ariary<br></br>
+ 		</p>
+ 		</div>
+ 		<div class="col-md-3">
+ 			
+ 		</div>
+</div>
+<div class="col-mid-1"></div>
+<br/><p:commandButton styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " action="#{JasperTableExampleBean.journalMatiereReport(JournalBean.dateD, JournalBean.dateF, JournalBean.li)}" type="submit" value="Exporter en PDF" ajax="false" >
+ 			<!-- f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num3}" value="#{JournalBean.direction}" /-->
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.lieu}" value="#{JournalBean.trois}" />
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num4}" value="#{JournalBean.quatre}" />
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.budget}" value="#{JournalBean.section}" />
+ 			</p:commandButton>
+ 			<br/>
+ 			
+ 			<p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px; " action="#{JasperTableExampleBean.journalMatiereDoc(JournalBean.dateD, JournalBean.dateF, JournalBean.li)}" type="submit" value="Exporter en Word" ajax="false" >
+ 			<!-- f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num3}" value="#{JournalBean.direction}" /-->
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.lieu}" value="#{JournalBean.trois}" />
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num4}" value="#{JournalBean.quatre}" />
+ 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.budget}" value="#{JournalBean.section}" />
+ 			</p:commandButton>
+ 			
+</h:form>
+<script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+</html>

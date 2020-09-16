@@ -1,0 +1,165 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+<h:form>
+    <p:dataTable var="materiel" value="#{suivieditionBean.listHistoriqueMatDirection}"
+    			 id="historiquemateriels"
+    			 widgetVar="MaterielTable" 
+    			 currentPageReportTemplate="({currentPage} sur {totalPages})"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="20" style="margin-bottom:20px"
+                 emptyMessage="Aucun resultat" 
+                 filterEvent="enter"
+                 rowKey="#{materiel.idMateriel}"
+                 
+                 >
+       
+        <f:facet name="{Exporters}">
+            <h:commandLink>
+                <i class="fa fa-table">  </i> Excel
+                <p:dataExporter type="xls" target="historiquemateriels" fileName="historiquemateriels" />
+            </h:commandLink>
+ 			<span>   </span>
+            <h:commandLink>
+            	<i class="fa fa-file">  </i> PDF
+            	
+                <p:dataExporter encoding="ISO-8859-1" type="pdf" target="historiquemateriels" facetFontStyle="BOLD" 
+                fileName="historiquemateriels"
+                cellFontStyle="NORMAL"
+                tableTitle="Liste des matériels"
+                preProcessor="#{dtFilterView.preProcessPDF}"
+                datasetPadding="4"/>
+            </h:commandLink>
+        </f:facet>
+        
+        <p:column headerText="ID" style="width: 5%; text-align: center; word-wrap: break-word;">
+           <h:outputText value="#{materiel.idMateriel}" />
+            
+        </p:column>
+        <p:column filterBy="#{materiel.design.nomenMat}" headerText="Nomenclature"  filterMatchMode="exact" style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTable').filter()" panelStyle="width:250px;">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listNomenclature}" var="type"
+								itemLabel="N#{type.nomenclature} - #{type.designation}"/>
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Nomenclature" />
+            </f:facet> 
+            <h:outputText value="#{materiel.design.nomenMat.nomenclature}" />
+        </p:column>
+        <p:column headerText="Numéro Série" filterBy="#{materiel.numSerie}" filterMatchMode="contains" style="width: 12%; text-align: center; word-wrap: break-word;">
+             <h:outputText value="#{materiel.numSerie}" />
+            
+        </p:column>
+        <p:column headerText="Type de Matériel" filterBy="#{materiel.design.typematerieladd.designation}" filterMatchMode="contains" style="width: 10%; text-align: center; word-wrap: break-word;">
+             <h:outputText value="#{materiel.design.typematerieladd.designation}" />
+            
+        </p:column>
+        <p:column headerText="Codification" filterBy="#{materiel.code}" filterMatchMode="contains" style="width: 8%; text-align: center; word-wrap: break-word;">
+            <h:outputText value="#{materiel.code}" />
+            
+        </p:column>
+        
+        <!-- p:column filterBy="#{materiel.etat}" headerText="Etat"  filterMatchMode="exact" style="width: 7%; text-align: center; word-wrap: break-word;">
+           <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTable').filter()" panelStyle="width:250px;">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listEtatMateriel}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <h:outputText value="#{materiel.etat.designation}" />
+        </p:column-->
+        <p:column style="width: 6%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Marque" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.marque.designation}" />
+        </p:column>
+        <p:column style="width: 8%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Dépositaire" />
+            </f:facet>
+            <h:outputText value="#{materiel.dc.nomAgent}" />
+        </p:column>
+        <p:column exportable="false" style="width: 5%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header"><h:outputText value="Détail" /></f:facet>
+            
+            	<p:commandButton  action="#{suivieditionBean.setMateriel(materiel.idMateriel)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+        </p:column> 
+        <!-- <p:column exportable="false" style="width: 4%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Statut</f:facet>
+            <p:commandButton  action="#{suivieditionBean.setMateriel(materiel.idMateriel)}" 
+            oncomplete="PF('statut').show()" icon="ui-icon-info" update=":statut">
+
+            </p:commandButton>
+        </p:column>
+        <p:column exportable="false" style="width: 4%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Historique</f:facet>
+            <p:commandButton  action="#{suivieditionBean.setMateriel(materiel.idMateriel)}" 
+            oncomplete="PF('historique').show()" icon="ui-icon-clipboard" update=":historique">
+            </p:commandButton>
+        </p:column>
+         -->
+         
+        <p:column filterBy="#{materiel.validation}" headerText="Statut" filterMatchMode="equals" style="width: 6%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneButton onchange="PF('MaterielTable').filter()">
+                    <f:converter converterId="javax.faces.Boolean" />
+                    <f:selectItem itemLabel="Tout" itemValue="" />
+                    <f:selectItem itemLabel="V" itemValue="true" />
+                    <f:selectItem itemLabel="NV" itemValue="false" />
+                </p:selectOneButton>
+            </f:facet>
+            <h:outputText value="#{materiel.validation ? 'Validé': 'Non Validé'}" />
+        </p:column>
+        <p:column filterBy="#{materiel.detenteur}" headerText="Détenteur" filterFunction="#{dtFilterView.filterByDetenteur}" style="width: 6%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneButton onchange="PF('MaterielTable').filter()">
+                    <f:selectItem itemLabel="Tout" itemValue="all" />
+                    <f:selectItem itemLabel="Non" itemValue="true" />
+                    <f:selectItem itemLabel="Oui" itemValue="false" />
+                </p:selectOneButton>
+            </f:facet>
+            <h:outputText value="#{materiel.detenteur.im} - #{materiel.detenteur.nomAgent}" />
+        </p:column>
+        <p:column filterBy="#{materiel.detenteur}" headerText="Immatricule Détenteur"  filterMatchMode="exact" style="width: 7%; text-align: center; word-wrap: break-word;">
+           <f:facet name="filter">
+                <p:selectOneMenu filter="true" filterMatchMode="startsWith" onchange="PF('MaterielTable').filter()" panelStyle="width:250px;">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{userMB.userListByDirection}" var="type" itemLabel="#{type.im}" itemValue="#{type}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <h:outputText value="#{materiel.detenteur.im}" />
+        </p:column>
+    </p:dataTable>
+
+</h:form>
+
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog styleClass="loader_dialog" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="">
+		<div align="center" class="">
+			<p:graphicImage style="width:35% !important; height:35% !important;" value="/pages/unsecure/assets/images/loading_small.gif" /> 
+		</div>
+	</p:dialog>
+
+<ui:include src="/pages/secure/CM/DGD/tables/dialogs/dialogs_listeMatStatHisto.xhtml"></ui:include>
+
+
+</div>
+
+</html>

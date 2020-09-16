@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+
+    <p:dataTable   var="a" value="#{siseBean.listOpEntreeArticle}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px">
+ 
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="ID Article"/>
+            </f:facet>
+            <h:outputText value="#{a.article.idArticle}" />
+        </p:column>
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Date"/>
+            </f:facet>
+            <h:outputText value="#{a.date}" >
+            	<f:convertDateTime pattern="dd MMMM yyyy " timeZone="GMT+3"/>
+            </h:outputText>
+            -
+            <h:outputText value="#{a.time}" >
+            	<f:convertDateTime pattern="HH:mm" timeZone="GMT+3" />
+            </h:outputText>
+        </p:column>
+
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Article" />
+            </f:facet>
+            <h:outputText value="#{a.article.codeArticle.designation}" />
+        </p:column>
+
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Opérateur" />
+            </f:facet>
+    
+            <h:outputText value="#{a.operateur.im}" />
+        </p:column>
+
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Etat" />
+            </f:facet>
+            <h:outputText value="#{dtFilterView.getOperationStateDes(a.state)}" />
+        </p:column>
+        
+        
+        <p:column styleClass="#{a.state}" style=" text-align: center; word-wrap: break-word;">
+
+            <f:facet name="header">
+                <h:outputText value="Détail" />
+            </f:facet>
+            <p:commandButton rendered="#{a.state eq 'WAITING' }" action="#{gacBean.setOpEntreeArticleToValidate(a)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-circle-check"/>
+
+            <p:commandButton action="#{gacBean.setOpEntreeArticleToValidate(a)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+        
+        </p:column>
+    </p:dataTable>
+</div>
+
+<ui:include src="/pages/secure/CA/GAC/tables/dialogs/dialogs_vpriseEnCharge.xhtml"></ui:include>
+</html>

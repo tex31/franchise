@@ -1,0 +1,99 @@
+
+
+<h:head xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	
+<ui:composition xmlns="http://www.w3.org/1999/xhtml">
+	
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<!--IE Compatibility modes-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<!--Mobile first-->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	</f:facet>
+	<title> #{title}</title>
+	<style>
+		.dropdown-submenu{position:relative;}
+		.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+		.dropdown-submenu:hover>.dropdown-menu{display:block;}
+		.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+		.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+		.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+	</style>
+	<link rel="shortcut icon" type="image/png" href="#{request.contextPath}/pages/unsecure/assets/images/logo_simple.png"/>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/css/bootstrap.css" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet"
+		href="#{request.contextPath}/pages/unsecure/assets/lib/font-awesome/css/font-awesome.css" />
+	<!-- >link rel="stylesheet"
+		href="#{request.contextPath}/pages/unsecure/assets/lib/font-awesome/css/font-awesome.css" /-->
+	<!-- link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/-->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/lib/font-awesome-4-7-0/css/font-awesome.min.css"/>
+
+	<!-- Metis core stylesheet -->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/css/main.css" />
+	
+	<!-- h:outputStylesheet name="#{request.contextPath}/pages/unsecure/assets/css/main.css"></h:outputStylesheet-->
+
+	<!-- metisMenu stylesheet -->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.css" />
+
+	<!-- onoffcanvas stylesheet -->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.css" />
+
+	<!-- animate.css stylesheet -->
+	<link rel="stylesheet" href="#{request.contextPath}/pages/unsecure/assets/lib/animate.css/animate.css" />
+	<link type="text/css" href="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/css/jquery-ui.css"
+		rel="stylesheet" />
+
+	<!-- link rel="stylesheet"
+		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css" /-->
+		
+	<link rel="stylesheet"
+		href="#{request.contextPath}/pages/unsecure/assets/css/fullcalendar.min.css" />
+		<!-- link rel="stylesheet"
+		href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css" /-->
+	<!-- link
+		href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+		rel="stylesheet" /-->
+	
+	<!-- link
+		href="#{request.contextPath}/pages/unsecure/assets/lib/fontawesome/css/fontawesome.min.css"
+		rel="stylesheet" /-->
+	
+	<link
+		href="#{request.contextPath}/pages/unsecure/assets/css/font-awesome.min-4-2-0.css"
+		rel="stylesheet" />
+	<script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "/assets/"
+        };
+    </script>
+	<link rel="stylesheet/less" type="text/css"
+		href="#{request.contextPath}/pages/unsecure/assets/less/theme.less" />
+	<!-- script
+		src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script-->
+	<script src="#{request.contextPath}/pages/unsecure/assets/js/less.js"></script>
+	<script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>	
+
+	
+	<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+  
+  <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>
+
+</ui:composition>
+</h:head>
+
+
+

@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+ <h:head></h:head>
+
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 55px;
+	}
+</style>
+
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+    <div class="body">
+
+        <h:form class="form-horizontal">
+
+            <p:messages id="messages" showDetail="true"/>
+
+            
+			<br/>
+            <div class="form-group">
+
+
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text1" class="control-label ">Motif de sortie
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:selectOneMenu value="#{depositaireBean.motifSortie}" converter="#{refConverter}"
+	                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;">
+	                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+	                            <f:selectItems value="#{siseBean.listMotifSortie}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+	                        <!-- <p:column>
+	                            <h:outputText value="#{t.designation}" />
+	                        </p:column> -->
+	                        
+	                        <p:ajax event="change" update="designation" listener="#{depositaireBean.onMotifSortieChange}"/>
+	                    </p:selectOneMenu>
+					</div>
+                
+                </div>
+                <hr/>
+                
+
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text1" class="control-label ">Matériel *
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:selectOneMenu value="#{depositaireBean.materiel}" converter="#{materielConverter}"
+	                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;">
+	                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+	                            <f:selectItems value="#{depositaireBean.listAllMaterielValideSansDetenteurByDirection}" var="theme" itemLabel="#{theme.numSerie}" itemValue="#{theme}" />
+	                        <!-- <p:column>
+	                            <h:outputText value="#{t.numSerie}" />
+	                        </p:column> -->
+	                        
+	                        <p:ajax event="change" update="marque ref num typemat carac"/>
+	                    </p:selectOneMenu>
+					</div>
+                </div>
+               	<hr/> 
+               	
+               	<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">     
+                
+	                <label for="text1" class="control-label ">Type du Matériel
+									</label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="typemat" value="#{depositaireBean.materiel.design.typematerieladd.designation}" ></h:outputText>
+
+                </div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">     
+                
+	                <label for="text12" class="control-label ">Caractéristique
+									</label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="carac" value="#{depositaireBean.materiel.design.renseignement}" ></h:outputText>
+
+                </div>
+			</div>
+			<hr />
+                
+
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text1" class="control-label ">Marque
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <h:outputText id="marque" value="#{depositaireBean.materiel != null ? depositaireBean.materiel.design.marque.designation : ''}"/>
+	
+	                 </div>
+
+                </div>
+                <hr/>
+            
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text1" class="control-label ">Référence
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <h:outputText id="ref"  value="#{depositaireBean.materiel.reference}"/>
+
+					</div>
+                </div>
+                <hr/>
+                
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text1" class="control-label ">Numéro de série
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <h:outputText id="num"  value="#{depositaireBean.materiel.numSerie}"/>
+	
+	                </div>
+
+                </div>
+                <hr/>
+                
+
+                <p:panel id="designation" >
+                    <p:panel rendered="#{depositaireBean.motifSortie.designation eq 'Affectation'}" >
+                    	<div class="row">
+							<div class="col-lg-4 col-lg-offset-1">
+			                    <label for="text1" class="control-label ">Destination </label>
+			                    <label for="text1" class="control-label ">Direction</label>
+							</div>
+							<div class="col-lg-6">
+			                    <p:selectOneMenu  styleClass="form-control top" converter="#{refConverter}" 
+			                    value="#{depositaireBean.destinationDirec}" panelStyle="width:250px;"
+			                    required="true" requiredMessage="Destination obligatoire"
+			                    >
+			                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+			                            <f:selectItems value="#{siseBean.listDirection}" var="b" itemLabel="#{b.codeDirection}" itemValue="#{b}"/>
+			                    </p:selectOneMenu>
+							</div>
+						</div>
+	                    
+               		</p:panel>
+
+                </p:panel>
+                
+				<hr></hr>
+
+             	<div class="col-lg-2"></div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="text1" class="control-label col-lg-4"></label>
+
+                <div class="col-lg-4">
+                    <h:commandLink id="btnSignId" action="#{depositaireBean.addDecharge}" value=""
+                        class="btn btn-lg btn-primary btn-block">
+                        <i class=" fa fa-recycle">  </i>  Décharger
+                    </h:commandLink>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

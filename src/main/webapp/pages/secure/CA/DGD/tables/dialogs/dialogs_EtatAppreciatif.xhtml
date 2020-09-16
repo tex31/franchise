@@ -1,0 +1,398 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+</ui:include>
+
+	
+	
+ 	<div class="col-md-1"></div>
+
+
+
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/gauche.png" />
+
+ 			</div>
+
+ 			<div class="col-md-6">
+ 				
+ 				(1)....................................................................
+
+            <br></br><br></br>
+
+            
+                
+                BUDGET ............................................................
+            
+
+
+            <br></br><br></br>
+
+            
+                
+                CHAPITRE(2) ............... ARTICLE..............PARAGRAPHE.......
+            
+
+            <br></br><br></br>
+
+
+        </div>
+
+            
+
+
+
+ 			<div class="col-md-3">
+ 				Modèle n°9
+
+                <br></br><br></br>
+
+                Instruction Générale du 22 Juillet 1955<br></br><br></br>
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+ 			<div class="col-md-6">
+ 			(3).........................................................................................................<br></br>
+ 		</div>
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+
+ 				 
+ 			</div>
+ 		</div>
+        <br></br><br></br>
+        <div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+            <div class="col-md-6">
+            (4).........................................................................................................<br></br>
+        </div>
+            <div class="col-md-3" style="font-size: 14px!important;">
+
+                 
+            </div>
+        </div>
+        <br></br><br></br>
+        <div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+            <div class="col-md-6">
+            (5).........................................................................................................<br></br><br></br>
+        </div>
+            <div class="col-md-3" style="font-size: 14px!important;">
+
+                 
+            </div>
+        </div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-1">
+
+ 			</div>
+
+ 			<div class="col-md-10" style="text-align: center;font-size: 25px; color: #444">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/etat.png" /><br></br>
+                    <strong>effectués pendant l'année ...#{gacBean.annee}................</strong>
+ 			</div>
+
+ 			<div class="col-md-1" style="font-size: 14px!important;">
+ 				
+ 			</div>
+ 		</div>
+        <br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+            <br></br><br></br>
+ 			Ci-joint(6)......................................................................pièces justificatives<br></br><br></br>
+            Gestion de M. (7).....................................................................................<br></br><br></br>
+            Du (8)....................................................au (8)......................................<br></br><br></br>
+            Gestion de M. (7).....................................................................................<br></br><br></br>
+            Du (8)....................................................au (8)......................................<br></br><br></br>
+ 		</div>
+
+
+
+
+
+ 		<br></br><br></br><br></br>
+
+
+            <table>
+                <tr class="entreeo">
+                    <th colspan="2">Pièces justificatives</th>
+                    <th style="border-bottom: none;">Désignation des opérations</th>
+                    <th colspan="2">1 opération A</th>
+                    <th colspan="2">2 opération A</th>
+                    <th colspan="2">3 opération A</th>
+                    <th colspan="2">4 opération A</th>
+
+
+                </tr>
+                <tr class="entreeo">
+                    <th >N°</th>
+                    <th >Date</th>
+                    <th style="border-top: none"></th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    
+                    
+                </tr>
+
+                
+        <!--c:forEach var="o" items="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"-->
+        <c:forEach var="o" items="#{suivieditionBean.listOperationEntree}">
+
+            <c:set var="n" value="#{1}"/>
+
+            <c:forEach var="materiel" items="#{o.listMat}">
+
+            
+        
+
+                <tr class="entreeo">    
+                    <td><h:outputText value="#{n}" /></td>
+                    <td><h:outputText value="#{o.date}" /></td>
+                    <td>
+
+                        <p:panel rendered="#{o['class'].simpleName eq 'OpEntree'}">
+
+                
+
+                    
+                    <p:panel rendered="#{materiel['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{materiel.direc.designation}
+                    </p:panel>
+
+                    <p:panel rendered="#{materiel['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{materiel.fournisseur.designation}
+                    </p:panel>
+               
+
+                
+                    </p:panel>
+                    <p:panel rendered="#{o['class'].simpleName eq 'OpSortie' }" >
+                        #{o.motifsortie.designation}
+                    </p:panel>
+
+                    </td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                </tr>
+
+            
+
+        </c:forEach>
+
+        <c:set var="n" value="#{n + 1}"/>
+
+    </c:forEach>
+
+            </table>
+
+<br></br><br></br><br></br>
+
+                <table>
+                <tr class="entreeo">
+                    
+                    <th colspan="2">5 opération A</th>
+                    <th colspan="2">6 opération A</th>
+                    <th colspan="2">7 opération A</th>
+                    <th colspan="2">8 opération A</th>
+                    <th colspan="2">9 opération A</th>
+                    <th colspan="2">10 opération A</th>
+                    <th colspan="2">11 opération A</th>
+                    <th colspan="2">12 opération A</th>
+
+
+                </tr>
+                <tr class="entreeo">
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    <th >Charge</th>
+                    <th >Décharge</th>
+                    
+                    
+                </tr>
+
+                
+        <!--c:forEach var="o" items="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"-->
+        <c:forEach var="o" items="#{suivieditionBean.listOperationEntree}">
+        
+
+                <tr class="entreeo">    
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                    <td><h:outputText value="" /></td>
+                </tr>
+
+        
+
+    </c:forEach>
+
+            </table>
+
+
+
+    <br></br><br></br><br></br>
+
+
+
+
+ 	</div>
+
+
+ 	<div class="col-md-1"></div>
+
+	
+	<script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+	
+	
+	
+    <!--  script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script-->
+
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

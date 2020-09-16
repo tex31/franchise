@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<style>
+	.fa span{
+	  display: inline-block !important;
+	  font-size:1.2em !important;
+	  padding:0.5em !important;
+	}
+</style>
+
+	<p:panel rendered="#{loginMgmtBean.im != null}">
+		<script type="text/javascript">
+		    var base_url = window.location.origin;
+
+			var host = window.location.host;
+		
+			var pathArray = window.location.pathname;
+			 //alert(pathArray);
+			var listPath = pathArray.split('/');
+			 //alert(listPath);
+			var project_name = listPath[1];
+			var redirection = project_name + "/pages/secure/choice.xhtml";
+			if( window.location != "/"+ redirection ){
+				window.location = "/" + redirection;
+			}
+			else{
+				window.location  = window.location;
+			}
+			//alert(redirection);
+   	 
+		</script>
+	</p:panel>
+
+
+
+<f:metadata>
+    <f:viewAction action="#{loginBean.test()}" />
+</f:metadata>
+
+    
+<ui:include src="components/header.xhtml">
+	<ui:param name="title" value="Se connecter" />
+</ui:include>
+
+
+
+
+<h:body styleClass="login">
+	<div class="background_rc">
+	</div>
+	
+	<div class="form-signin">
+		<div class="text-center">
+			<h:graphicImage styleClass="login_img"  value="/pages/unsecure/assets/images/sigma_logo.png" />
+		</div>
+		<br ></br >
+		<div class="tab-content">
+			<div id="login" class="tab-pane active">
+				<h:form id="loginFormId" prependId="false" >
+					<p:messages Style="font:1em" id="messages"  autoUpdate="false" showSummary="true" showDetails="false" />
+
+					<h:outputLabel id="outTxtUserNameId" value="Immatriculation: " name="outTxtUserNameNm" styleClass="text-muted text-center log_color"></h:outputLabel>
+					<p:inputText id="immatriculation" required="true" value="#{loginMgmtBean.immatriculation}" requiredMessage="Erreur immatriculation" placeholder="Immatriculation"
+						styleClass="form-control top"></p:inputText>
+					<br ></br >
+					
+					<h:outputLabel id="outTxtUserPasswordId" value="Mot de passe: " name="outTxtUserNameNm" styleClass="text-muted text-center log_color"></h:outputLabel>
+					
+					
+					<p:password id="password"  required="true" value="#{loginMgmtBean.password}" requiredMessage="Erreur mot de passe" placeholder="Mot de passe" styleClass="form-control bottom" ></p:password>
+
+					<hr></hr>
+					
+					<p:commandButton action="#{loginMgmtBean.login}" value="Se connecter"  
+					update="messages"
+					styleClass="btn btn-lg btn-block fa fa-sign-in log_color">
+					
+					</p:commandButton>
+					<br></br>
+						
+				</h:form>
+			</div>
+		</div>
+		
+		<hr></hr>
+		
+		<div class="text-center">
+			<ul class="list-inline">
+				<li><h:link outcome="doc" immediate="true" target="_blank"> Guide</h:link></li>
+			</ul>
+		</div>
+	</div>
+
+	<ui:include src="components/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

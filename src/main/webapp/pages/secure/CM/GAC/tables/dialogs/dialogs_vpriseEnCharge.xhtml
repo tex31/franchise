@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+<h:head></h:head>
+<p:growl id="growl" for="myerror" showDetail="true" sticky="true" redisplay="false"/>
+
+<p:dialog id="detail" widgetVar="detail" position = "center,top" closable="false" header="Détails validation prise en charge" showEffect="explode" hideEffect="explode" width="1250" height="600">
+
+    <h:form class="form-horizontal">
+            <p:commandButton actionListner="#{gacBean.exit()}" icon="ui-icon-delete"
+            style="valign:bottom;float:right;padding-right:20px" ajax="false"/>
+                        
+            </h:form>
+
+
+
+    <div   class="body collapse in table-responsive">
+
+
+
+
+
+        <p:tabView>
+
+
+            <c:forEach var="mat" items="#{gacBean.opEntreeToValidate.listMat}">
+
+                <p:tab title="#{mat.design.typematerieladd.designation}">
+
+                    <table class="table responsive-table">
+                        <tr>
+                            <td><strong>Type de matériel</strong></td>
+                            <td>#{mat.design.typematerieladd.designation}</td>
+                            <td><strong>Nomenclature</strong></td>
+                            <td>#{mat.design.nomenMat.nomenclature}</td>
+                            <td><strong>Marque</strong></td>
+                            <td>#{mat.design.marque.designation}</td>
+                        </tr>
+
+
+
+
+
+
+
+                        <tr>
+                            <td><strong>Référence</strong></td>
+                            <td>#{mat.reference}</td>
+                            <td><strong>Numéro de série</strong></td>
+                            <td>#{mat.numSerie}</td>
+                            <td><strong>Document</strong></td>
+                            <td>
+                                <!--h:outputLink value="/pages/secure/CM/DC/#{depositaireBean.curentMateriel.documentPath}"  target="_blank">
+                                    <i class="fa fa-file-archive-o"></i>
+                                </h:outputLink-->
+
+                                <!--c:if test="#{depositaireBean.filedownload ne null}" >
+                                    <h:form>
+                                        <p:commandButton id="downloadLink" value="Download" ajax="false">
+                                            <f:setPropertyActionListener target="#{depositaireBean.fileZipPath}" value="delete" />
+                                            <p:fileDownload value="#{depositaireBean.filedownload}" />
+                                            <i class="fa fa-file-archive-o"></i>
+                                        </p:commandButton>
+                                    </h:form>
+                                </c:if-->
+
+                                <c:if test="#{gacBean.filedownload ne null}" >
+                                    <h:form>
+                                        <p:commandButton id="downloadLink" value="Télécharger" ajax="false" icon="ui-icon-document">
+                                            <f:setPropertyActionListener target="#{gacBean.fileZipPath}" value="delete" />
+                                            <p:fileDownload value="#{gacBean.filedownload}" />
+                                            <!-- i class="fa fa-file-archive-o"></i-->
+                                        </p:commandButton>
+                                    </h:form>
+                                </c:if>
+
+                            </td>
+                        </tr>
+
+                        <c:if test="#{mat['class'].simpleName eq 'MaterielNouv' }">
+
+                            <tr>
+                                <td><strong>Prix unitaire</strong></td>
+                                <td>
+		                        	<h:outputText value="#{mat.design.pu}" ><f:convertNumber locale="fr_BE" currencySymbol="Ar "></f:convertNumber></h:outputText>
+		                     	</td>
+                                <td><strong>Financement</strong></td>
+                                <td>#{mat.design.financement.designation}</td>
+                                <td><strong>Réference pj</strong></td>
+                                <td>#{mat.design.refFacture}</td>
+                            </tr>
+
+                            <!-- <tr> -->
+                                <c:if test="#{gacBean.opEntreeToValidate['class'].simpleName eq 'OpEntree' }">
+
+                                    <tr>
+                                    
+                                    	<td> - </td>
+                                        <td></td>
+                                        <td><strong>Facture</strong></td>
+                                        <td>
+
+                                            <c:if test="#{gacBean.fileFacPath ne null}" >
+                                                <h:form>
+                                                    <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-document">
+                                                        <f:setPropertyActionListener target="#{gacBean.fileFacPath}" value="delete" />
+                                                        <p:fileDownload value="#{gacBean.facdownload}" />
+                                                        <!-- i class="fa fa-file-archive-o"></i-->
+                                                    </p:commandButton>
+                                                </h:form>
+                                            </c:if>
+
+                                        </td>
+                                       
+                                        <td> - </td>
+                                        <td></td>
+                                    </tr>
+
+                                </c:if>
+
+                            <!-- </tr> -->
+
+                            <tr>
+                                <td><strong>Mode d'acquisition</strong></td>
+                                <td>#{mat.design.modAcq.designation}</td>
+                                <!--  
+                                <td><strong>Fournisseur</strong></td>
+                                <td>#{mat.design.fournisseur.designation}</td> -->
+                                <td> </td>
+                                <td> </td>
+                                <td><strong>Dépositaire</strong></td> 
+                                <td>#{mat.dc.im} - #{mat.dc.nomAgent}</td>
+                            </tr>
+
+                        </c:if>
+
+                        <tr>
+                            <td><strong>Caratéristique</strong></td>
+                            <td>#{mat.design.renseignement}</td>
+                            <td><strong>Image</strong></td>
+                            <td>
+                                <p:panel rendered="#{mat.design.image != null}">
+                                    <h:graphicImage url="data:image/jpg;base64,#{mat.design.image}"
+                                                    width="100px" height="75px" library="images" onclick="PF('dlg').show();"></h:graphicImage>
+                                    <p:dialog widgetVar="dlg" resizable="f" height="330px" width="530px" onShow="js">
+								    	<h:graphicImage  library="images" url="data:image/jpg;base64,#{mat.design.image}" width="500px" height="300px"/>
+								 	</p:dialog>
+                                </p:panel>
+                            </td>
+                            <td><strong>Origine</strong></td>
+                        <td>#{mat.design.origine}</td>
+                        </tr>
+                    </table>
+                </p:tab>
+            </c:forEach>
+
+        </p:tabView>
+       
+         
+         <div class="form-group">
+         	<p:panel rendered="#{gacBean.opEntreeToValidate.state eq 'WAITING' }">
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+						<br/>
+						<h:form class="form-horizontal">
+
+                            <h:commandButton  action="#{gacBean.validatePrisEnChargeEntreMat(gacBean.opEntreeToValidate)}" value="Valider"
+                                              class="btn btn-lg btn-primary btn-block">
+                                <!--f:param name="operationValide" value="#{gacBean.opEntreeToValidate}"/-->
+                            </h:commandButton>
+                       	</h:form>
+					</div>
+					<div class="col-lg-4 ">
+	
+						<h:form>
+
+                            <label for="text1" >Motif de refus
+                            </label>
+
+                            <h:inputText value="#{gacBean.motif}"
+                                         styleClass="form-control top"></h:inputText>
+
+                            <h:commandButton  action="#{gacBean.refusePrisEnChargeEntreMat(gacBean.opEntreeToValidate)}" value="Refuser"
+                                              class="btn btn-lg btn-warning btn-block">
+                                <!--f:param name="operationValide" value="#{gacBean.opEntreeToValidate}"/-->
+                            </h:commandButton>
+
+
+                        </h:form>
+	
+					</div>
+				</div>
+			</p:panel>
+		 </div>
+            
+                    
+    </div>
+
+
+
+
+
+</p:dialog>
+
+
+
+
+</html>

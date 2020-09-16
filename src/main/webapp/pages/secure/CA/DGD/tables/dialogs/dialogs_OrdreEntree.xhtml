@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+</ui:include>
+
+<div class="to_pdf">
+
+<div id="cont">
+
+ 	<div class="col-md-1"></div>
+
+
+
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+ 			
+ 			<div class="col-md-3">
+ 				(3)<p:inputText style="text-align: center;width: 80%"></p:inputText><br></br>
+ 				(4)<p:inputText style="text-align: center;width: 80%"></p:inputText><br></br>
+
+ 			</div>
+
+ 			<div class="col-md-6">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/mada.png" />
+ 			</div>
+
+ 			<div class="col-md-3">
+ 				Modèle n°7
+                <button id="cmd">generate PDF</button>
+ 			</div>
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				 Numéro de chapitre<br></br>
+ 				 Libelé de chapitre<br></br>
+ 				 Service : #{gacBean.curentOperation1.direction}<br></br>
+ 				 Subdivision de chapitre<br></br>
+
+ 			</div>
+
+ 			<div class="col-md-6" style="text-align: center;">
+ 				BUDGET .........................
+ 				
+ 			</div>
+
+			<div class="col-md-3">
+ 				
+ 			</div> 	
+
+ 		</div>	
+
+ 		<div class="col-md-12">	
+
+ 			<div class="col-md-1"></div>
+
+ 			<div class="col-md-10" style="text-align: center;">
+ 				
+ 				CHAPITRE ........................... ARTICLE ............................ <br></br><br></br>
+
+ 			</div>
+
+
+
+
+ 			<div class="col-md-1"></div>
+
+ 		</div>
+
+
+ 			<div class="col-md-12">
+ 				
+ 				Numéro d'ordre du journal : (2)  <p:inputText style="text-align: center;width: 50%"></p:inputText>
+
+ 			</div>
+
+
+ 			<div class="col-md-12">
+ 				
+ 				<div class="col-md-3"></div>
+
+                <div class="col-md-6" style="text-align: center;">
+                    
+                    <select style="text-align: center;">
+                        <option style="text-align: center;">MATERIEL EN APPROVISIONNEMENT</option>
+                        <option style="text-align: center;">MATERIEL EN SERVICE</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3"></div>
+ 			</div>
+
+
+ 			<div class="col-md-12" style="text-align: center;">
+ 				
+ 				<h:graphicImage width="30%"
+                    value="/pages/unsecure/assets/images/ordre.png" /><br></br>
+
+ 			
+ 			</div>
+
+ 			<div class="col-md-12">
+
+ 			Seront portés en entrée dans les écritures du comptable ... #{gacBean.curentOperation1.direction.designation}...................les matières et objets ci-après désignés provenant de ..#{gacBean.curentOperation1.mat.origine}.........................................................
+
+ 		</div>
+
+
+        <br></br><br></br><br></br>
+
+
+ 			<table>
+ 				<tr class="entreeo">
+                    <th colspan="2"  style="border-bottom: none;">Numéro</th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th colspan="3">Décompte</th>
+                    <th style="border-bottom: none;"></th>
+
+ 				</tr>
+                <tr class="entreeo">
+                    <th colspan="2" style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th colspan="2">Valeurs</th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                </tr>
+                <tr class="entreeo">
+                    <th>Du folio du grand livre </th>
+                    <th> de nomenclature somaire</th>
+                    <th style="border-top: none;">Désignation des matériels et objets</th>
+
+                    <th style="border-top: none;">Espèce des unités</th>
+                    <th style="border-top: none;">Quantité</th>
+                    <th style="border-top: none;">Prix unitaire</th>
+                    <th>Partielle</th>
+                    <th>Par numero de nomanclature somaire</th>
+                    <th style="border-top: none;">Numéro de la pièce justificative de sortie ou indocation de référence</th>
+                </tr>
+
+        <c:forEach var="mat" items="#{gacBean.curentOperation1.listMat}">
+
+ 				<tr class="entreeo">	
+ 					<td><p:inputText style="text-align: center;"></p:inputText>  </td>
+                    <td> #{mat.nomenMat.nomenclature}</td>
+ 					<td>#{mat.nomenMat.designation}, #{mat.typematerieladd.designation} , #{mat.renseignement}</td>
+ 					<td>#{mat.especeUnite}</td>
+ 					<td>1</td>
+                    <c:if test="#{mat['class'].simpleName eq 'MaterielEx'}">
+ 					<td>#{mat.pu}</td>
+                    </c:if>
+
+                    <c:if test="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    <td>#{mat.montant_facture}</td>
+                    </c:if>
+
+ 					<c:if test="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    <td>#{1*mat.pu}</td>
+                    </c:if>
+
+                    <c:if test="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    <td>#{1*mat.montant_facture}</td>
+                    </c:if>
+
+                    <td></td>
+ 					<td>#{mat.reference}</td>
+ 				</tr>
+
+        </c:forEach>
+
+ 			</table>
+
+ 			<br></br><br></br><br></br><br></br>
+
+ 			Arrêté le présent ordre d'entrée à  <p:inputText style="text-align: center;"></p:inputText> article évalué à la somme de .
+         <p:inputText style="text-align: center;"></p:inputText><br></br><br></br><br></br>
+
+ 			<div class="col-md-6">Le comptable ..#{gacBean.curentOperation1.operateur.nomAgent}.. présent en charge des matières désignés et objets désignés ci-dessus dont j'ai vérifié la concordance avec le <p:inputText style="text-align: center;width: 30%;"></p:inputText>, le<p:inputText style="text-align: center;width: 30%;"></p:inputText><br></br><br></br>
+
+ 			Le ..#{gacBean.curentOperation1.date}..
+
+ 			</div>
+
+ 			<div class="col-md-6">
+ 				A <p:inputText style="text-align: center;"></p:inputText>, le ..#{gacBean.curentOperation1.date}..<br></br>
+ 				Le comptable ...  #{gacBean.curentOperation1.operateur.nomAgent}.......................<br></br>
+ 				Déclaration de prise en charge <br></br>
+ 				le comptable déclare avoir reçu et pris en charge les matières et objets mentionnés dans le tableau ci-dessus.<br></br>
+
+ 				A<p:inputText style="text-align: center;"></p:inputText>, le ..#{gacBean.curentOperation1.date}..<br></br>
+
+ 				Le comptable ...#{gacBean.curentOperation1.operateur.nomAgent}  <br></br><br></br><br></br><br></br><br></br>
+
+ 			</div>
+
+ 			
+
+
+ 	</div>
+
+
+
+ 	<div class="col-md-1"></div>
+    
+</div>
+
+</div>
+      <script type="text/javascript" src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui-1.8.17.custom.min.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/js/jspdf.debug.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/js/basic.js"></script>
+
+    <script>
+
+ 
+
+    $('#cmd').click(function () {
+            //alert($('#cont').html());
+                
+    var pdf = new jsPDF('p', 'pt', 'letter')
+
+    // source can be HTML-formatted string, or a reference
+    // to an actual DOM element from which the text will be scraped.
+    , source = $('#cont')[0]
+
+    // we support special element handlers. Register them with jQuery-style 
+    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+    // There is no support for any other type of selectors 
+    // (class, of compound) at this time.
+    , specialElementHandlers = {
+    }
+
+    margins = {
+      top: 80,
+      bottom: 60,
+      left: 40,
+      width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+        source // HTML string or DOM elem ref.
+        , margins.left // x coord
+        , margins.top // y coord
+        , {
+            'width': margins.width // max width of content on PDF
+            , 'elementHandlers': specialElementHandlers
+        },
+        function (dispose) {
+          // dispose: object with X, Y of the last line add to the PDF 
+          //          this allow the insertion of new lines after html
+          pdf.save('Test.pdf');
+        },
+        margins
+    )
+
+    });
+
+
+        </script>
+
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+
+    <script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+
+    <!--script
+        src="#{request.contextPath}/pages/unsecure/assets/js/jspdf.min.js"></script-->
+
+  
+
+
+</html>
+

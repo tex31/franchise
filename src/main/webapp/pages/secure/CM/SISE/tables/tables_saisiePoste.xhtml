@@ -1,0 +1,93 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<div   class="body collapse in table-responsive">
+<h:form id="formPoste" onkeypress="if (event.keyCode == 13) {return false; }">
+<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+    <div class="col-lg-4">
+
+        <h:link value="" outcome="add_Poste"
+            class="btn btn-lg btn-primary btn-block " immediate="true" >
+            <i class="fa fa-plus-circle">  </i>  Ajouter
+       	</h:link>
+        <hr></hr>
+
+    </div>
+</c:if>
+<p:growl for="myerrorReferentiel" id="msgtablePoste" showDetail="true" sticky="true" redisplay="false"/>
+
+    <p:dataTable   var="b" value="#{siseBean.listPoste}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+                 paginatorPosition="bottom"
+                 paginator="true" rows="10" style="margin-bottom:20px" emptyMessage="Aucun résultat"
+                 editable="true"
+                 id="tablePosteMat"
+                 widgetVar="PosteTable"
+                 filterEvent="enter"
+                 >
+                 
+                 <f:facet name="{Exporters}">
+            <h:commandLink>
+                <i class="fa fa-table">  </i> Excel
+                <p:dataExporter type="xls" target="tablePosteMat" fileName="postes" />
+            </h:commandLink>
+ 			<span>   </span>
+            <h:commandLink>
+            	<i class="fa fa-file">  </i> PDF
+            	
+                <p:dataExporter encoding="ISO-8859-1" type="pdf" target="tablePosteMat" facetFontStyle="BOLD" 
+                fileName="postes"
+                cellFontStyle="NORMAL"
+                tableTitle="Liste des postes"
+                preProcessor="#{dtFilterView.preProcessPDF}"
+                datasetPadding="4"/>
+            </h:commandLink>
+        </f:facet>
+        <p:ajax event="rowEdit" listener="#{siseBean.onRowEdit}" update=":formPoste:msgtablePoste" oncomplete="PF('PosteTable').filter()"/>
+		
+        <p:column style="width: 5%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">ID</f:facet>
+            <h:outputText value="#{b.id}"></h:outputText>
+        </p:column>
+        <p:column filterBy="#{b.designation}" filterMatchMode="contains" style="width: 15%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Désignation</f:facet>
+            <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{b.designation}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{b.designation}" style="width:80%"/></f:facet>
+           </p:cellEditor>
+            
+        </p:column>
+        
+        <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+        
+        <p:column exportable ="false" style="width: 2%; text-align: center; word-wrap: break-word;">
+           <p:rowEditor />
+
+       </p:column>
+       <p:column style="width: 3%; text-align: center; word-wrap: break-word;">
+       		<p:commandButton  action="#{siseBean.deleteRow(b)}"
+       		icon="fa  fa-remove" update=":formPoste:msgtablePoste"
+       		oncomplete="PF('PosteTable').filter()">
+       		<p:confirm header="Confirmation" message="Etes-vous sure?" icon="ui-icon-alert"/>
+       		</p:commandButton>
+       </p:column>
+       </c:if>
+       
+    </p:dataTable>
+</h:form>
+
+
+</div>
+
+</html>

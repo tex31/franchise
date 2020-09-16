@@ -1,0 +1,71 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+<div class="body collapse in table-responsive">
+<h:form id="formUser" onkeypress="if (event.keyCode == 13) {return false; }">
+<p:growl for="myerrorReferentiel" id="msgtableUser" showDetail="true" sticky="true" redisplay="false"/>
+	<div class="col-lg-4">
+
+		<h:link value="Ajouter Utilisateur" outcome="add_Utilisateur"
+			class="btn btn-primary-lg btn-primary btn-block" immediate="true" />
+			
+		<hr></hr>
+
+	</div>
+
+	<p:dataTable   var="f" value="#{userMB.userList}"
+				currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginatorPosition="bottom"
+                 paginator="true" rows="10" style="margin-bottom:20px"
+                 id="tableUserMat"
+                 widgetVar="UserTable"
+                 >
+		<p:column>
+			<f:facet name="header">Immatriculation</f:facet>
+			#{f.im}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Nom</f:facet>
+			#{f.nomAgent} #{f.prenomAgent}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Fonction</f:facet>
+			#{f.roleAgent.designation}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Fonction</f:facet>
+			#{f.roleAgent.role}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Direction</f:facet>
+			#{f.direction.designation}
+		</p:column>
+		<!--p:column>
+			<f:facet name="header">Service</f:facet>
+			#{f.service.designation}
+		</p:column-->
+		<p:column>
+			<f:facet name="header">Poste</f:facet>
+			#{f.posteny.designation}
+		</p:column>
+		<p:column>
+          <p:commandButton   action="#{userMB.setCurrentAgenttomodify(f)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+          <div style=" display:inline-block">
+          <p:commandButton  action="#{siseBean.deleteUser(f)}"
+       icon="ui-icon-close" update=":formUser:msgtableUser"
+       oncomplete="PF('UserTable').filter()"
+       /> </div>
+       </p:column>
+	</p:dataTable>
+
+</h:form>
+</div>
+</html>

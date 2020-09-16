@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<div   class="body collapse in table-responsive">
+
+<h:form id="formCodi" onkeypress="if (event.keyCode == 13) {return false; }">
+<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+	<div class="row">
+		<div class="col-lg-4">
+	
+			<h:link value="" outcome="add_codif"
+				class="btn btn-lg btn-primary btn-block " immediate="true" >
+			 <i class="fa fa-plus-circle">  </i>   Ajouter
+			 </h:link>
+			 <hr></hr>
+		</div>
+	</div>
+</c:if>
+		
+<p:growl for="myerrorReferentiel" id="msgtableCodi" showDetail="true" sticky="true" redisplay="false"/>
+
+	<p:dataTable   var="nomenclature" value="#{siseBean.listCodeArticle}"
+				currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px"
+                 editable="true"
+                 id="tableCodi"
+                 widgetVar="codiTable"
+                 filterEvent="enter"
+                 >
+        <p:ajax event="rowEdit" listener="#{siseBean.onRowEdit}" update=":formCodi:msgtableCodi" oncomplete="PF('codiTable').filter()"/>
+       
+		<p:column style=" width:5%; text-align: center; word-wrap: break-word;">
+			<f:facet name="header">ID</f:facet>
+			#{nomenclature.id}
+		</p:column>
+		<p:column filterBy="#{nomenclature.designation}" filterMatchMode="contains" style="width:15%; text-align: center; word-wrap: break-word;">
+			<f:facet name="header">Désignation</f:facet>
+			<p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{nomenclature.designation}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{nomenclature.designation}" style="width:80%"/></f:facet>
+           </p:cellEditor> 
+			
+		</p:column>
+		<p:column style=" width:15%; text-align: center; word-wrap: break-word;">
+			<f:facet name="header">Type d'objet</f:facet>
+			<p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{nomenclature.typeObjet.designation}" /></f:facet>
+               <f:facet name="input">
+                   <p:selectOneMenu id="zone" styleClass="form-control top"
+						converter="#{refConverter}" value="#{nomenclature.typeObjet}">
+						<f:selectItems value="#{siseBean.listTypeObjet}" var="type"
+							itemLabel="#{type.designation}" />
+					</p:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+			
+		</p:column >
+		<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+		<p:column style="width:2%; text-align: center; word-wrap: break-word;">
+           <p:rowEditor />
+             
+       </p:column>
+       <p:column style="width:3%; text-align: center; word-wrap: break-word;">
+       		<p:commandButton  action="#{siseBean.deleteRow(nomenclature)}"
+       icon="fa  fa-remove" update=":formCodi:msgtableCodi"
+       oncomplete="PF('codiTable').filter()">
+       <p:confirm header="Confirmation" message="Etes-vous sure?" icon="ui-icon-alert" />
+       </p:commandButton>
+       </p:column>
+       </c:if>
+	</p:dataTable>
+</h:form>
+</div>
+
+</html>

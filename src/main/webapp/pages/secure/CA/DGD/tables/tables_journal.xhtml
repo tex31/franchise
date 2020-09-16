@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+
+     <h:form>
+    <!--p:dataTable   var="c" value="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                 paginator="true" rows="10" style="margin-bottom:20px"  
+                 rowStyleClass="#{c['class'].simpleName ne 'OpEntree' and c['class'].simpleName ne 'OpSortie' ? 'ui-helper-hidden' : '' }"-->
+
+
+    <p:dataTable   var="c" value="#{suivieditionBean.listOperationEntree}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                 paginator="true" rows="10" style="margin-bottom:20px"  
+                 rowStyleClass="#{c['class'].simpleName ne 'OpEntree' and c['class'].simpleName ne 'OpSortie' ? 'ui-helper-hidden' : '' }">
+
+
+    
+        <p:column headerText="Numéro d'ordre des pièces justificatives" >  
+            
+            <p:panel rendered="#{c['class'].simpleName eq 'OpEntree' }" >
+            
+                #{c.numentree}
+            </p:panel>
+            <p:panel rendered="#{c['class'].simpleName eq 'OpSortie' }" >
+                #{c.numSortie}
+            </p:panel>
+
+        </p:column>
+        <p:column headerText="Date des entrées et des sorties"  >
+            
+            #{c.date}
+
+        </p:column>
+
+        <p:column headerText="Origine des entrées et désignation des sorties"  >
+            
+
+        <p:panel rendered="#{c['class'].simpleName eq 'OpEntree'}">
+
+                <ui:repeat value="#{c.listMat}" var="mat">
+
+                    
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{mat.direc.designation}
+                    </p:panel>
+
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{mat.fournisseur.designation}
+                    </p:panel>
+               </ui:repeat>
+
+                
+            </p:panel>
+            <p:panel rendered="#{c['class'].simpleName eq 'OpSortie' }" >
+                #{c.motifsortie.designation}
+            </p:panel>
+            
+        
+            
+
+
+        </p:column>
+
+        <p:column headerText="Désignation des matières et objets" >
+
+        <p:panel rendered="#{c['class'].simpleName eq 'OpEntree'}">
+
+        
+            <ui:repeat value="#{c.listMat}" var="mat">
+                #{mat.typematerieladd.designation} - #{mat.renseignement}<br></br>
+
+            </ui:repeat>
+
+        </p:panel>
+
+        <p:panel rendered="#{c['class'].simpleName eq 'OpSortie'}">
+            <ui:repeat value="#{c.listMat}" var="mat">
+                #{mat.typematerieladd.designation} - #{mat.renseignement}<br></br>
+
+            </ui:repeat>
+        </p:panel>
+            
+
+        </p:column>
+
+        <p:column headerText="Espèce des unités"  >
+
+            <ui:repeat value="#{c.listMat}" var="mat">
+                #{mat.especeUnite}<br></br>
+
+            </ui:repeat>
+        
+            
+
+        </p:column>
+
+        <p:column headerText="Prix de l'unité" >
+            
+            <p:panel rendered="#{c['class'].simpleName eq 'OpEntree'}">
+
+            <ui:repeat value="#{c.listMat}" var="mat">
+
+                <p:panel rendered="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{mat.pu}
+                    </p:panel>
+
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{mat.montant_facture}
+                    </p:panel>
+
+            </ui:repeat>
+
+            
+        </p:panel>
+
+        <p:panel rendered="#{c['class'].simpleName eq 'OpSortie'}">
+            <ui:repeat value="#{c.listMat}" var="mat">
+                <p:panel rendered="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{mat.pu}
+                    </p:panel>
+
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{mat.montant_facture}
+                    </p:panel>
+
+            </ui:repeat>
+        </p:panel>
+            
+            
+        
+
+
+        </p:column>
+
+        <p:column headerText="Quanitité" >
+          
+            <ui:repeat value="#{c.listMat}" var="mat">
+                1<br></br>
+
+            </ui:repeat>
+            
+        
+
+        </p:column>
+
+        <p:column headerText="Valeur"  >
+            
+            <ui:repeat value="#{c.listMat}" var="mat">
+                <p:panel rendered="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    #{1*mat.pu}
+                    </p:panel>
+
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    #{1*mat.montant_facture}
+                    </p:panel>
+
+
+            </ui:repeat>
+        
+        
+
+        </p:column>
+    
+    
+        
+    </p:dataTable>
+ 
+
+</h:form>
+
+
+
+
+
+
+
+</div>
+
+</html>

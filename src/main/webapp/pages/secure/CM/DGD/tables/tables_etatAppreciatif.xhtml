@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<h:head></h:head>
+
+<style>
+	.fa span{
+		display:inline-block !important;
+		
+	}
+</style>
+
+<div   class="body collapse in table-responsive">
+
+   
+    
+ <h:form>
+    <p:dataTable var="c" value="#{suivieditionBean.getListESExForEtatAppr(null,null,null)}"
+    		currentPageReportTemplate="({currentPage} sur {totalPages})"
+			paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {Exporters}"
+			paginator="true" style="margin-bottom:20px"
+			widgetVar="EtatAppreciatif"
+			id="etatAppreciatif"
+			sortBy="#{c[15]}" emptyMessage="Aucun résultat"
+			>
+			<f:facet name="header">
+       			 <span>ETAT APPRECIATIF </span>
+       			 <span>
+       			 		<h:form >
+       			 			<h:outputLabel for="ANNEE" value="ANNEE" style="font-weight:bold"/>
+				            <p:inputText id="ANNEE" size="8" value="#{EtatAppreciatifBean.annee}" label="ANNEE" validatorMessage="L'année doit être entre 1950 et #{EtatAppreciatifBean.annee}">
+				                <f:validateDoubleRange minimum="1950" maximum="#{EtatAppreciatifBean.actualyear}"/>
+				            </p:inputText> <p:commandButton styleClass="btn btn-lg-primary fa fa-download " value="Exporter" action="#{EtatAppreciatifBean.execute(suivieditionBean,null)}" > </p:commandButton>
+				            <p:message for="ANNEE" /> 
+       			 			
+    						
+       			 		</h:form>
+       			 </span>
+    		</f:facet>
+			<f:facet name="{Exporters}">
+            <h:commandLink>
+                <i class="fa fa-table">  </i> Excel
+                <p:dataExporter type="xls" target="etatAppreciatif" fileName="etatappreciatif" />
+            </h:commandLink>
+ 			<span>   </span>
+            <h:commandLink>
+            	<i class="fa fa-file">  </i> PDF
+                <p:dataExporter type="pdf" target="etatAppreciatif" fileName="etatappreciatif"/>
+            </h:commandLink>
+        </f:facet>
+			
+			<p:columnGroup type="header" >
+			<p:row>
+				<p:column colspan="2" headerText="Justificatives" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column rowspan="2" headerText="Désignation sommaire des opérations" style="width:10%; text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 1 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 2 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 3 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 5 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 10 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<!-- p:column colspan="2" headerText=" 6 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 7 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 8 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 9 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 10 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 11 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 12 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" sommaire Opération à" style=" text-align: center; word-wrap: break-word;"/-->
+			</p:row>
+			<p:row>
+				<p:column  headerText="N°" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Date" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<!-- p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/-->
+				
+				
+			</p:row>				
+			</p:columnGroup>
+
+			<p:column headerText="N°" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[1]}" />			
+			</p:column>
+			<p:column headerText="Date" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[15]}" >
+					<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Désignation sommaire des opérations" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[2]}" />			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[4] + c[16]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[6]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[7] + c[17]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[8]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[9] + c[18]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[10]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[11]+ c[19]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[12]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[13]+ c[20]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[14]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			
+			
+		</p:dataTable>
+
+
+	</h:form>
+    
+
+
+</div>
+<script type="text/javascript">
+PrimeFaces.locales ['fr'] = { closeText: 'Fermer', prevText: 'Précédent', nextText: 'Suivant', monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ], monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ], dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'], dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'], dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'], weekHeader: 'Semaine', firstDay: 1, isRTL: false, showMonthAfterYear: false, yearSuffix:'', timeOnlyTitle: 'Choisir l\'heure', timeText: 'Heure', hourText: 'Heures', minuteText: 'Minutes', secondText: 'Secondes', currentText: 'Maintenant', ampm: false, month: 'Mois', week: 'Semaine', day: 'Jour', allDayText: 'Toute la journée' };
+</script>
+</html>

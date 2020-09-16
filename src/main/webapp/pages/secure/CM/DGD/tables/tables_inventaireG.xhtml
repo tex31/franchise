@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+  
+   
+    <!-- -TESTING RESULTS -->
+    <h:form id="formInventaire">
+    <span>
+    	<p:outputLabel for="annee_journal" value="Exporter le journal du " />
+        					<p:calendar id="annee_journal" size="20" value="#{InventaireBean.dat}" navigator="true" pattern="dd MMMM yyyy" required="true" locale="fr"/>
+     			 			<p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        						<p:panelGrid id="display_journal" columns="2" columnClasses="label,value">
+      			 					 <h:outputText value="" />
+						            <h:outputText value="#{InventaireBean.dat}">
+						                <f:convertDateTime pattern="dd MMMM yyyy" locale="Locale.FRANCE"/>
+				                  	</h:outputText>
+       			 				</p:panelGrid>
+    						</p:dialog>
+    						
+    						<p:outputLabel for="annee_fin" value=" au " />
+        					<p:calendar id="annee_fin" size="20" value="#{InventaireBean.datF}" navigator="true" pattern="dd MMMM yyyy" required="true" locale="fr"/>
+     			 			<p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        						<p:panelGrid id="display_fin" columns="2" columnClasses="label,value">
+      			 					 <h:outputText value="" />
+						            <h:outputText value="#{InventaireBean.datF}">
+						                <f:convertDateTime pattern="dd MMMM yyyy" locale="Locale.FRANCE"/>
+				                  	</h:outputText>
+       			 				</p:panelGrid>
+    						</p:dialog>
+    						
+    
+    </span>
+    <p:tabView scrollable="true">
+	<c:forEach var="dir" items="${siseBean.listDirection}" varStatus="status">
+	<p:tab title="${dir.codeDirection}">
+    <p:dataTable var="m" value="#{suivieditionBean.getListobjectForInvetaireByDir(dir,null,null)}"
+    		currentPageReportTemplate="({currentPage} sur {totalPages})"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}	"
+			paginator="true" style="margin-bottom:20px" emptyMessage="Aucun résultat"
+			widgetVar="InventaireTable1#{dir.id}"
+			id="inventaireTable1#{dir.id}"
+			sortBy="#{m[0]}"
+			>
+			
+			<f:facet name="header">
+       			 INVENTAIRE du mobilier et des objets d’ameublement existant: #{dir.designation}<br/>
+       			 <p:commandButton 
+       			 process="formInventaire:annee_journal, formInventaire:annee_fin,@this"
+    			 id ="expa#{dir.codeDirection}" 
+       			 value="Exporter" action="#{InventaireBean.execute(dir,suivieditionBean)}" styleClass="btn btn-lg-primary"> </p:commandButton>   						
+       			 		
+       			 
+    		</f:facet>
+			
+			<f:facet name="{Exporters}">
+            <h:commandLink>
+                <i class="fa fa-table">  </i> Excel
+                <p:dataExporter type="xls" target="inventaireTable1#{dir.id}" fileName="inventaire1_#{dir.codeDirection}" />
+            </h:commandLink>
+ 			<span>   </span>
+            <h:commandLink>
+            	<i class="fa fa-file">  </i> PDF
+                <p:dataExporter type="pdf" target="inventaireTable1#{dir.id}" fileName="inventaire1_#{dir.codeDirection}"/>
+            </h:commandLink>
+        </f:facet>
+			<p:columnGroup type="header">
+			<p:row>
+				<p:column rowspan="2" headerText="Nomenclature" sortBy="#{m[1].design.nomenMat.nomenclature}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column rowspan="2" headerText="Numéros du folio du  grand  livre"  style=" text-align: center; word-wrap: break-word;"/>
+                <p:column rowspan="2" headerText="Désignation du matériel" sortBy="#{m[10]}" style=" text-align: center; word-wrap: break-word;"/>
+                <p:column rowspan="2" headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;"></p:column>
+                <p:column rowspan="2" headerText="Prix de l’unité" style=" text-align: center; word-wrap: break-word;"></p:column>
+                <p:column colspan="4" headerText="Quantités" style=" text-align: center; word-wrap: break-word;"></p:column>	
+			</p:row>
+			<p:row>
+				<p:column headerText="Existantes au 1er Janvier #{gacBean.getCurrentYear()}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Entrées pendant l’année #{gacBean.getCurrentYear()} " style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Sortie pendant l’année #{gacBean.getCurrentYear()}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Reste au 31 déc. #{gacBean.getCurrentYear()} " style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Décompte" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Observation" style=" text-align: center; word-wrap: break-word;"/>
+			</p:row>
+				
+			</p:columnGroup>
+			<p:column headerText="Nomenclature" sortBy="#{m[0]}" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[0]}" />
+			</p:column>
+			<p:column headerText="Numéros du folio du  grand  livre" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[1]}" />
+			</p:column>
+			<p:column headerText="Désignation du matériel" sortBy="#{m[10]}" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[2]}"  />
+			</p:column>
+			<p:column headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[3]}" />
+			</p:column>
+			<p:column headerText="Prix de l’unité" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[4]}" >
+					<f:convertNumber pattern="¤#,##0.00" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Existantes au 1er Janvier #{gacBean.getCurrentYear()}" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[5]}" />
+			</p:column>
+			<p:column headerText="Entrées pendant l’année #{gacBean.getCurrentYear()} " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[6]}" />
+			</p:column>
+			<p:column headerText="Sortie pendant l’année #{gacBean.getCurrentYear()} " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[7]}" />
+			</p:column>
+			<p:column headerText="Reste au 31 déc. #{gacBean.getCurrentYear()} " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[8]}" />
+				<f:facet name="footer">
+				<h:outputText value="#{'Total'}"></h:outputText>
+				</f:facet>
+			</p:column>
+			<p:column headerText="Décompte" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[9]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+				<f:facet name="footer">
+			<c:set var="somme" value="${suivieditionBean.getTotalInventaire(suivieditionBean.getListobjectForInvetaireByDir(dir,null,null))}" />
+				<h:outputText value="${somme}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+				</f:facet>
+			</p:column>
+			<p:column headerText="Observation" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="" />
+			</p:column>
+			
+
+		</p:dataTable>
+		</p:tab>
+		</c:forEach>
+		</p:tabView>
+		</h:form>
+
+<ui:include src="/pages/secure/CM/DGD/tables/dialogs/dialogs_listeMatStatHisto.xhtml"></ui:include>
+
+
+</div>
+<script type="text/javascript">
+PrimeFaces.locales ['fr'] = { closeText: 'Fermer', prevText: 'Précédent', nextText: 'Suivant', monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ], monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ], dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'], dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'], dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'], weekHeader: 'Semaine', firstDay: 1, isRTL: false, showMonthAfterYear: false, yearSuffix:'', timeOnlyTitle: 'Choisir l\'heure', timeText: 'Heure', hourText: 'Heures', minuteText: 'Minutes', secondText: 'Secondes', currentText: 'Maintenant', ampm: false, month: 'Mois', week: 'Semaine', day: 'Jour', allDayText: 'Toute la journée' };
+</script>
+</html>

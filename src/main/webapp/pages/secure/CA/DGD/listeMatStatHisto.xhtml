@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+    <ui:param name="title" value="Edition CA" />
+</ui:include>
+
+<style>
+	.zoom {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+	
+	.zoom-fab {
+	  display: inline-block;
+	  width: 40px;
+	  height: 40px;
+	  line-height: 40px;
+	  border-radius: 50%;
+	  background-color: #145C8B;
+	  vertical-align: middle;
+	  text-decoration: none;
+	  text-align: center;
+	  transition: 0.2s ease-out;
+	  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	  cursor: pointer;
+	  color: #FFF;
+	}
+	
+	.zoom-fab:hover {
+	  background-color: #f8f7a3;
+	  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+	}
+	
+	.zoom-btn-large {
+	  width: 60px;
+	  height: 60px;
+	  line-height: 60px;
+	}
+	
+	.zoom-menu {
+	  position: absolute;
+	  right: 70px;
+	  left: auto;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  height: 100%;
+	  width: 500px;
+	  list-style: none;
+	  text-align: right;
+	}
+	
+	.zoom-menu li {
+	  display: inline-block;
+	  margin-right: 10px;
+	}
+	
+	.zoom-card {
+	  position: absolute;
+	  right: 55px;
+	  bottom: 80px;
+	  transition: box-shadow 0.25s;
+	  padding: 24px;
+	  border-radius: 2px;
+	  background-color: #009688;
+	  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	  color: #FFF;
+	  text-align: center;
+	  width: 200px;
+      height: 70px;
+	}
+	
+	.zoom-card ul {
+	  -webkit-padding-start: 0;
+	  list-style: none;
+	  text-align: left;
+	}
+	
+	.zoom-btn-sm a{
+		color:white;
+	}
+	
+	.zoom-btn-sm { background-color: #145C8B; }
+
+	.zoom-btn-sm:hover { background-color: #145C8B; }
+	
+	.scale-transition { transition: transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important; }
+
+	.scale-transition.scale-out {
+	  transform: scale(0);
+	  transition: transform 0.2s !important;
+	}
+	
+	.scale-transition.scale-in { transform: scale(1); }
+
+</style>
+
+<h:body class="  ">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <ui:include src="/pages/unsecure/components/navbar_top_CA.xhtml"></ui:include>
+
+            <ui:include src="/pages/unsecure/components/top_CA.xhtml">
+                <ui:param name="title" value="Fiche de stock" />
+            </ui:include>
+
+        </div>
+
+        <!--ui:include src="/pages/unsecure/components/left.xhtml"-->
+            
+        <!--/ui:include-->
+
+        <!-- /#wrap -->
+
+		<div class="body">
+		<br />
+                        <ui:include src="/pages/secure/CA/DGD/tables/tables_listeMatStatHisto.xhtml">
+                        	<ui:param name="table" value="#{param['table']}" />
+                        </ui:include>
+
+						<div class="zoom">
+  							<a class="zoom-fab zoom-btn-large" id="zoomBtn">Filtre</a>
+						  <ul class="zoom-menu">
+						    <li class="zoom-fab zoom-btn-sm zoom-btn-ficheStock scale-transition scale-out">
+						    	<h:link value="FS" outcome="liste_matCA" immediate="true" style="text-color:white;">
+									<f:param name="table" value="ficheStock" />
+								</h:link>
+							</li>
+							<li class="zoom-fab zoom-btn-sm zoom-btn-journal_admin scale-transition scale-out">
+						    	<h:link value="JC" outcome="liste_matCA" immediate="true" >
+									<f:param name="table" value="journal_admin" />
+								</h:link>
+							</li>
+						    <li class="zoom-fab zoom-btn-sm zoom-btn-tous scale-transition scale-out">
+						    	<h:link value="Tout" outcome="liste_matCA" immediate="true" >
+									<f:param name="table" value="tous" />
+								</h:link>
+							</li>
+						  </ul>
+						  <div class="zoom-card scale-transition scale-out">
+						    <div class="zoom-card-content" style="color: #145C8B;">
+						      Fiche de stock et journal de la comptabilité administrative
+						    </div>
+						  </div>
+						  
+						</div>
+                    </div>
+		
+
+    </div>
+
+    <ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+    
+ <script>
+ $('#zoomBtn').click(function() {
+	  $('.zoom-btn-sm').toggleClass('scale-out');
+	  if (!$('.zoom-card').hasClass('scale-out')) {
+	    $('.zoom-card').toggleClass('scale-out');
+	  }
+	});
+
+	$('.zoom-btn-sm').hover(function() {
+	  var btn = $(this);
+	  var card = $('.zoom-card');
+	  if ($('.zoom-card').hasClass('scale-out')) {
+	    $('.zoom-card').toggleClass('scale-out');
+	  }
+	  if (btn.hasClass('zoom-btn-ficheStock')) {
+	    card.css('background-color', '#f8f7a3');
+	    $('.zoom-card-content').text("Fiche de stock");
+	  } else if (btn.hasClass('zoom-btn-journal_admin')) {
+		  card.css('background-color', '#f8f7a3');
+		  $('.zoom-card-content').text("Journal de la comptabilité");
+ 	  } else if (btn.hasClass('zoom-btn-tous')) {
+		  card.css('background-color', '#f8f7a3');
+		  $('.zoom-card-content').text("Fiche de sotck et Journal");
+ 	  }
+ 	 
+
+	});
+ </script>
+</h:body>
+</html>

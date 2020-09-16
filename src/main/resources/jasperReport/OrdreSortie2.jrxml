@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdreSortie" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="d1ed3cc7-95d3-42ce-b0eb-c8840f11c1a7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="309"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="37ad626d-1745-46fd-8d8e-743e37629504">
+		<parameter name="materiel" class="com.douane.entite.Materiel"/>
+		<parameter name="numFolio" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="table" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="budget" class="java.lang.String"/>
+	<parameter name="chap" class="java.lang.String"/>
+	<parameter name="article" class="java.lang.String"/>
+	<parameter name="paragraphe" class="java.lang.String"/>
+	<parameter name="num2" class="java.lang.String"/>
+	<parameter name="comptable" class="java.lang.String"/>
+	<parameter name="matiere" class="java.lang.String"/>
+	<parameter name="arret" class="java.lang.String"/>
+	<parameter name="somme" class="java.lang.String"/>
+	<parameter name="Comptable" class="java.lang.String"/>
+	<parameter name="lieu" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="concordance" class="java.lang.String"/>
+	<parameter name="comptable2" class="java.lang.String"/>
+	<parameter name="date1" class="java.lang.String"/>
+	<parameter name="date4" class="java.lang.String"/>
+	<parameter name="lieu1" class="java.lang.String"/>
+	<parameter name="date5" class="java.lang.String"/>
+	<parameter name="Comptable2" class="java.lang.String"/>
+	<parameter name="num5" class="java.lang.String"/>
+	<parameter name="num6" class="java.lang.String"/>
+	<parameter name="approOuService" class="java.lang.String"/>
+	<parameter name="materiel" class="com.douane.entite.Materiel"/>
+	<parameter name="numSortie" class="java.lang.String"/>
+	<parameter name="filamatra" class="java.lang.String"/>
+	<parameter name="numFolio" class="java.lang.String"/>
+	<parameter name="provenantDe" class="java.lang.String"/>
+	<title>
+		<band height="292" splitType="Stretch">
+			<staticText>
+				<reportElement x="450" y="0" width="125" height="50" uuid="14a21728-ae3a-4e4a-968a-69a87db5d12e"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Modèle n°8
+Instruction générale du 22 juillet 1955
+Article 153]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="40" width="129" height="28" uuid="3481a25c-6bed-4545-8089-351e1b0a4b32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[----------------------------
+BUDGET GENERAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="69" width="340" height="20" uuid="9512b768-bc8b-4b7d-98eb-6975c3acd9f6"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SECTION : " + $P{budget}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="89" width="340" height="51" uuid="1fe107ac-d28a-4568-8bbb-7b5041766384"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CHAPITRE(1)  " +  $P{chap} + " ARTICLE " +  $P{article} + " PARAGRAPHE " + $P{paragraphe} + 
+"\n----------------------------"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="140" width="158" height="40" uuid="c5773bff-e0ab-4817-85c6-130b689b1a32"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(2) " + $P{num2} + 
+"\n----------------------------"]]></textFieldExpression>
+			</textField>
+			<textField pattern="$P{approOuService}">
+				<reportElement x="80" y="190" width="399" height="21" uuid="a934823d-e3d0-4b8b-aa91-6be933d38ea5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{approOuService}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="159" width="180" height="31" uuid="40db1074-eb36-40a2-af8a-7a52f16e3344"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numSortie}== null?" Non Validé":" " +  $P{numSortie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="211" width="198" height="30" uuid="4f211f2a-1e9c-4c66-baaf-113ab955a572"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE SORTIE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="158" y="1" width="247" height="19" uuid="70462524-927a-4d11-b669-37b2cd7977bd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REPUBLIQUE DE MADAGASCAR"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="59" width="110" height="60" uuid="39ed1d3b-e9ff-4cce-acf6-1d00037af9a9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(73) Numéro de chapitre
+(74) Libellé de chapitre
+(75) Service
+(76) Subdivision de chapitre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="50" width="125" height="130" uuid="b8f3a7ad-8911-46e0-969c-730f2717d896"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(*) rayer avec soin et tres nettement
+"matériel en provisionnement" ou "matériel en service" selon qu'il s'agit de matériel en magasin ou matériel en service
+
+(**) indiquer avec le plus grand soin et en détail la cause de mouvement et la référence]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="140" width="160" height="19" uuid="c287dfa6-6cef-4639-95d4-3b4879947642"/>
+				<text><![CDATA[Numéro d'ordre du journal :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="150" height="49" uuid="62e1e699-58f9-4bee-9dc2-a41b10c6ffb5"/>
+				<text><![CDATA[(3)........................................
+
+(4)........................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="158" y="20" width="247" height="19" uuid="72455773-c613-454a-a81a-5408ef1bce31"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filamatra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="250" width="554" height="40" uuid="db7c4e74-7fe6-4b3d-b312-7efe79e56684"/>
+				<textFieldExpression><![CDATA["Seront portés en sortie dans les écritures du comptable ..Dépositaire.. les matières et objet ci-aprés \n" +
+"Désignés provenant de (**) " + $P{provenantDe} +
+"\nDistribués à (*) " + $P{matiere}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="210" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="560" height="210" uuid="7a664e40-65b5-4656-ab49-aaafd8ca328e"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="c3d7c26b-5b23-4053-b3c9-f191ebd228d1">
+						<datasetParameter name="materiel">
+							<datasetParameterExpression><![CDATA[$P{materiel}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="numFolio">
+							<datasetParameterExpression><![CDATA[$P{numFolio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="70" uuid="a43a126a-e9a8-4576-b339-a69a853ad24f">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne1"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="20" uuid="81c0c75b-f9b1-44ce-8414-8372f804bc2d"/>
+								<box>
+									<bottomPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Numéros]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="0" y="20" width="30" height="70" uuid="6b225f65-5169-40df-8f02-94bac3259e1e"/>
+								<box>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+									<font size="10"/>
+								</textElement>
+								<text><![CDATA[Du folio grand livre]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="30" y="20" width="40" height="70" uuid="daf44c4d-8217-41c1-a2a1-cbe347a6a44a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+									<font size="10"/>
+								</textElement>
+								<text><![CDATA[De nomenclature sommaire]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+							<textField>
+								<reportElement x="30" y="0" width="40" height="120" uuid="ab55e1fd-23af-44c9-b3df-d1c1f4e17efc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getNomenMat().getNomenclature()]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="0" y="0" width="30" height="120" uuid="6c03c7f3-b855-46af-bcfc-08934bfd35f3"/>
+								<box>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{numFolio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="d072abcb-d42b-4232-a3b6-3e57960b9dac">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne2"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="140" height="90" uuid="dbd179d6-7eb0-49d2-8683-b7863639b959"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Désignation des matériels et objets]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="120" uuid="c865540e-26d2-4a51-a8a8-a2fe73197d54"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getNomenMat().getDesignation() + ", " + $P{materiel}.getDesign().getTypematerieladd().getDesignation() + ", " +
+$P{materiel}.getDesign().getRenseignement()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="50f981a0-748c-4b29-b8c1-7a652af4fe6a">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne3"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="90" uuid="fe76764e-b258-4fa5-ad66-24614f00e107"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Espèces des unités]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+							<textField>
+								<reportElement x="0" y="0" width="40" height="120" uuid="f5d04b9c-d905-49bd-9c53-00c2ac22ddac"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getEspeceUnite()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="58b5d740-20df-45d7-9319-c10681cbe321">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne4"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="90" uuid="c5dd9672-6184-49b1-8d49-5307c7f7d567"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Quantités]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="120" uuid="7e7d6891-4165-4297-a417-eaddb71c078c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[1]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="210" uuid="a6de2d64-d44a-4b4f-8b9e-26c92c613db7">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne5"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+							<staticText>
+								<reportElement x="0" y="0" width="210" height="23" uuid="7c1c04a7-7492-494d-a1f1-614acfb41e72"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Décompte]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="0" y="23" width="60" height="67" uuid="62bcf8f1-2679-491f-8eec-ba993767f195"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Prix de l'unité]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="60" y="23" width="40" height="67" uuid="4d1a2c28-8e1a-4912-867e-ef4b93d70090"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Valeurs]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="100" y="23" width="50" height="67" uuid="48dacc50-b8c6-41bd-8655-d8d9503d371d"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[Partielles]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="150" y="23" width="60" height="67" uuid="ddae08a2-1b9f-4f78-a3da-324f7f72ecf2"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<text><![CDATA[Par numéro de  la nomenclature sommaire]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120" rowSpan="1">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+							<textField pattern="#,##0">
+								<reportElement x="60" y="0" width="40" height="120" uuid="30f9c4f8-92f0-4d78-924d-7c9a116e6d0f"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getPu()]]></textFieldExpression>
+							</textField>
+							<textField pattern="#,##0">
+								<reportElement x="100" y="0" width="50" height="120" uuid="cc6674a4-c4a9-4817-a090-14d08c19ea97"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getPu()]]></textFieldExpression>
+							</textField>
+							<textField pattern="#,##0">
+								<reportElement x="150" y="0" width="60" height="120" uuid="21a91c0e-7f84-4afc-a224-89e361a741d6"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getPu()]]></textFieldExpression>
+							</textField>
+							<textField pattern="#,##0">
+								<reportElement x="0" y="0" width="60" height="120" uuid="0877711d-de91-4737-9e67-62379f386557"/>
+								<box>
+									<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getDesign().getPu()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="3241b4e5-4345-4e92-801b-c21539b4c709">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne6"/>
+						<jr:columnHeader style="table_CH" height="90" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="90" uuid="213c57e5-00c4-42ac-b835-f024affd56b6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Numéro de la pièce justificative de sortie correspondante ou indication de la références s'il y a lieu]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="120" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="120" uuid="35472deb-fc46-441b-b5b5-05ba5e6f6b1c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{materiel}.getReference() + "\n-\n" + $P{materiel}.getDesign().getRefFacture()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="4" width="550" height="42" uuid="d1f962d5-01c1-4c3c-89fe-1694a93059f0"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Arrêté le présent ordre d'entrée à (1) "  + $P{arret} + " article(s) " + "évalués à la somme de (1) "+$P{somme}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="334">
+			<staticText>
+				<reportElement x="414" y="60" width="141" height="20" uuid="bb98f783-c630-4be4-a94b-d4304c389289"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[, le ...............................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="60" width="131" height="20" uuid="a2a91d22-0790-4a9b-9d2c-810ec329e020"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[A ................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="18" height="20" uuid="2d62cf14-8967-4bd6-93ee-21475578d648"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="80" width="272" height="25" uuid="59d94348-28ba-4e4e-bd73-bae3ce4b670b"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Le comptable(2)............................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="1" width="263" height="49" uuid="6de5e2ca-53c0-4f30-b258-48062c46d5b8"/>
+				<textElement textAlignment="Justified">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(3) Le comptable  " + "...Dépositaire..." + " délivrera et portera en sortie dans ses écritures les matières et objets désignés ci-dessus, "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMM yyyy">
+				<reportElement x="140" y="110" width="123" height="19" uuid="93909861-4c41-4c1c-8793-2d4f1eb2cce2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[", le " + $P{date1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="405" y="259" width="149" height="20" uuid="91c1227a-f047-49f6-b319-a6f913876f1c"/>
+				<textElement verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[, le (5) ............................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="193" width="274" height="20" uuid="0436b508-2e28-48c8-b504-32ad7f01c57b"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[RECEPISSE (5)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="258" width="122" height="20" uuid="1b01b3f2-1166-468e-a810-415e04a743e0"/>
+				<textElement verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[A ..........................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="214" width="275" height="44" uuid="7da51220-5a01-4122-8e86-813728b29d11"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Je soussigné (6) ..........................................
+avoir reçu les (7) ..........................................
+portés au présent ordre.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="130" width="263" height="20" uuid="e95b10c7-c12e-42a1-a263-e5e646c1efad"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Le (4) " +$P{date4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="151" width="209" height="134" uuid="2bd23a58-dfff-4269-8eb9-5957f466fff4"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(1) En toute lettre
+(2) Gestionnaire ou dépositaire
+(3) Rayer, selon le cas la première et seconde formule. La seconde est maintenue dans le cas où la sortie est déjà  effectuée et ou l'ordre de sortie constitue un certificat administratif
+(4) Chef de service ou son délégué
+(5) N'est pas utilisé s'il s'agit de certificat administratif
+(6) Nom et qualité
+(7) Caisse ou colis ou matières et objets
+(8) La date de récépissé est celle qui doit figurer dans les écritures]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="50" width="263" height="60" uuid="f8500dfb-34a8-4a3e-b689-74f65eef0d6b"/>
+				<textElement textAlignment="Justified">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(3) Le comptable " +"...Dépositaire..." + " portera en sortie les  matières et objets désignées et objets désignées ci-dessus dont je certifie la conformité avec "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="284" y="1" width="272" height="59" uuid="740a541f-4340-4575-abdc-8ea7700e9eb9"/>
+				<textElement textAlignment="Justified">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[(3) Les matières et  objets désignés ci-dessus ont été délivrés et portés en sortie.
+(3) Les matières et objets désignées ci-dessus ont été portés en sorties dans les écritures.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="110" width="122" height="19" uuid="d8bb26db-db7f-4bdd-ace2-d536f840b1f7"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lieu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="352" y="10" width="100" height="30" uuid="c499de26-67fd-45fa-a3b4-d688e75e2364"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="452" y="10" width="100" height="30" uuid="1cd40f1d-aaff-416f-966b-c5f405104687"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" sur " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

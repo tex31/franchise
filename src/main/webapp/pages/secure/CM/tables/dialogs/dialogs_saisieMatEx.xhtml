@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+</ui:include>
+
+<style>
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+    <!--p:dialog id="detail" widgetVar="detail"-->
+
+
+    <div   class="body collapse in table-responsive">
+
+
+        
+
+
+        <div class="col-md-1"></div>
+
+
+        <div class="col-md-10">
+
+        <h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/top.png" />
+
+        <div class="col-md-4" style="text-align: center;">
+            MINISTERE DES FINANCES ET DU BUDGET<br></br>
+            ----------------------<br></br>
+            SECRETARIAT GENERAL<br></br>
+            ----------------------<br></br>
+            DIRECTION GENERALE DES DOUANES
+            -----------------------<br></br>
+            #{gacBean.curentOperation.detenteur.direction}<br></br>
+            ------------------
+
+        </div>
+
+        <table class="table responsive-table" id="deteff" style="border: none !important;" border="0">
+
+                    <tr>
+                        <td></td>
+                        <td><strong>ETAT DE DETENTEUR EFFECTIF</strong></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du dépositaire : </strong></td>
+    
+                        <td>#{gacBean.curentOperation.operateur.nomAgent}</td>
+                        <td>#{gacBean.curentOperation.operateur.roleAgent.designation}</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du détenteur effectif :</strong></td>
+                        <td>#{gacBean.curentOperation.detenteur.nomAgent}</td>
+                        <td>#{gacBean.curentOperation.detenteur.roleAgent.designation}</td>
+                    </tr>
+
+                    <tr>
+                        <p:dataTable id="listdeteff" var="c" value="#{gacBean.listMaterielByDet}" widgetVar="operationsTable"
+                            >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="DESIGNATION " />
+                                </f:facet>
+                                <h:outputText value="#{c.nomenMat.designation}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ESPECES DES UNITES " />
+                                </f:facet>
+                                <h:outputText value="#{c.nomenMat.nomenclature}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="PRIX UNITAIRE " />
+                                </f:facet>
+                                <h:outputText value="#{c.pu}" >
+                                	<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NOMBRE" />
+                                </f:facet>
+                                <h:outputText value="1" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="VALEUR TOTALE" />
+                                </f:facet>
+                                <h:outputText value="#{c.pu}" >
+                                	<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </tr>                    
+                    
+            </table>
+
+            <br></br><br></br><br></br>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">Arrêté le présent état de détenteur effectif au nombre de ............. Articles à une valeur de <p:inputText style="text-align: center;"></p:inputText> Ariary.</div>
+
+            <div class="col-md-1"></div>
+
+            <br></br><br></br><br></br>
+
+
+            <div class="col-md-8"></div><div class="col-md-4"> 
+                Antananarivo, le #{gacBean.curentOperation.date} <br></br>
+                #{gacBean.curentOperation.operateur.nomAgent}
+            </div><br></br><br></br>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                Reconnu exact<br></br>
+                #{gacBean.curentOperation.detenteur.nomAgent}
+            </div>
+
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            
+            
+            <h:form>
+				<p:commandButton  styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " value="Exporter en PDF" ajax="false" action="#{JasperTableExampleBean.saisieMatexReport(gacBean.curentOperation)}"> </p:commandButton>
+			</h:form>
+        </div>
+    <!--/p:dialog-->
+
+    
+    #{gacBean.exity()}
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>

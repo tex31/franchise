@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	>
+
+ <h:head> </h:head>
+<ui:include src="/pages/unsecure/components/header.xhtml">
+	<ui:param name="title" value="Choisir le type de tableau de bord" />
+</ui:include>
+
+<style>
+	.fa span{
+	  display: inline-block !important;
+	  font-size:1.2em !important;
+	  padding:0.5em !important;
+	}
+	.tableau{
+		background-color:#145C8B  !important;
+		color:#d3d3d3 !important;
+	}
+
+</style>
+
+<h:body styleClass="login">
+	<div class="background_rc">
+	</div>
+	
+	<div class="form-signin">
+		
+		<div class="tab-content">
+			<div class="text-center">
+				<h:graphicImage styleClass="choice_img" value="/pages/unsecure/assets/images/sigma_logo.png" />
+			</div>
+			<hr></hr>
+			<div id="login" class="tab-pane active">
+				<h:form id="ChoiceFormId" prependId="false">
+					<p class="text-muted text-center">Choisir le type de tableau de bord</p>
+					
+					<h:selectOneMenu styleClass="form-control top" value="#{choiceMB.choiceValue}">
+						<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN'}">
+			            	<f:selectItem itemValue="adminCM" itemLabel="Administration Comptabilité Matières"/>
+
+			            	<f:selectItem itemValue="adminCA" itemLabel="Administration Comptabilité Administrative"/>
+			        	</c:if>
+			        	<c:if test="#{topMenuMB.curentAgent.roleAgent.role ne 'ROLE_ADMIN'}">
+							<f:selectItem itemValue="Cm" itemLabel="Comptabilité Matière"/>
+							<f:selectItem itemValue="Ca" itemLabel="Comptabilité Administrative"/>
+						</c:if>
+					</h:selectOneMenu>
+               		 <hr></hr>
+					<p:commandButton  id="btnChoiceId"  action="#{choiceMB.choisir}" value="Connexion"
+						styleClass="btn btn-lg btn-primary  btn-block fa fa-area-chart tableau" >
+					</p:commandButton>
+
+				</h:form>
+				
+				<hr></hr>
+				
+				<h:form>
+				
+					<p:commandButton value="Déconnexion" id="logout" styleClass="btn btn-block btn-outline-primary btn-lg fa fa-sign-out"
+					action="#{loginMgmtBean.logout}" >
+					
+					</p:commandButton>
+					
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+<ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+<h:head></h:head> 	
+	<p:growl id="growl" for="myerror" showDetail="true" sticky="true" redisplay="false"/>
+	
+    <p:dialog id="detail" widgetVar="detail" position = "center,top" closable="false" header="Détails validation attribution" showEffect="explode" hideEffect="explode" width="1250" height="450">
+        
+            <h:form class="form-horizontal">
+            <p:commandButton actionListner="#{gacBean.exit()}" icon="ui-icon-delete"
+            style="valign:bottom;float:right;padding-right:20px" ajax="false"/>
+                        
+            </h:form>
+    <div   class="body collapse in table-responsive">
+
+        <table class="table responsive-table" >
+                    <tr>
+                        <td><strong>Type de matériel</strong></td>
+                        <td>#{gacBean.opAttrToValidate.mat.design.typematerieladd.designation}</td>
+                        <td></td>
+                        <td><strong>Numéro de série</strong></td>
+                        <td>#{gacBean.opAttrToValidate.mat.numSerie}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nomenclature</strong></td>
+                        <td>#{gacBean.opAttrToValidate.mat.design.nomenMat.nomenclature}</td>
+                        <td></td>
+                        <td><strong>Détenteur pour attribution</strong></td>
+                        <td>#{gacBean.opAttrToValidate.detenteur.im} - #{gacBean.opAttrToValidate.detenteur.nomAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marque</strong></td>
+                        <td>#{gacBean.opAttrToValidate.mat.design.marque.designation}</td>
+                        <td></td>
+                        <td><strong>Nom détenteur</strong></td>
+                        <td>#{gacBean.opAttrToValidate.detenteur.nomAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Référence</strong></td>
+                        <td>#{gacBean.opAttrToValidate.mat.reference}</td>
+                        <td></td>
+                        <td><strong>Dépositaire</strong></td>
+                        <td>#{gacBean.opAttrToValidate.operateur.im} - #{gacBean.opAttrToValidate.operateur.nomAgent}</td>
+                        <td><strong>Détenteur effectif</strong></td>
+                        <td>
+                            <h:form>
+
+                                    <h:commandLink  action="#{docbean.generateDetenteur(gacBean.opAttrToValidate)}" target="_blank">
+                                            <i class="fa fa-file-archive-o"></i>
+                                        </h:commandLink>
+                                </h:form>
+                        </td>
+
+
+
+
+                    </tr>
+                         
+            </table>
+            
+        <div class="form-group">
+         	<p:panel rendered="#{gacBean.opAttrToValidate.state eq 'WAITING' }">
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+						<br/>
+						<h:form class="form-horizontal">
+        
+                                <h:commandButton  action="#{gacBean.validateAttributionDetenteur(gacBean.opAttrToValidate)}" value="Valider"
+                                           update="growl"  class="btn btn-lg btn-primary btn-block"/>
+                        </h:form>
+					</div>
+					<div class="col-lg-4 ">
+	
+						<h:form>
+
+                                <label for="text1" >Motif de refus
+                                        </label>
+
+                                <h:inputText value="#{gacBean.motif}" 
+                                            styleClass="form-control top"></h:inputText>
+
+                                <h:commandButton  action="#{gacBean.refuseAttributionDetenteur(gacBean.opAttrToValidate)}" value="Refuser"
+                                            class="btn btn-lg btn-warning btn-block">
+                                    <!--f:param name="operationValide" value="#{gacBean.opAttrToValidate}"/-->
+                                </h:commandButton>
+
+                            
+                           </h:form>
+	
+					</div>
+				</div>
+			</p:panel>
+		 </div>
+            
+            
+        </div>
+
+
+        
+        
+    </p:dialog>
+
+</html>

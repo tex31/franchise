@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+    <ui:param name="title" value="Administration" />
+</ui:include>
+
+<h:body class="  ">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <ui:include src="/pages/unsecure/components/navbar_top_CA.xhtml"></ui:include>
+
+            <ui:include src="/pages/unsecure/components/top_CA.xhtml">
+                <ui:param name="title" value="Administration" />
+            </ui:include>
+
+        </div>
+
+        <!--ui:include src="/pages/unsecure/components/left.xhtml"-->
+            
+        <!--/ui:include-->
+
+        <!-- /#wrap -->
+
+        <div id="content">
+        
+            <div >
+                <div class="box dark">
+                    <header>
+                    <div class="icons">
+                        <i class="fa fa-edit"></i>
+                    </div>
+                    <h5>Comptabilité Administrative</h5>
+                    <!-- .toolbar -->
+                    <div class="toolbar">
+                        <nav style="padding: 8px;"> <a href="javascript:;"
+                            class="btn btn-default btn-xs collapse-box"> <i
+                            class="fa fa-minus"></i>
+                        </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                            <i class="fa fa-expand"></i>
+                        </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                                <i class="fa fa-times"></i>
+                                            </a--> </nav>
+                    </div>
+                    <!-- /.toolbar --> </header>
+                    <div class="body collapse">
+
+                        <ui:include src="/pages/secure/CA/tables/tables_tableauDeBord.xhtml"></ui:include>
+
+
+                    </div>
+                </div>
+            </div>
+            
+          
+                
+        
+        </div>
+
+    </div>
+
+    <ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+</h:body>
+</html>

@@ -1,0 +1,288 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+	
+	<!-- ALL -->
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/pages/unsecure/login.xhtml" />
+	</url-mapping>
+	
+	<!-- url-mapping id="documentaion">
+		<pattern value="/docs" />
+		<view-id value="/pages/unsecure/documentation/index.xhtml" />
+	</url-mapping-->
+	
+	
+	
+	<!-- LOGGED -->
+	<url-mapping id="choice">
+		<pattern value="/user/choix" />
+		<view-id value="/pages/secure/choice.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="localCMTB">
+		<pattern value="/user/comptabilite-matiere/montableaudebord" />
+		<view-id value="/pages/secure/CM/ComptaMatiere.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="localCATB">
+		<pattern value="/user/comptabilite-admini/montableaudebord" />
+		<view-id value="/pages/secure/CA/ComptaAdmin.xhtml" />
+	</url-mapping>
+	
+	
+	
+	
+	<!-- DC -->
+	<url-mapping id="attribution">
+		<pattern value="/dc/comptabilite-matiere/attribution" />
+		<view-id value="/pages/secure/CM/DC/attribution.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="decharge">
+		<pattern value="/dc/comptabilite-matiere/decharge" />
+		<view-id value="/pages/secure/CM/DC/decharge.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="detachement">
+		<pattern value="/dc/comptabilite-matiere/detachement" />
+		<view-id value="/pages/secure/CM/DC/detachement.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="dechargeCA">
+		<pattern value="/dc/comptabilite-administrati/decharge" />
+		<view-id value="/pages/secure/CA/DC/decharge.xhtml" />
+	</url-mapping>
+	
+	
+	
+	<!-- GAC -->
+	
+	<url-mapping id="vattribution">
+		<pattern value="/gac/comptabilite-matiere/validation-attribution" />
+		<view-id value="/pages/secure/CM/GAC/validation/attribution.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="vdecharge">
+		<pattern value="/gac/comptabilite-matiere/validation-decharge" />
+		<view-id value="/pages/secure/CM/GAC/validation/decharge.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="vdetachement">
+		<pattern value="/gac/comptabilite-matiere/validation-detachement" />
+		<view-id value="/pages/secure/CM/GAC/validation/detachement.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="vprisencharge">
+		<pattern value="/gac/comptabilite-matiere/validation-priseencharge" />
+		<view-id value="/pages/secure/CM/GAC/validation/priseEnCharge.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="vprisenchargeCA">
+		<pattern value="/gac/comptabilite-admini/validation-entreearticle" />
+		<view-id value="/pages/secure/CA/GAC/validation/priseEnCharge.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="vdechargeCA">
+		<pattern value="/gac/comptabilite-admini/validation-sortiearticle" />
+		<view-id value="/pages/secure/CA/GAC/validation/attribution.xhtml" />
+	</url-mapping>
+	
+	
+	
+	
+	<!--  SISE/DG/DRF -->
+	
+	<url-mapping id="adminTB">
+		<pattern value="/admin/comptabilite-matiere/tableaudebord" />
+		<view-id value="/pages/secure/admin/adminCM.xhtml" />
+	</url-mapping>
+	<url-mapping id="adminCATB">
+		<pattern value="/admin/comptabilite-admini/tableaudebord" />
+		<view-id value="/pages/secure/admin/adminCA.xhtml" />
+	</url-mapping>
+	
+	
+	<url-mapping id="adminTBG">
+		<pattern value="/admin/comptabilite-matiere/tableaudebordgeneral" />
+		<view-id value="/pages/secure/admin/comptaGeneral.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="referentiel">
+		<pattern value="/admin/comptabilite-matiere/referentiel" />
+		<view-id value="/pages/secure/CM/SISE/saisieRef.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="referentielCA">
+		<pattern value="/admin/comptabilite-admini/referentiel" />
+		<view-id value="/pages/secure/CA/SISE/saisieRef.xhtml" />
+	</url-mapping>
+	
+	
+	
+		
+		<!-- Consultation g/al -->
+	<!-- url-mapping id="matexgeneral">
+		<pattern value="/admin/comptabilite-matiere/materiel-existant-general" />
+		<view-id value="/pages/secure/CM/DC/saisieMatExG.xhtml" />
+	</url-mapping-->
+	
+	<url-mapping id="priseenchargegeneral">
+		<pattern value="/admin/comptabilite-matiere/prise-en-charge-general" />
+		<view-id value="/pages/secure/CM/DC/priseEnChargeG.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="artexgeneral">
+		<pattern value="/admin/comptabilite-administrative/article-existant-general" />
+		<view-id value="/pages/secure/CA/DC/saisieMatExG.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="artnouvgeneral">
+		<pattern value="/admin/comptabilite-administrative/nouveaux-articles-general" />
+		<view-id value="/pages/secure/CA/DC/priseEnChargeG.xhtml" />
+	</url-mapping>
+	
+	
+	<url-mapping id="tracabilitegeneral">
+		<pattern value="/admin/comptabilite-matiere/suivi/tracabilite-general" />
+		<view-id value="/pages/secure/CM/DGD/tracabiliteG.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="listegeneral">
+		<pattern value="/admin/comptabilite-matiere/suivi/liste-general" />
+		<view-id value="/pages/secure/CM/DGD/listeMatStatGeneral.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="listecageneral">
+		<pattern value="/admin/comptabilite-admini/suivi/liste-general" />
+		<view-id value="/pages/secure/CA/DGD/listeMatStatHistoG.xhtml" />
+	</url-mapping>
+	
+	
+	
+	<url-mapping id="editiongeneral">
+		<pattern value="/admin/comptabilite-matiere/edition/etat-document-general" />
+		<view-id value="/pages/secure/CM/DGD/editionEtatsG.xhtml" />
+	</url-mapping>
+	
+	<!-- SUIVI -->
+	
+	<url-mapping id="tracabilite">
+		<pattern value="/tracabilite/comptabilite-matiere/suivi/tracabilite" />
+		<view-id value="/pages/secure/CM/DGD/tracabilite.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="liste">
+		<pattern value="/suivis/comptabilite-matiere/suivi/liste" />
+		<view-id value="/pages/secure/CM/DGD/listeMatStatHisto.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="listeca">
+		<pattern value="/suivis/comptabilite-admini/suivi/liste" />
+		<view-id value="/pages/secure/CA/DGD/listeMatStatHisto.xhtml" />
+	</url-mapping>
+	
+	
+	
+	<url-mapping id="edition">
+		<pattern value="/suivis/comptabilite-matiere/edition/etat-document" />
+		<view-id value="/pages/secure/CM/DGD/editionEtats.xhtml" />
+	</url-mapping>
+	
+	<!-- DC and SISE/DG/DRF -->
+	<!-- url-mapping id="matex">
+		<pattern value="/operation/comptabilite-matiere/materiel-existant" />
+		<view-id value="/pages/secure/CM/DC/saisieMatEx.xhtml" />
+	</url-mapping-->
+	<!-- url-mapping id="formmatex">
+		<pattern value="/formulaire/comptabilite-matiere/materiel-existant" />
+		<view-id value="/pages/secure/CM/DC/content_forms/content_forms_saisieMatEx.xhtml" />
+	</url-mapping-->
+	
+	<!-- url-mapping id="priseencharge">
+		<pattern value="/operation/comptabilite-matiere/prise-en-charge" />
+		<view-id value="/pages/secure/CM/DC/priseEnCharge.xhtml" />
+	</url-mapping-->
+	<!-- url-mapping id="formpriseencharge">
+		<pattern value="/formulaire/comptabilite-matiere/prise-en-charge" />
+		<view-id value="/pages/secure/CM/DC/content_forms/content_forms_priseEnCharge.xhtml" />
+	</url-mapping-->
+	
+	<url-mapping id="artex">
+		<pattern value="/operation/comptabilite-admini/article-existant" />
+		<view-id value="/pages/secure/CA/DC/saisieMatEx.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="priseenchargeart">
+		<pattern value="/operation/comptabilite-admini/entree-article" />
+		<view-id value="/pages/secure/CA/DC/priseEnCharge.xhtml" />
+	</url-mapping>
+	
+	<!-- FORMULAIRE EXPORT -->
+	<url-mapping id="expfichedestock">
+		<pattern value="/export/comptabilite-admini/formulaire-fichedestock" />
+		<view-id value="/pages/secure/CA/DGD/form/form_ficheDeStock.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expjournalca">
+		<pattern value="/export/comptabilite-admini/formulaire-journal" />
+		<view-id value="/pages/secure/CA/DGD/tables/dialogs/dialogs_Journal.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expordreentree">
+		<pattern value="/export/comptabilite-matiere/formulaire-ordreentree" />
+		<view-id value="/pages/secure/CM/DGD/tables/dialogs/dialogs_OrdreEntree.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expordresortie">
+		<pattern value="/export/comptabilite-matiere/formulaire-ordresortie" />
+		<view-id value="/pages/secure/CM/DGD/tables/dialogs/dialogs_OrdreSortie.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expjournal">
+		<pattern value="/export/comptabilite-matiere/formulaire-journal" />
+		<view-id value="/pages/secure/CM/DGD/tables/dialogs/dialogs_Journal.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expgrandlivre">
+		<pattern value="/export/comptabilite-matiere/formulaire-grandlivre" />
+		<view-id value="/pages/secure/CM/tables/dialogs/dialogs_grandLivre.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expetatappreciatif">
+		<pattern value="/export/comptabilite-matiere/formulaire-etatappreciatif" />
+		<view-id value="/pages/secure/CM/DGD/tables/dialogs/dialogs_EtatAppreciatif.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="expinventaire">
+		<pattern value="/export/comptabilite-matiere/formulaire-inventaire" />
+		<view-id value="/pages/secure/CM/DGD/tables/dialogs/dialogs_Inventaire.xhtml" />
+	</url-mapping>
+	
+	
+	<url-mapping id="expdetenteureffectif">
+		<pattern value="/export/comptabilite-matiere/formulaire-etatdetenteureffectif" />
+		<view-id value="/pages/secure/CM/tables/dialogs/dialogs_saisieMatEx1.xhtml" />
+	</url-mapping>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</pretty-config>

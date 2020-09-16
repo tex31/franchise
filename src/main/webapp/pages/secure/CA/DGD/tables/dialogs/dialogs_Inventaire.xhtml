@@ -1,0 +1,379 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+</ui:include>
+
+	
+	
+ 	<div class="col-md-1"></div>
+
+
+
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/left.png" />
+
+ 			</div>
+
+ 			<div class="col-md-6">
+
+                <br></br><br></br>
+            
+                
+                BUDGET ............................................................
+            
+
+
+            <br></br><br></br><br></br>
+
+
+                EXERCICE ..................................
+            
+
+            <br></br><br></br>
+
+
+        </div>
+
+            
+
+
+
+ 			<div class="col-md-3">
+ 				Modèle n°2
+
+                
+
+ 			</div>
+ 		</div>
+
+
+        <div class="col-md-12">
+            CHAPITRE(2) .............................. ARTICLE...............................PARAGRAPHE.................
+            <br></br><br></br>
+        </div>
+
+        <br></br><br></br>
+        <div class="col-md-12">
+
+            Service d (1).........................................................................................................<br></br>
+            <br></br><br></br>
+        </div>
+        <br></br><br></br>
+        <div class="col-md-12">
+
+            Hôtel du (2).........................................................................................................<br></br><br></br>
+            <br></br><br></br>
+
+        </div>
+        <br></br><br></br>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-1">
+
+ 			</div>
+
+ 			<div class="col-md-10" style="text-align: center;font-size: 25px; color: #444">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/inv.png" /><br></br>
+                    <strong>du mobilier et des objets d'ameublemnt existant au 31 Décembre #{gacBean.annee}</strong>
+                    <br></br><br></br><br></br>
+ 			</div>
+
+ 			<div class="col-md-1" style="font-size: 14px!important;">
+ 				
+ 			</div>
+ 		</div>
+
+
+
+ 		<br></br><br></br><br></br>
+        <br></br><br></br><br></br>
+
+
+               <table>
+                <tr class="entreeo">
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th colspan="3">Quantité</th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+
+                </tr>
+                <tr class="entreeo">
+                    <th style="border-top: none">Numéro de folio du grand livre</th>
+                    <th style="border-top: none">Désignation des matériels</th>
+                    <th style="border-top: none">Espèce des unités</th>
+                    <th style="border-top: none">Prix de l'unité</th>
+                    <th >Existant au 1 er Janvier</th>
+                    <th >Entreés pendant l'année</th>
+                    <th >Sortie pendant l'année</th>
+                    <th >Reste au 31 Déc</th>
+                    <th style="border-top: none">Décompte</th>
+                    <th >Observation</th>
+                </tr>
+
+                
+        <!--c:forEach var="o" items="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"-->
+        
+        <c:forEach var="mat" items="#{depositaireBean.listAllMateriel}">
+
+                <tr class="entreeo">    
+                    <td><p:inputText style="text-align: center;width: 80%"></p:inputText></td>
+                    <td>#{mat.nomenMat.designation}, #{mat.typematerieladd.designation} , #{mat.renseignement}</td>
+                    <td>#{mat.especeUnite}</td>
+                    <c:if test="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    <td>#{mat.pu}</td>
+                    </c:if>
+
+                    <c:if test="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    <td>#{mat.montant_facture}</td>
+                    </c:if>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><p:inputText style="text-align: center;width: 80%"></p:inputText></td>
+                </tr>
+
+        </c:forEach>
+
+    
+
+            </table>
+
+    <br></br><br></br><br></br>
+        <br></br><br></br><br></br>
+
+
+ 	<p:dataTable  id="testingID" var="mat" value="#{depositaireBean.listAllMateriel}">
+
+ 		<p:columnGroup type="header">
+            <p:row>
+
+                <p:column rowspan="2" headerText="Numéro de folio du grand livre" />
+                <p:column rowspan="2" headerText="Désignation des matériels" />
+                <p:column rowspan="2" headerText="Espèce des unités" />
+                <p:column rowspan="2" headerText="Prix de l'unité" />
+
+
+                <p:column colspan="4" headerText="Quantité" />
+
+                
+                <p:column rowspan="2" headerText="Décompte" />
+                <p:column rowspan="2" headerText="Observation" />
+                
+                
+            </p:row>
+            <p:row>
+                <p:column  headerText="Existant au 1 er Janvier" />
+                <p:column  headerText="Entreés pendant l'année" />
+                <p:column  headerText="Sortie pendant l'année" />
+                <p:column  headerText="Reste au 31 Déc" />
+                
+            </p:row>
+        </p:columnGroup>
+ 
+        <p:column>
+            <p:inputText style="text-align: center;width: 80%"></p:inputText>
+        </p:column>
+        <p:column>
+            <h:outputText value="#{mat.nomenMat.designation}, #{mat.typematerieladd.designation} , #{mat.renseignement}" />
+        </p:column>
+        <p:column>
+            <h:outputText value="#{mat.especeUnite}" />
+        </p:column>
+
+        <p:column>
+             <p:panel rendered="#{mat['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{mat.pu}
+                    </p:panel>
+
+                    <p:panel rendered="#{mat['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{mat.montant_facture}
+                    </p:panel>
+        </p:column>
+
+        <p:column>
+            <h:outputText value="" />
+        </p:column>
+
+        <p:column>
+            <h:outputText value="" />
+        </p:column>
+
+        <p:column>
+            <h:outputText value="" />
+        </p:column>
+
+        <p:column>
+            <h:outputText value="" />
+        </p:column>
+        <p:column>
+            <h:outputText value="" />
+        </p:column>
+        <p:column>
+            
+            <p:inputText style="text-align: center;width: 80%"></p:inputText>
+        </p:column>
+
+
+       
+    </p:dataTable>
+
+    <br></br><br></br><br></br>
+
+
+    <div class="col-md-12">
+        
+        Arrêté le présent inventaire ..................................................................................articles et à la somme de .........................................................................<br></br><br></br><br></br>
+        Fait en double à ................................................le trente et un Décembre #{gacBean.annee}<br></br>
+
+
+    </div>
+
+    <div class="col-md-12" style="text-align: center;">
+        
+        Le dépositaire comptable  <br></br>
+        
+    </div>
+
+
+    <div class="col-md-12">
+        
+        Vu et reconnu exacte  <br></br>
+
+        A..................................................................le...................................<br></br>
+        Le (1)..........................................................................détenteur effectif
+        
+    </div>
+
+    <div class="col-md-12">
+        
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            Vu<br></br>
+            le (2)................................    <br></br><br></br><br></br>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	</div>
+
+
+ 	<div class="col-md-1"></div>
+
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

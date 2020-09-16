@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+     >
+
+<h:head></h:head>
+<c:if test= "${table == 'ordreEntree' || table == 'tous' || empty table }">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Ordres d'entrée par direction</h5>
+	        <!-- .toolbar -->
+	         <div class="toolbar">
+	         	<nav style="padding: 8px;"> 
+	            <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	            </a--> </nav>
+	            </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	   
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_ordreEntreeG.xhtml"></ui:include>
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+
+<c:if test="${table == 'ordreSortie' || table == 'tous' || empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Ordre de sortie par direction</h5>
+	        <!-- .toolbar --> 
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_ordreSortieG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'journal' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Journal par direction</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar" style="font-size:11px;">
+	            <nav style="padding: 8px;"> 
+	            	 <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box float-right"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box float-right">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> 
+	            </nav>
+	            
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_journalG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'livreAnnuel' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Grand livre annuel</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_livreAnnuelG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'etatAppreciatif' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Etat appréciatif</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_etatAppreciatifG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'inventaire' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Inventaire par direction</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_inventaireG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'etatDetenteurEffectif' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Etat détenteur effectif par direction</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_etatDetenteurEffectifG.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+<c:if test="${table == 'fournisseursBdd' || table == 'tous'|| empty table}">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	        <div class="icons">
+	            <i class="fa fa-edit"></i>
+	        </div>
+	        <h5>Fournisseur</h5>
+	        <!-- .toolbar -->
+	        <div class="toolbar">
+	            <nav style="padding: 8px;"> <a href="javascript:;"
+	                class="btn btn-default btn-xs collapse-box"> <i
+	                class="fa fa-minus"></i>
+	            </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+	                <i class="fa fa-expand"></i>
+	            </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+	                                    <i class="fa fa-times"></i>
+	                                </a--> </nav>
+	        </div>
+	        <!-- /.toolbar --> </header>
+	        <div class="body">
+	
+	            <ui:include src="/pages/secure/CM/DGD/tables/tables_fournisseursBdd.xhtml"></ui:include>
+	
+	
+	        </div>
+	    </div>
+	</div>
+</c:if>
+
+</html>

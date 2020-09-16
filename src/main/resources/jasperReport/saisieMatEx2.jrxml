@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="9136f014-cc7c-4ef4-ac78-1c1b36f3f58e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="198"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="nomDepositaire" class="java.lang.String"/>
+	<parameter name="fonctionDepositaire" class="java.lang.String"/>
+	<parameter name="nomDetenteur" class="java.lang.String"/>
+	<parameter name="param" class="java.lang.String">
+		<defaultValueExpression><![CDATA["momo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fonctionDetenteur" class="java.lang.String"/>
+	<parameter name="designationMat" class="java.lang.String"/>
+	<parameter name="especeunite" class="java.lang.String"/>
+	<parameter name="pu" class="java.lang.Float"/>
+	<parameter name="num2" class="java.lang.String"/>
+	<parameter name="nbr" class="java.lang.Integer"/>
+	<parameter name="valeurtotal" class="java.lang.Float"/>
+	<parameter name="service" class="java.lang.String"/>
+	<parameter name="num1" class="java.lang.String"/>
+	<parameter name="date" class="java.util.Date"/>
+	<parameter name="filamatra" class="java.lang.String"/>
+	<parameter name="lieu" class="java.lang.String"/>
+	<parameter name="numero" class="java.lang.String"/>
+	<parameter name="section" class="java.lang.String"/>
+	<parameter name="chapitre" class="java.lang.String"/>
+	<parameter name="paragraphe" class="java.lang.String"/>
+	<parameter name="article" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="167" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="140" width="555" height="20" uuid="e359ed88-03d9-4896-b939-13918d19b9a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{service}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="22" width="555" height="38" uuid="ffbde8e3-f931-41ce-bd9e-c99053bb5370"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filamatra}+ 
+"\n--------------------------"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="555" height="20" uuid="df6c90a4-93c2-4db2-8788-3bfc30be5ff8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPOBLIKAN’I MADAGASIKARA
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="60" width="124" height="20" uuid="06962e98-418d-4e17-85f3-6613ebf953aa"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[BUDGET GENERAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="80" width="400" height="20" uuid="03497acc-6c6a-46b7-8572-a192c3b8788c"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SECTION : "  + $P{section}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="100" width="400" height="20" uuid="ad797fd0-bbcb-4ff5-8498-3b63286c80bc"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CHAPITRE : " + $P{chapitre} + " ARTICLE " + $P{article}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="120" width="400" height="20" uuid="5c33c422-70c7-47fd-9709-d67f61fcb9d1"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PARAGRAPHE : "  + $P{paragraphe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="83" splitType="Stretch">
+			<textField>
+				<reportElement x="264" y="43" width="164" height="24" uuid="27c74a29-4dbd-48d7-a35f-058ec4062ea7"/>
+				<textFieldExpression><![CDATA[$P{nomDetenteur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="25" width="169" height="18" uuid="2c57c754-6bda-494b-a4ac-6c88ac8fc386"/>
+				<text><![CDATA[Nom et fonction du dépositaire :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="43" width="169" height="24" uuid="9b5f1c3f-2030-467b-a96b-f7244de6342f"/>
+				<text><![CDATA[Nom et fonction du détenteur effectif :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="264" y="25" width="164" height="18" uuid="0819df75-31b7-470e-8024-468c93a3afc3"/>
+				<textFieldExpression><![CDATA[$P{nomDepositaire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="23" width="125" height="20" uuid="f1536dbb-a29a-4647-80f2-030e98268d60"/>
+				<textFieldExpression><![CDATA[$P{fonctionDepositaire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="43" width="125" height="24" uuid="3e4ec87a-c573-4dd5-bcc4-289cef56e79c"/>
+				<textFieldExpression><![CDATA[$P{fonctionDetenteur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="553" height="20" uuid="0eb735d3-c34f-4fae-a71b-e060519a2d99"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numero} == null?"ETAT DE DETENTEUR EFFECTIF  Non Validé":"ETAT DE DETENTEUR EFFECTIF  " + $P{numero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="399" y="0" width="64" height="20" uuid="0be061cd-671c-48e3-b2ee-f2893c3de46e"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="198" height="20" uuid="864fb95c-f133-48bc-99d0-d80ed6e3a520"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DESIGNATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="92" height="20" uuid="cba01440-8e88-400c-aef7-d1a99b7ac36e"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[VALEUR TOTALE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="0" width="86" height="20" uuid="869a40e3-de93-4a2a-a912-3de2bf04a15e"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PRIX UNITAIRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="0" width="115" height="20" uuid="2a2f3d12-bcf8-4302-a146-715c6e1ff0b8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ESPECE DES UNITES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="198" height="40" uuid="305a5d3d-a670-49c9-bcc9-6902d24e0dfe"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{designationMat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="0" width="115" height="40" uuid="9c248523-661d-44f8-adaa-254a697e044a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{especeunite}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="313" y="0" width="86" height="40" uuid="1a2c567b-2c39-4824-8eb9-2afc8180ea2b"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{pu}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="399" y="0" width="64" height="40" uuid="e56e894b-d03c-414f-aac2-c74b22eb4646"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{nbr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="463" y="0" width="92" height="40" uuid="834a1387-6971-42f7-9f27-dd4f1e240646"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valeurtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="146">
+			<textField>
+				<reportElement x="339" y="72" width="164" height="18" uuid="cc34a8b1-3d2c-4a26-8ec7-3cccf70e6ead"/>
+				<textFieldExpression><![CDATA[$P{nomDepositaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="52" width="100" height="20" uuid="b0754f8e-3a19-4966-9911-3af3d3aa9fb0"/>
+				<text><![CDATA[Reconnu exact]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="9" y="72" width="164" height="24" uuid="c9b6f2d9-69d1-4d80-8b71-b50f6f21c05d"/>
+				<textFieldExpression><![CDATA[$P{nomDetenteur}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMM yyyy">
+				<reportElement x="413" y="50" width="90" height="20" uuid="fb9faea4-4cc4-4058-b6b5-270169ff0b82"/>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="555" height="40" uuid="f2eebafd-795c-4e88-8ba2-8edfeb22b062"/>
+				<textFieldExpression><![CDATA["Arrêté le présent état de détenteur effectif au nombre de " + $P{num1} + " article(s) à une valeur de "  + $P{num2} + " Ariary."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="50" width="73" height="20" uuid="3a7b97a6-e1ad-4b39-a6fe-9bb40623b97c"/>
+				<textFieldExpression><![CDATA[$P{lieu} + ", le "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="360" y="10" width="100" height="30" uuid="fc114def-336b-492f-a126-d94df30a6def"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="460" y="10" width="100" height="30" uuid="ed00ec74-2e1f-450d-94c4-1dd8f46a8275"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" sur " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

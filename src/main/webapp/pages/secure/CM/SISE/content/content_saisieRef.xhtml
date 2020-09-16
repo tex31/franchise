@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  >
+
+ <h:head></h:head>
+
+<c:if test= "${table == 'nomenclature' || table == 'tous' || table == 'sr_materiels' || empty table  }">
+<div class="col-lg-6" id="nom">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Nomenclature</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieNomenclature.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'type_materiel' || table == 'tous' || table == 'sr_materiels' || empty table }">
+<div class="col-lg-6" id="type">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Type de matériel</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieTypeMat.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'etat' || table == 'tous' || table == 'sr_materiels' || empty table  }">
+<div class="col-lg-6" id="etat">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Etat de matériel</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieEtatMat.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'marques' || table == 'tous' || table == 'sr_materiels' || empty table }">
+<div class="col-lg-6" id="marque">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Marque</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMarque.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<!--div class="col-lg-6">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Liste de détenteurs</h5>
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a> </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieListeDetenteur.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div-->
+
+<c:if test= "${table == 'utilisateur' || table == 'tous' || table == 'sr_utilisateurs' || empty table }">
+<div class="col-lg-6" id="user">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Utilisateur</h5>
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieUtilisateurs.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+<!--div class="col-lg-6" id="bureau">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Bureau</h5>
+		
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a>  </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieBureau.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div-->
+<c:if test= "${table == 'motif_acquisition' || table == 'tous' || table == 'sr_motifs' || empty table }">
+<div class="col-lg-6" id="acq">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Motif d'acquisition</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMotifAquisition.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'motif_detachement' || table == 'tous' || table == 'sr_motifs' || empty table }">
+<div class="col-lg-6" id="dec">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Motif de détachement</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMotifDecharge.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'financement' || table == 'tous' || table == 'sr_autres' || empty table  }">
+<div class="col-lg-6" id="fin">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Financement</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieFinancement.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<!--  
+<c:if test= "${table == 'fournisseur' || table == 'tous' || empty table }">
+<div class="col-lg-6" id="fou">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Fournisseurs</h5>
+		<!- .toolbar ->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a> </nav>
+		</div>
+		<!-/.toolbar -> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieFournisseur.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+-->
+
+<!-- div class="col-lg-6" id="adr">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Adresse</h5-->
+		<!-- .toolbar -->
+		<!-- div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a--> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> <!-- /nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieAdresse.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div-->
+<!-- 
+<c:if test= "${table == 'fonction' || table == 'tous' || table == 'sr_utilisateurs' || empty table }">
+<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN'
+            }">
+<div class="col-lg-6" id="role">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Fonction</h5>
+		
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieRole.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+</c:if>
+ -->
+
+<c:if test= "${table == 'direction' || table == 'tous' || table == 'sr_administratifs' || empty table }">
+<div class="col-lg-6" id="dir">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Direction</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieDirection.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'poste' || table == 'tous' || table == 'sr_administratifs' || empty table  }">
+<div class="col-lg-6" id="poste">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Poste</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisiePoste.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+<c:if test= "${table == 'devise' || table == 'tous' || table == 'sr_autres' || empty table }">
+<div class="col-lg-6" id="devise">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Devise</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieDevise.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+
+
+
+<!-- div class="col-lg-6" id="loc">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Localite</h5>
+		
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> 
+                                </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieLocalite.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div-->
+
+
+<c:if test= "${table == 'motif_sortie' || table == 'tous' || table == 'sr_motifs' || empty table  }">
+<div class="col-lg-6" id="sortie">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Motif de sortie</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMotifSortie.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+</c:if>
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+</p:confirmDialog>
+
+<ui:include src="/pages/secure/CM/SISE/tables/dialogs/dialogs_directionedit.xhtml"></ui:include>
+<ui:include src="/pages/secure/CM/SISE/tables/dialogs/dialogs_useredit.xhtml"></ui:include>
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog styleClass="loader_dialog" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="">
+		<div align="center" class="">
+			<p:graphicImage style="width:35% !important; height:35% !important;" value="/pages/unsecure/assets/images/loading_small.gif" /> 
+		</div>
+	</p:dialog>
+
+</html>
+
+
+

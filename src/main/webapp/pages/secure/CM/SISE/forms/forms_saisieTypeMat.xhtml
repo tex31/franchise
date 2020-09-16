@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+</style>
+
+<div class="col-md-3"></div>
+<div class="box dark col-md-6" >
+
+	<div class="body" >
+
+		<h:form class="form-horizontal">
+
+			<p:messages id="messages" showDetail="false" showSummary="true" autoUpdate="true" />
+			<br/>
+			<div class="form-group " >
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+							<label for="text1" class="control-label">Désignation *
+							</label>
+					</div>
+					<div class="col-lg-6">
+	
+	
+						<p:inputText required="true" value="#{siseBean.designation}"
+							requiredMessage="Désignation obligatoire" placeholder="Désignation"
+							styleClass="form-control top"></p:inputText>
+					</div>
+				</div>
+				<hr></hr>
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+					<label for="text1" class="control-label ">Code Type Materiel  *(u)
+					</label>
+					</div>
+					<div class="col-lg-6">
+					
+						<p:inputText required="true" value="#{siseBean.codeTypeMateriel}"
+							requiredMessage="Code Type Materiel obligatoire" placeholder="Code"
+							styleClass="form-control top"></p:inputText>
+					</div>
+				</div>
+				<hr></hr>
+				<div class="row">
+
+					<div class="col-lg-4 col-lg-offset-1">
+					<label for="text1" class="control-label ">Désignation nomenclature
+					</label>
+					</div>
+					<div class="col-lg-6">		
+						<p:selectOneMenu id="zone" styleClass="form-control top"
+							converter="#{refConverter}" value="#{siseBean.nomenclatureP}" required="true" requiredMessage="Catégorie obligatoire" panelStyle="width:250px;"  style="width:160px">
+							<f:selectItem itemValue="#{null}" itemLabel="Sélectionner" />
+							<f:selectItems value="#{siseBean.listNomenclature}" var="type"
+								itemLabel="N#{type.nomenclature} - #{type.designation}" >
+						
+							</f:selectItems>	
+							<p:ajax event="change" update="data"
+								listener="#{siseBean.onTypeMaterielChange}" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<hr></hr>
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+					<label for="text1" class="control-label ">Nomenclature
+					</label>
+					</div>
+					<div class="col-lg-6">
+						<h:outputText id="data"
+							value="#{siseBean.nomenclatureP.nomenclature}"></h:outputText>
+					</div>
+				</div>
+				<hr></hr>
+			</div>
+
+			<div class="form-group">
+				<label for="text1" class="control-label col-lg-4"></label>
+
+				<div class="col-lg-4">
+					<h:commandLink id="btnSignId"
+						action="#{siseBean.addTypeMateriel}" value=""
+						class="btn btn-lg btn-primary btn-block" >
+						<i class="fa fa-plus"> </i>  Créer
+					</h:commandLink>
+				</div>
+
+				<div class="col-lg-4"></div>
+
+			</div>
+
+		</h:form>
+
+	</div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+   <strong>( u ) </strong> : Champ à valeur unique<br></br>
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

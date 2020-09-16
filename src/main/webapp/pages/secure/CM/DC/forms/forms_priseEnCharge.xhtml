@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+ <h:head></h:head>
+
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+	.ui-selectonemenu-item-group.ui-corner-all{
+		white-space: nowrap !important;
+		overflow: hidden !important;
+    	text-overflow: ellipsis !important;
+    	max-width: 30ch !important;
+	}
+	.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all{
+	  text-overflow: ellipsis !important;
+	  overflow: hidden !important;
+	  max-width: 30ch !important;
+	}
+	*[data-label=" + Ajouter"]{
+	  background-color: #dedede; !important;
+	  position:absolute !important;
+	  width: 95% !important;
+	  bottom:0 !important;
+	}
+	
+	.ui-selectonemenu-items.ui-selectonemenu-list.ui-widget-content.ui-widget.ui-corner-all.ui-helper-reset{
+		margin-bottom:22px !important;
+	}
+	  /* background-color: #dedede; !important;
+	  position:absolute !important;
+	  width: 100% !important;
+	  bottom:0 !important;
+	  margin-bottom:-11% !important;
+	  margin-left:-2% !important;*/
+</style>
+
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+    <div class="body">
+
+        <h:form class="form-horizontal" id="fileUpoadForm">
+
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+			<p:growl id="growl" for="errorupload" showDetail="true" sticky="true" redisplay="false"/>
+            <div class="form-group">
+					            
+
+
+                <!-- *********************************FILE UPLOAD ****************************************************-->
+
+            <p:outputPanel id="testContainer">
+
+                <!--c:if test="#{depositaireBean.filedownload eq null}" -->
+
+                <p:dataTable id="docId" var="row"
+                             value="#{depositaireBean.documentList}" editable="true"
+                             editMode="cell" widgetVar="documentTable">
+
+
+
+                    <p:column headerText="Enregistrement de Document(s)">
+                        <p:panel rendered="#{!row.uploaded}">
+                            <p:fileUpload value="#{depositaireBean.document}"
+                                          fileUploadListener="#{depositaireBean.uploadDoc_Advanced}"
+                                          mode="advanced" dragDropSupport="false" update="@this,docId"
+                                          sizeLimit="3000000"
+                                          allowTypes="/(\.|\/)(gif|jpeg|txt|png|pdf|doc|docx|rar)$/">
+                                <f:attribute name="docObj" value="#{row}"></f:attribute>
+                                Document accepté : gif, jpeg, png, txt, pdf, doc, docx, rar
+                            </p:fileUpload>
+                        </p:panel>
+                        <p:panel rendered="#{row.uploaded}">
+                            Document  Transféré -     
+                            <h:commandLink
+                                title="remove" value=""
+                                actionListener="#{depositaireBean.removeDoc(row)}" update="docId"
+                                immediate="true"
+                                ajax="true" process="@this" class="btn btn-sm btn-warning " >
+                                <i class="fa fa-close"> </i> Enlever document
+                           </h:commandLink>
+                        </p:panel>
+                    </p:column>
+
+
+
+                </p:dataTable>
+
+            <!--/c:if-->
+                <!-- **IMAGE UPLOAD** -->
+                <p:dataTable id="imId" var="rowIm"
+                             value="#{depositaireBean.imageList}" editable="true"
+                             editMode="cell" widgetVar="documentTable">
+
+                    <p:column headerText="Image">
+                        <p:panel rendered="#{!rowIm.uploaded}">
+                            <p:fileUpload value="#{depositaireBean.byteDoc}"
+                                          fileUploadListener="#{depositaireBean.uploadIm_Advanced}"
+                                          mode="advanced" dragDropSupport="false" update="@this,imId"
+                                          sizeLimit="1000000"
+                                          allowTypes="/(\.|\/)(gif|jpeg|tx|png|pdf)$/"
+                                          
+                                          >
+                                <f:attribute name="docObj" value="#{rowIm}"></f:attribute>
+                                Type d'image accepté : gif, jpeg, png
+                            </p:fileUpload>
+                        </p:panel>
+                        <p:panel rendered="#{rowIm.uploaded}">
+                            Image transféré -      
+                            <h:commandLink
+                                title="remove" value=" "
+                                actionListener="#{depositaireBean.removeDoc(rowIm)}" update="imId"
+                                immediate="true"
+                                ajax="true" process="@this" class="btn btn-sm btn-warning " >
+                                <i class="fa fa-close"> </i> Enlever image
+                           	</h:commandLink>
+                        </p:panel>
+                    </p:column>
+
+
+
+
+
+                </p:dataTable>
+
+
+
+            </p:outputPanel>
+            <br/>
+            <div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+			            <p:commandButton value="Ajouter d'autres documents" process="@this"
+			                             update="docId" actionListener="#{depositaireBean.addNewDoc}"
+			                             ajax="true" />
+                    </div>
+            </div>
+            <!-- *********************************FILE UPLOAD ****************************************************-->
+
+					
+			<div class="col-lg-3"></div>
+			
+            </div>
+           	<hr />
+			<div class="row">
+				<div class="col-lg-6">
+                    <label for="text1" class="control-label ">Type de matériel *
+                    </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu id="zone"  styleClass="form-control top" 
+                    converter="#{refConverter}" value="#{depositaireBean.typematerielToAdd}" ajax="false"
+                    filter="true" filterMatchMode="contains" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" noSelectionOption="true"/> 
+                        <!-- f:selectItems value="#{siseBean.listTypeMateriel}" var="type" itemLabel="#{type.designation}" /-->
+                        <f:selectItems value="#{siseBean.groupeListTypeMateriel}" />
+                        <p:ajax event="change" update="data,codetype" listener="#{depositaireBean.onTypeMaterielChange}" />
+                    </p:selectOneMenu>
+
+                </div>
+             </div>               
+             <hr></hr>
+			<div class="row">
+				<div class="col-lg-6">
+
+                    <label for="text1" class="control-label ">Nomenclature
+                    </label>
+				</div>
+                <div class="col-lg-6">
+
+                 <!--h:selectOneMenu  styleClass="form-control top" value="#{saisieMatExMB.nomenclature}">
+                     <f:selectItem itemValue="#{null}" itemLabel="select" /> 
+                         <f:selectItems value="#{saisieNomMB.nomlenclatureList}" var="nomenclature" itemLabel="#{nomenclature.nomenclature}"/>
+
+                 </h:selectOneMenu-->
+
+                     <h:outputText id="data" value="#{depositaireBean.nomencl}" ajax="false"></h:outputText>
+
+                </div>
+			</div>
+            <hr />  
+            
+            <div class="row">
+					<div class="col-lg-6 ">
+                    	<label for="text1" class="control-label ">Code Type Matériel
+                    	</label>
+					</div>
+                    <div class="col-lg-6">
+
+                        <h:outputText id="codetype" value="#{depositaireBean.typematerielToAdd.codeTypeMate}" ></h:outputText>
+
+                    </div>
+				</div>
+				<hr />
+				
+			<div class="row">
+				<div class="col-lg-6">
+
+	                <label for="text1" class="control-label ">Marque *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+	                    <p:selectOneMenu value="#{depositaireBean.marq}" converter="#{refConverter}"
+	                         effect="fade"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" 
+	                         required="true" requiredMessage="Marque est obligatoire"
+	                         >
+	                        <f:selectItem itemValue="#{null}"  itemLabel="Selectionner" noSelectionOption="true"/> 
+	                 
+	                        <f:selectItems value="#{siseBean.listMarque}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+	                        <!-- <p:column>
+	                            <h:outputText value="#{t.designation}" />
+	                        </p:column> -->
+	                        
+	                        <f:selectItem itemValue="#{siseBean.nouvmark}" itemLabel=" + Ajouter" />
+                			<p:ajax listener="#{siseBean.addNewMarque}" />
+	                        
+	
+	                    </p:selectOneMenu>
+                    </div>
+     		</div>
+     		<hr/>
+     		
+     		<div class="row">
+				<div class="col-lg-6">
+	                <label for="text1" class="control-label ">Caractéristiques
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <!-- p:inputText id="caratceristique" required="true"
+                        value="#{depositaireBean.renseignement}"
+                        requiredMessage=""
+                        placeholder="Caractéristiques" styleClass="form-control top"></p:inputText-->
+					<p:inputTextarea value="#{depositaireBean.renseignement}" rows="5" cols="20" counter="display" maxlength="250" counterTemplate="{0} restants." autoResize="false" />
+    						<h:outputText id="display" />
+                        <hr></hr>
+                </div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="col-lg-6">
+                	<label for="text1" class="control-label ">Autre
+                    </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:inputText
+                    value="#{depositaireBean.autre}"
+                    placeholder="Autre" styleClass="form-control top"></p:inputText>
+
+                </div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="col-lg-6">
+			
+	                <label for="text1" class="control-label ">Etat *
+	                </label>
+
+				</div>
+                <div class="col-lg-6">
+
+
+                    <p:selectOneMenu value="#{depositaireBean.etat}" converter="#{refConverter}" 
+                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+                            <f:selectItems value="#{siseBean.listEtatMateriel}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+
+                </div>
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="col-lg-6">
+                    <label for="text1" class="control-label ">Espèce des unités *
+                    </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:inputText  required="true"
+                    value="#{depositaireBean.especeUnite}"
+                    requiredMessage="Champ Espèce des unités obligatoire"
+                    placeholder="" styleClass="form-control top"></p:inputText>
+
+                </div>               
+            </div>
+			<hr/>
+			<div class="row">
+				<div class="col-lg-6">
+
+	                <label for="text1" class="control-label ">Mode d'acquisition *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                     <p:selectOneMenu value="#{depositaireBean.acquisition}" converter="#{refConverter}" 
+                         effect="fade"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+                            <f:selectItems value="#{siseBean.listModeAcquisition}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+
+                </div>
+           	</div>
+           	<hr/>
+           	<!--  
+           	<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">  
+	                <label for="text1" class="control-label col-lg-4">Fournisseur
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu value="#{depositaireBean.fournisseur}" converter="#{refConverter}" panelStyle="width:180px"  style="width:160px"
+                         effect="fade" var="t" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+                            <f:selectItems value="#{siseBean.listFournisseur}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column>
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            <hr /> -->
+            <div class="row">
+				<div class="col-lg-6">    
+	                <label for="text1" class="control-label ">Origine *
+	                    </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:inputText  required="true"
+                    value="#{depositaireBean.origine}"
+                    requiredMessage="Champ Origine obligatoire"
+                    placeholder="" styleClass="form-control top"></p:inputText>
+                </div>
+            </div>
+			<hr />
+			
+			 <div class="row">
+				<div class="col-lg-6"> 
+	                <label for="text1" class="control-label ">Financement *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+
+                    <p:selectOneMenu value="#{depositaireBean.financement}" converter="#{refConverter}" 
+                         effect="fade"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+                            <f:selectItems value="#{siseBean.listFinancement}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+                    </p:selectOneMenu>
+                </div>
+             </div>
+             <hr />  
+        	
+        	 <div class="row">
+				<div class="col-lg-6"> 
+
+	                <label for="text1" class="control-label ">Prix unitaire *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:inputText   id="Montant" required="true"
+                        value="#{depositaireBean.unitPrice}"
+                        requiredMessage="Champ Prix Unitaire obligatoire"
+                        placeholder="Prix unitaire en Ariary" styleClass="form-control top" resetValues="true"
+                        validatorMessage="Le montant(prix unitaire) doit être une chiffre"
+                        ></p:inputText>
+						(n)
+               
+                </div>
+            </div>
+            <hr/>    
+                
+			 <div class="row">
+				<div class="col-lg-6"> 
+
+	                <label for="text1" class="control-label ">Référence pj *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:inputText   required="true"
+                        value="#{depositaireBean.refFacture}"
+                        requiredMessage="Champ référence pj obligatoire"
+                        placeholder="Référence pj" styleClass="form-control top"></p:inputText>
+
+                </div>
+            </div>
+			<hr/>
+			
+			
+				<!-- LES REFERENTIELS -->
+			
+             
+             <p:panel>
+                           <p:inputText required="true" id="reference"
+                        value="#{depositaireBean.matnouvtoadd.reference}"
+                        requiredMessage="Champ Référence obligatoire"
+                        placeholder="Référence * (obligatoire)" styleClass="form-control top"></p:inputText>
+                        </p:panel>
+                        <p:panel>
+                            <p:inputText  required="true" id="numeroserie"
+                        value="#{depositaireBean.matnouvtoadd.numSerie}"
+                        requiredMessage="Champ Numéro de série obligatoire"
+                        placeholder="Numéro de série * (obligatoire)" styleClass="form-control top"></p:inputText>
+              </p:panel>
+               <hr/>               
+            <!-- /h:form>
+            
+            <h:form-->
+            <div class="row">
+					<div class="col-lg-8 col-lg-offset-3">
+						<p:commandButton value="Ajouter nombre par type" process="@this,reference,numeroserie"
+			                             update="refid" actionListener="#{depositaireBean.addNewMaterielNouv}"
+			                             ajax="true" />
+                     </div>
+             </div>
+             <hr />
+            <p:dataTable id="refid" var="m"
+                             value="#{depositaireBean.materielspardesignation}" editable="true"
+                             editMode="cell" widgetVar="documentTable" rowIndexVar="rowIndex" emptyMessage="Aucun enregistrement">
+                             
+                    
+                    <p:column headerText="N°" style="width:4%; text-align: center; word-wrap: break-word;">
+						#{rowIndex+1}
+					</p:column>
+
+                    <p:column headerText="Référence" style="width:7%; text-align: center; word-wrap: break-word;">
+                        #{m.reference}
+                    </p:column>
+                    <p:column headerText="Numéro Série" style="width:7%; text-align: center; word-wrap: break-word;">
+                        #{m.numSerie}
+                    </p:column>
+                    
+                    <p:column headerText="Supprimer" style="width:4%; text-align: center; word-wrap: break-word;"> 
+                    	<p:commandButton value="X" process="@this"
+                             update="refid" actionListener="#{depositaireBean.deleteMateriel(rowIndex)}"
+                             ajax="true" />
+                    </p:column>
+
+                </p:dataTable>
+                
+                <!-- END REFERENTIEL -->
+            
+
+                <br></br>
+           
+                <div class="col-lg-2">
+                <label for="text1" class="control-label col-lg-4"></label></div>
+
+
+            <div class="form-group">
+                <div class="col-lg-4">
+                    <h:commandLink id="btnSignId" action="#{depositaireBean.addIntoHashMapDesListMateriel}" value=""
+                        class="btn btn-lg btn-primary btn-block" update="@form">
+                       Suivant <i class=" fa fa-arrow-right"></i>
+                    </h:commandLink>
+                </div>
+                <div class="col-lg-4">
+                    <h:commandLink  action="#{depositaireBean.addPriseEnchargeNouveMat}" value=""
+                        class="btn btn-lg btn-primary btn-block">
+                        <i class=" fa fa-save"> </i>  Enregistrer
+                    </h:commandLink>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+        <p:dialog id="addNewMarkDialog" widgetVar="widget_addNewJMarkDialog" header="Ajout de marque" showEffect="explode" hideEffect="explode" width="375" height="125" minWidth="350" minHeight="125">
+        
+    		<hr/>
+        	<div class="row">
+        		<h:form>
+        		<div class="col-lg-8">
+        			<p:inputText value="#{siseBean.nouvmark.designation}" required="true" />
+        		</div>
+        		<div class="col-lg-4">
+        			<p:commandButton value="Ajouter" action="#{siseBean.saveNewMark}" update="@form" icon="ui-icon-circle-plus" />
+        			<p:messages />
+        		</div>
+        		</h:form>
+        	</div>
+   			<hr/>
+
+		</p:dialog>
+
+    </div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+  <strong>( n ) </strong> : Champ à valeur numérique <br></br>
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

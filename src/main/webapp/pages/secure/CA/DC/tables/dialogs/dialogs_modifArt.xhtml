@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+</style>      
+ <p:dialog id="modifArt" widgetVar="modifArt"  closable="false"
+    		  header   = "Modification d'une article Existant" 
+              position = "center,top"
+              modal    = "true"  showEffect="explode" hideEffect="explode" width="750" height="600" minWidth="400" minHeight="250">
+<h:body>
+<p:growl for="editartexerror" redisplay="false" id="messagesgrowlmodify" showDetail="true" autoUpdate="true" />
+     
+<div class="col-md-4"></div>
+<div class="box dark col-md-12">
+
+    <div class="body">
+
+        <h:form id="fileUpoadForm" class="form-horizontal" prependId="false"
+                enctype="multipart/form-data">
+
+            
+            <p:messages id="messages" showDetail="true" autoUpdate="true"/>
+
+            <div class="form-group">
+           		<div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+            			<label for="text1" class="control-label">Id
+                    	</label>
+            			
+            		</div>
+           		 	<div class="col-lg-6">
+                    	<h:outputText value="#{depositaireBean.articleTomodify.idArticle}" />
+                   		 
+                    </div> 
+            	</div>
+            	<hr></hr>           
+                <div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+                 		<label for="text1" class="control-label">Article
+                		 </label>
+					</div>
+                    <div class="col-lg-6">
+						
+						<h:outputText value="#{depositaireBean.articleTomodify.codeArticle.designation}" />
+                    </div>
+                 </div>
+				 <hr></hr>
+				 <div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+				 
+	                    <label for="text1" class="control-label ">Marque *
+	                    </label>
+					</div>
+                    <div class="col-lg-6">
+
+                    <p:selectOneMenu value="#{depositaireBean.articleTomodify.marqueArticle}" converter="#{refConverter}" 
+                         effect="fade"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px;">
+                        <f:selectItem itemValue="#{null}" itemLabel="Sélectionner" /> 
+                            <f:selectItems value="#{siseBean.listMarque}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+
+
+                    </div>
+				</div>
+                 <hr></hr>   
+				 <div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+
+						<label for="text1" class="control-label ">Caractéristiques
+                    	</label>
+					</div>
+                    <div class="col-lg-6">
+						<p:inputTextarea value="#{depositaireBean.articleTomodify.caracteristiqueArticle}" rows="5" cols="38" counter="display" maxlength="250" counterTemplate="{0} restants" autoResize="false" />
+    						<h:outputText id="display" />
+                       
+                    </div>
+				</div>
+				<hr />
+				
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+	                     <label for="text2" class="control-label ">Origine *
+	              		  </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:inputText required="true"
+	                        value="#{depositaireBean.articleTomodify.origine}"
+	                        requiredMessage="Origine obligatoire"
+	                        placeholder="Nombre" styleClass="form-control top"></p:inputText>
+	
+	                </div>
+               </div>
+               <hr></hr>
+               
+               <div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+	                     <label for="text2" class="control-label ">Référence *
+	              		  </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:inputText required="true"
+	                        value="#{depositaireBean.articleTomodify.reference}"
+	                        requiredMessage="Référence obligatoire"
+	                        placeholder="Nombre" styleClass="form-control top"></p:inputText>
+	
+	                </div>
+               </div>
+               <hr></hr>
+               
+               <div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+	                     <label for="text2" class="control-label ">Espèce des unités *
+	              		  </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:inputText required="true"
+	                        value="#{depositaireBean.articleTomodify.especeunit}"
+	                        requiredMessage="Espèce unité obligatoire"
+	                        placeholder="Nombre" styleClass="form-control top"></p:inputText>
+	
+	                </div>
+               </div>
+               <hr></hr>
+				
+			 	<div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+	                     <label for="text2" class="control-label ">Nombre *
+	                	</label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:inputText required="true"
+	                        value="#{depositaireBean.articleTomodify.nombre}"
+	                        requiredMessage="Nombre obligatoire"
+	                        placeholder="Nombre" styleClass="form-control top"></p:inputText>(n)
+	
+	                </div>
+                </div>
+                <hr/>
+                <div class="row">
+            		<div class="col-lg-4 col-lg-offset-1">
+		                <label for="text2" class="control-label ">Montant *
+		                </label>
+					</div>
+	                <div class="col-lg-6">
+	
+	                    <p:inputText required="true"
+	                        value="#{depositaireBean.articleTomodify.prix}"
+	                        requiredMessage="Prix unitaire obligatoire"
+	                        placeholder="Prix Unitaire" styleClass="form-control top">
+	                      <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                     	
+	                        
+	                     </p:inputText>(n)
+	
+	                </div>
+                </div>
+				<hr></hr>
+                    
+				<div class="col-lg-2"></div>
+
+            </div>
+			<div class="form-group">
+                <label for="text1" class="control-label col-lg-0"></label>
+
+                <div class="col-lg-6">
+                	<div class="col-lg-12 col-lg-offset-0">
+	                				 <p:commandButton id="btnSignId" value="Mettre à jour" 						   
+									   styleClass="btn btn-lg btn-primary btn-block"
+									   actionListener="#{depositaireBean.updateArticleEx(depositaireBean.articleTomodify)}"
+					   					oncomplete="if (!args.validationFailed) PF('modifArt').hide();" 
+					   					update="@([id$=fileUpoadForm], [id$=ArtTable])" icon="ui-icon-refresh"/>	
+	                </div>
+                    <!-- h:commandButton id="btnSignId" action="#{depositaireBean.updateArticleEx(depositaireBean.articleTomodify)}" value="Mettre à jour"
+                        class="btn btn-lg btn-primary btn-block"/-->
+                </div>
+                
+
+                <div class="col-lg-6">
+	                <h:commandButton action="#{depositaireBean.exit()}" value="Annuler" 
+	            		class="btn btn-lg btn-primary btn-block">      
+	            	</h:commandButton>
+                </div>
+
+            </div>
+
+            
+
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="col-md-4"></div>
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+  <strong>( n ) </strong> : Champ à valeur numérique<br></br>
+</div>
+</h:body>
+</p:dialog>
+
+
+
+</html>

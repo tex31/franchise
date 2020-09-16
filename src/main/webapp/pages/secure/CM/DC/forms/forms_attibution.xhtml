@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+ <h:head></h:head>
+
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 55px;
+	}
+</style>
+
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+    <div class="body">
+
+        <h:form class="form-horizontal">
+
+            <p:messages id="messages" showDetail="true"/>
+
+            <br></br>
+
+            <div class="form-group">
+
+				<!-- MATERIEL -->
+			 <div class="row">
+				<div class="col-lg-4 col-lg-offset-1"> 
+	                <label for="text1" class="control-label ">N° de série du Matériel *
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu value="#{depositaireBean.materielSeclected}" converter="#{materielConverter}" 
+                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;"
+                       	
+                         >
+                        <f:selectItem itemValue="#{null}" itemLabel=" Selectionner"  noSelectionOption="true"/> 
+                        <f:selectItems value="#{depositaireBean.listAllMaterielValideSansDetenteurByDirection}" var="theme" itemLabel="#{theme.numSerie}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.numSerie}" />
+                        </p:column> -->
+                        
+                        <p:ajax event="change" update="marque ref num carac"/>
+                    </p:selectOneMenu>
+				</div>
+               
+
+            </div>
+            <hr />
+            
+            <div class="row">
+				<div class="col-lg-4 col-lg-offset-1">     
+                
+	                <label for="text1" class="control-label ">Type du Matériel
+									</label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="num" value="#{depositaireBean.materielSeclected.design.typematerieladd.designation}" ></h:outputText>
+
+                </div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">     
+                
+	                <label for="text12" class="control-label ">Caractéristique
+									</label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="carac" value="#{depositaireBean.materielSeclected.design.renseignement}" ></h:outputText>
+
+                </div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1"> 
+	                <label for="text1" class="control-label ">Marque
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <!--h:inputText id="marque" value="#{depositaireBean.marq.designation}" ></h:inputText-->
+                    <h:outputText id="marque" value="#{depositaireBean.materielSeclected.design.marque.designation != null ? depositaireBean.materielSeclected.design.marque.designation : ''}"/>
+
+                </div>
+            </div>                
+            <hr/>
+
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1"> 
+	                <label for="text1" class="control-label ">Référence
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="ref"  value="#{depositaireBean.materielSeclected.reference}" ></h:outputText>
+                </div>
+            </div>
+           	<hr/>
+                <!-- END MATERIEL -->
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1"> 
+
+	               <label for="text1" class="control-label ">Détenteur *
+	               </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu styleClass="form-control top" converter="#{agentConverter}" value="#{depositaireBean.detenteur}"
+                    effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;"
+                    
+                    >
+                            <f:selectItem itemValue="#{null}" itemLabel="Selectionner"  noSelectionOption="true"/> 
+                            <f:selectItems value="#{userMB.userListByDirection}" var="type" itemLabel="#{type.im}" itemValue="#{type}"/>
+                            <!-- <p:column>
+                            	<h:outputText value="#{t.im}" />
+                        	</p:column> -->
+                            
+                        	<p:ajax event="change" update="nom"/>
+                           
+                     </p:selectOneMenu>
+					 
+                </div>
+                
+            </div>
+			<hr/>
+			
+            <div class="row">
+				<div class="col-lg-4 col-lg-offset-1">     
+
+	                <label for="text1" class="control-label ">Nom
+	                </label>
+				</div>
+                <div class="col-lg-6">
+
+                    <h:outputText id="nom" value="#{depositaireBean.detenteur.nomAgent}" 
+                        ></h:outputText>
+
+                </div>
+           </div>
+             <hr/>
+                
+
+
+                <!-- label for="text1" class="control-label col-lg-4">Prénom
+                </label>
+
+                <div class="col-lg-6">
+
+                    <h:outputText id="prenom" value="#{depositaireBean.prenom}"                                                                              
+                        ></h:outputText>
+
+                <hr></hr>
+
+                </div-->
+                
+                
+                
+
+
+           		<div class="col-lg-2"></div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="text1" class="control-label col-lg-4"></label>
+
+                <div class="col-lg-4">
+                    <h:commandLink id="btnSignId" action="#{depositaireBean.addAttribution}" value=""
+                        class="btn btn-lg btn-primary btn-block">
+                        <i class=" fa fa-forward"> </i>  Attribuer
+                    </h:commandLink>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+</div>
+
+
+<div class="col-md-4"></div>
+
+</html>

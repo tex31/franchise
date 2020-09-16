@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+    <p:dataTable   var="d" value="#{suivieditionBean.listOperationSortieByDirection}" 
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px">
+        <p:column>
+            <f:facet name="header">ID</f:facet>
+            #{d.id}
+        </p:column>
+        <p:column styleClass="#{a.state}">
+            <f:facet name="header">Motif de sortie</f:facet>
+            #{d.motifsortie.designation}
+        </p:column>
+         <p:column styleClass="#{a.state}">
+            <f:facet name="header">ID Materiel</f:facet>
+            #{d.mat.idMateriel}
+        </p:column>
+        <p:column styleClass="#{a.state}">
+            <f:facet name="header">N° Série Matériel</f:facet>
+            #{d.mat.numSerie}
+        </p:column>
+         <p:column styleClass="#{a.state}">
+            <f:facet name="header">Code Direction Destination</f:facet>
+            #{d.direc.codeDirection}
+        </p:column>
+        <p:column >
+            <f:facet name="header" >
+                <h:outputText value="Etat" />
+            </f:facet>
+            <h:outputText value="#{dtFilterView.getOperationStateDes(d.state)}" />
+        </p:column>
+        <p:column styleClass="#{a.state}">
+            
+            <f:facet name="header">
+                <h:outputText value="Validation" />
+            </f:facet>
+            <p:commandButton rendered="#{d.state eq 'WAITING' }" action="#{gacBean.setCurentOperation(d)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-circle-check"/>
+            <p:commandButton action="#{gacBean.setCurentOperation(d)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+        </p:column>
+
+    </p:dataTable>
+
+<ui:include src="/pages/secure/CM/GAC/tables/dialogs/dialogs_vdecharge.xhtml"></ui:include>
+
+</div>
+
+</html>

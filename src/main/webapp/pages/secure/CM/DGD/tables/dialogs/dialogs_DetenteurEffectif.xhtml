@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+    <p:dialog id="detail1" widgetVar="detail1">
+
+
+    <div   class="body collapse in table-responsive">
+
+
+        <table class="table responsive-table">
+
+                    
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>ETAT DE DETENTEUR EFFECTIF</strong></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du dépositaire : </strong></td>
+                        <td>#{gacBean.curentOperation.operateur.nomAgent}</td>
+                        <td>#{gacBean.curentOperation.operateur.roleAgent.designation}</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du détenteur effectif :</strong></td>
+                        <td>#{gacBean.curentOperation.detenteur.nomAgent}</td>
+                        <td>#{gacBean.curentOperation.detenteur.roleAgent.designation}</td>
+                    </tr>
+
+                    <tr>
+                        <p:dataTable var="c" value="#{gacBean.listMaterielByDet}" widgetVar="operationsTable"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            paginator="true" rows="10" style="margin-bottom:20px"
+                            emptyMessage="Aucun resultat" filteredValue="#{dtFilterView.filteredOperations}"
+                            >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="DESIGNATION " />
+                                </f:facet>
+                                <h:outputText value="#{c.nomenMat.designation}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ESPECES DES UNITES " />
+                                </f:facet>
+                                <h:outputText value="#{c.nomenMat.nomenclature}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="PRIX UNITAIRE " />
+                                </f:facet>
+                                <h:outputText value="#{c.pu}" >
+                                	<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NOMBRE" />
+                                </f:facet>
+                                <h:outputText value="1" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="VALEUR TOTALE" />
+                                </f:facet>
+                                <h:outputText value="#{c.pu}" >
+                                	<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                            <f:facet name="footer">
+                                Total: #{gacBean.total}
+                            </f:facet>
+
+                        </p:dataTable>
+                    </tr>                    
+                    
+            </table>
+        </div>
+    </p:dialog>
+
+</html>

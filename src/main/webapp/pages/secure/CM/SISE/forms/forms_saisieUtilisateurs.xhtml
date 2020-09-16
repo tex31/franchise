@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+
+ <h:head></h:head>
+ 
+ <style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 110px;
+	}
+</style>
+ 
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+	<div class="body">
+
+		<h:form id="myform">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+			<br></br>
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+					<h:outputLabel for="name"
+						value="Nom et prénom * " />
+				</div>
+				<div class="col-lg-6">
+					<p:inputText id="name"  value="#{userMB.name}"
+						required="true"
+						requiredMessage="Nom et prénom obligatoire"
+						></p:inputText>
+				</div>
+			</div>
+			<hr></hr>
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+						<!-- p:ajax event="blur" update="nameMsg" /-->
+					<h:outputLabel for="im" 
+						value="Immatriculation * " />
+				</div>
+				<div class="col-lg-6">
+					<p:inputText id="im"  value="#{userMB.im}"
+						required="true"
+						requiredMessage="Immatricule obligatoire"
+						validatorMessage="Immatriculation : la longueur minimale requise est 6">
+						<f:validateLength minimum="6" />
+					</p:inputText><br></br>
+					(n)(u)(min6)
+				</div>
+			</div>
+			<hr></hr>
+
+					<!-- User role 
+					<h:outputLabel for="designation" styleClass="col-md-6"
+								   value="Designation  du role : " />
+					<p:inputText id="designation" styleClass="col-md-6" value="#{userMB.designation}"
+								 required="true">
+					</p:inputText>
+					<h:outputLabel for="role" styleClass="col-md-6"
+								   value="Code du role : " />
+					<p:inputText id="role" styleClass="col-md-6" value="#{userMB.role}"
+								 required="true">
+					</p:inputText>
+
+					<hr></hr>-->
+					
+					<!-- User role with liste-->
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+					<h:outputLabel  
+						value="Fonction *" />
+				</div>
+				<div class="col-lg-6 ">
+					<p:selectOneMenu value="#{userMB.roleuser}" converter="#{useriConverter}" 
+                         effect="fade"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Sélectionner" /> 
+                        <f:selectItems value="#{siseBean.listUseri}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+                 </div>
+			</div>
+            <hr></hr>
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+					<h:outputLabel for="password1" 
+						value="Mot de passe * " />
+				</div>
+				<div class="col-lg-6 ">
+					<p:password id="password1"  match="password2"	
+						value="#{userMB.password}" required="true" 
+						requiredMessage="Mot de passe obligatoire" 
+						validatorMessage=" Erreur de longueur de Mot de passe (longueur minimale requise : 8) ou Erreur de confirmation de mot de passe"
+						>
+							<f:validateLength minimum="8" />
+					</p:password><br></br>
+					  (min8)
+				</div>
+			</div>
+			<hr></hr>
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+
+					<h:outputLabel for="password2"
+						value="Retaper mot de passe * " />
+				</div>
+				<div class="col-lg-6">
+					<p:password id="password2" 
+						value="#{userMB.password}"  required="true"
+						requiredMessage="Confirmation Mot de passe obligatoire" 
+						validatorMessage="Erreur de confirmation de mot de passe" 				
+						>
+					</p:password><br></br>
+					(min8)
+				</div>
+			</div>
+			<hr></hr>
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-1">
+					<!-- DIRECTION -->
+					<h:outputLabel  
+						value="Direction *" />
+				</div>
+				<div class="col-lg-6">
+					<p:selectOneMenu value="#{userMB.direction}" converter="#{refConverter}"
+                         effect="fade" filter="true" filterMatchMode="startsWith" required="true" requiredMessage="Direction obligatoire " panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Sélectionner" /> 
+                            <f:selectItems value="#{siseBean.listDirection}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}"/>
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+				</div>
+			</div>
+            <hr></hr>
+                    
+                    <!-- POSTE -->
+            <div class="row">
+				<div class="col-lg-4 col-lg-offset-1"> 
+					<h:outputLabel 
+						value="Poste *" />
+				</div>
+				<div class="col-lg-6">
+					<p:selectOneMenu value="#{userMB.poste}" converter="#{refConverter}"
+                         effect="fade" filter="true" filterMatchMode="startsWith" required="true" requiredMessage="Poste obligatoire" panelStyle="width:250px;" >
+                        <f:selectItem itemValue="#{null}" itemLabel="Sélectionner" /> 
+                            <f:selectItems value="#{siseBean.listPoste}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <!-- <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column> -->
+                        
+
+                    </p:selectOneMenu>
+				</div>
+			</div>
+            <hr></hr>
+            <div class="row">
+				<div class="col-lg-6 col-lg-offset-3"> 
+					<h:commandLink id="addUser" action="#{userMB.addAgent}"
+						value="" ajax="false" class="btn btn-lg btn-primary btn-block" >
+						<i class="fa fa-sign-in"> </i>  S'enregistrer
+					</h:commandLink>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3"> 
+					<h:commandLink id="reset" action="#{userMB.reset}"
+						value="" ajax="false" class="btn btn-lg btn-primary btn-block" >
+						<i class=" fa fa-refresh"> </i>  Réinitialiser
+					</h:commandLink>
+				</div>
+			</div>
+			</h:form>
+	</div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+  <strong>( u ) </strong> : Champ à valeur unique<br></br>
+  <strong>( n ) </strong> : Champ à valeur numérique<br></br>
+  <strong>( minX ) </strong> : Champ à remplir avec au moins X caractères<br></br>
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

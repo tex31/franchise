@@ -1,0 +1,344 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+<head><title>Inventaire</title></head>
+<h:head></h:head>
+<style>
+	div.devise{
+		padding-right : 10% !important;
+	}
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+<ui:include src="/pages/unsecure/components/header.xhtml">
+	<ui:param name="title" value="Formulaire Inventaire" />
+</ui:include>
+
+	
+	
+ 	<div class="col-md-1"></div>
+
+
+
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+	<h:form>
+ 		<br></br><br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				<br></br><br></br>
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/left.png" />
+
+ 			</div>
+
+ 			<div class="col-md-6">
+				
+				<div class="row">
+                	<div class="col-lg-10 col-lg-offset-1 " style="padding-left:5%;"><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu value="#{JasperTableExampleBean.pdfForm.filamatra}">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                    </p:selectOneMenu>	                 
+                </f:view></div>
+ 				<br/>
+				
+                <br></br><br></br>
+            
+                
+                <div style="text-align: center;">BUDGET GENERAL <br/><br/></div>
+                SECTION <p:inputText value="#{InventaireBean.section}" style="text-align: center;width:70%"/>
+ 				
+            
+
+
+            <br></br><br></br>
+
+
+                EXERCICE <p:inputText value="#{JasperTableExampleBean.pdfForm.num9}" style="text-align: center;width:70%"/>
+            
+
+            <br></br><br></br>
+
+
+        </div>
+
+            
+
+
+
+ 			<div class="col-md-3">
+ 				<br></br><br></br>
+ 				Modèle n°2
+
+                
+
+ 			</div>
+ 		</div>
+
+
+        <div class="col-md-12" style="text-align: center;">
+            CHAPITRE(2) <p:inputText value="#{JasperTableExampleBean.pdfForm.chapitre}" style="text-align: center;width:20%"/> 
+            ARTICLE <p:inputText value="#{JasperTableExampleBean.pdfForm.article}" style="text-align: center;width:20%"/>
+            PARAGRAPHE <p:inputText value="#{JasperTableExampleBean.pdfForm.paragraphe}" style="text-align: center;width:20%"/>
+            <br></br><br></br>
+        </div>
+
+        <br></br><br></br>
+        <div class="col-md-12">
+
+            (1) <p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.pdfForm.num1}" style="font-size: 15px;width: 25% !important">
+                        <f:selectItems value="#{siseBean.mapDirection(InventaireBean.dir,InventaireBean.datF)}" />
+                    </p:selectOneMenu>
+            <!-- #{InventaireBean.dir.designation}--> <br></br>
+            <br></br><br></br>
+        </div>
+        <br></br><br></br>
+        <div class="col-md-12">
+
+            Hôtel du (2) <p:inputText value="#{JasperTableExampleBean.pdfForm.num2}" style="text-align: center;width:80%"/>
+			<br></br><br></br>
+            <br></br><br></br>
+
+        </div>
+        <br></br><br></br>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-1">
+
+ 			</div>
+
+ 			<div class="col-md-10" style="text-align: center;font-size: 25px; color: #444">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/inv.png" /><br></br>
+                    du mobilier et des objets d'ameublement existant au #{InventaireBean.dateF}
+                    <br></br><br></br><br></br>
+ 			</div>
+
+ 			<div class="col-md-1" style="font-size: 14px!important;">
+ 				
+ 			</div>
+ 		</div>
+
+	<p:dataTable var="m" value="#{InventaireBean.li}"
+    		currentPageReportTemplate="({currentPage} sur {totalPages})"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			paginator="false" emptyMessage="Aucun résultat"
+			widgetVar="InventaireTable11"
+			id="inventaireTable11"
+			sortBy="#{m[0]}"
+			style="font-size:10px"
+			>
+			
+			<f:facet name="header">
+       			 INVENTAIRE du mobilier et des objets d’ameublement existant<br/>
+    		</f:facet>
+			<p:columnGroup type="header">
+			<p:row>
+				<p:column rowspan="2" headerText="Nomenclature" sortBy="#{m[1].design.nomenMat.nomenclature}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column rowspan="2" headerText="Numéros du folio du  grand  livre"  style=" text-align: center; word-wrap: break-word;"/>
+                <p:column rowspan="2" headerText="Désignation du matériel" sortBy="#{m[10]}" style=" text-align: center; word-wrap: break-word;"/>
+                <p:column rowspan="2" headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;"></p:column>
+                <p:column rowspan="2" headerText="Prix de l’unité" style=" text-align: center; word-wrap: break-word;"></p:column>
+                <p:column colspan="4" headerText="Quantités" style=" text-align: center; word-wrap: break-word;"></p:column>	
+			</p:row>
+			<p:row>
+				<p:column headerText="Existantes au #{InventaireBean.dateD}" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Entrées" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Sortie" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Reste au #{InventaireBean.dateF} " style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Décompte" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column headerText="Observation" style=" text-align: center; word-wrap: break-word;"/>
+			</p:row>
+				
+			</p:columnGroup>
+			<p:column headerText="Nomenclature" sortBy="#{m[0]}" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[0]}" />
+			</p:column>
+			<p:column headerText="Numéros du folio du  grand  livre" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[1]}" />
+			</p:column>
+			<p:column headerText="Désignation du matériel" sortBy="#{m[10]}" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[2]}"  />
+			</p:column>
+			<p:column headerText="Espèce des unités" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[3]}" />
+			</p:column>
+			<p:column headerText="Prix de l’unité" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[4]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Existantes au 1er Janvier X" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[5]}" />
+			</p:column>
+			<p:column headerText="Entrées pendant l’année X " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[6]}" />
+			</p:column>
+			<p:column headerText="Sortie pendant l’année X " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[7]}" />
+			</p:column>
+			<p:column headerText="Reste au 31 déc. X " style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[8]}" />
+				<f:facet name="footer">
+				<h:outputText value="#{'Total'}"></h:outputText>
+				</f:facet>
+			</p:column>
+			<p:column headerText="Décompte" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="#{m[9]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+				<f:facet name="footer">
+			<c:set var="somme" value="${suivieditionBean.getTotalInventaire(InventaireBean.li)}" />
+				<h:outputText value="${somme}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>
+				</f:facet>
+			</p:column>
+			<p:column headerText="Observation" style=" text-align: center; word-wrap: break-word;">
+				<h:outputText value="" />
+			</p:column>
+			
+			
+			
+			
+
+		</p:dataTable>
+
+ 		
+    <div class="col-md-12">
+        Arrêté le présent inventaire <p:inputText value="#{JasperTableExampleBean.pdfForm.somme}"  style="text-align: center;width:60%"/> articles<br/>
+        Et à la somme de <p:inputText value="#{JasperTableExampleBean.pdfForm.somme1}" style="text-align: center;width:70%"/> <br></br><br></br><br></br>
+        Fait en double à <p:inputText value="#{JasperTableExampleBean.pdfForm.somme2}" style="text-align: center;width:30%"/> le <p:inputText value="#{InventaireBean.dateF}" style="text-align: center;width:30%"/><br></br>
+    </div>
+	<br></br><br></br>
+    <div class="col-md-12" style="text-align: center;">
+        <br></br>
+        Le dépositaire comptable  <br></br>
+        
+    </div>
+    <div class="col-md-12">
+        
+        Vu et reconnu exact : <br></br>
+
+        A #{InventaireBean.trois} le <p:inputText  style="text-align: center;width:10%"/> <br></br>
+        Le (1) #{InventaireBean.dir.designation} <br/>
+        <p:inputText value="#{JasperTableExampleBean.pdfForm.num3}" style="text-align: center;width:20%"/> détenteur effectif,
+        
+    </div>
+
+    <div class="col-md-12">
+        
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            Vu le (2)<p:inputText value="#{JasperTableExampleBean.pdfForm.num4}" style="text-align: center;width:50%"/>    <br></br><br></br><br></br>
+        </div>
+    </div>
+	<p:commandButton  styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px;" action="#{JasperTableExampleBean.inventaireReport(InventaireBean.li, InventaireBean.dateD, InventaireBean.dateF)}" type="submit" value="Exporter en PDF" ajax="false" >
+		
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.lieu}" value="#{InventaireBean.trois}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{InventaireBean.section}" />
+ 		
+	</p:commandButton>
+    <br/>
+    
+    <p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px;" action="#{JasperTableExampleBean.inventaireDoc(InventaireBean.li,InventaireBean.dateD,InventaireBean.dateF)}" type="submit" value="Exporter en Word" ajax="false" >
+    	
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.lieu}" value="#{InventaireBean.trois}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{InventaireBean.section}" />
+ 		
+    </p:commandButton>
+    </h:form>
+    #{depositaireBean.exity()}
+
+ 	</div>
+
+
+ 	<div class="col-md-1"></div>
+
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

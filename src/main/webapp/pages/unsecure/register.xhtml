@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:include src="components/header.xhtml"></ui:include>
+
+<h:body styleClass="login">
+
+	<div class="form-signin row">
+		<div class="text-center">
+			<h:graphicImage value="/pages/unsecure/assets/images/logo.jpeg" />
+		</div>
+		<div class="tab-content row">
+			<div id="login" class="tab-pane active row">
+
+				<h:form id="myform">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					<hr/>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+						<h:outputLabel for="name" value="Nom et prénom: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText id="name"  value="#{userMB.name}" required="true">
+								<p:ajax event="blur" update="nameMsg" />
+							</p:inputText>
+							<p:message id="nameMsg" for="name" display="icon" />
+						</div>
+						
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="im" value="Immatriculation: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText id="im" value="#{userMB.im}"
+								required="true">
+								<f:validateLength minimum="6" />
+							</p:inputText>
+						</div>
+					</div>
+					<hr></hr>
+					<!-- User role -->
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="role" value="Code fonction: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText id="role" value="#{userMB.role}"
+								 required="true">
+							</p:inputText>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="designation" 
+								   value="Désignation fonction: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText id="designation" value="#{userMB.designation}"
+								 required="true">
+							</p:inputText>
+						</div>
+					</div>					
+					<hr></hr>
+					<!-- DIRECTION -->
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel value="Désignation direction: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText value="#{userMB.codeDir}"
+								 required="true">
+							</p:inputText>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel  value="Code direction: " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText value="#{userMB.designationDir}"
+								 required="true">
+							</p:inputText>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="username"
+						value="Login : " />
+						</div>
+						<div class="col-lg-6">
+							<p:inputText id="username" value="#{userMB.username}" required="true">
+								<p:ajax event="blur" update="usernameMsg" />
+							</p:inputText>
+							<p:message id="usernameMsg" for="username" display="icon" />
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="password1" value="Mot de passe: " />
+						</div>
+						<div class="col-lg-6">
+							<p:password id="password1" value="#{userMB.password}" match="password2" required="true">
+								<f:validateLength minimum="8" />
+							</p:password>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-lg-4 col-lg-offset-1">
+							<h:outputLabel for="password2" value="Retaper mot de passe: " />
+						</div>
+						<div class="col-lg-6">
+							<p:password id="password2" value="#{userMB.password}" required="true">
+								<f:validateLength minimum="8" />
+							</p:password>
+						</div>
+					</div>
+					<hr></hr>
+
+					<h:commandButton id="addUser" action="#{userMB.addUser}"
+						value="S'enregistrer" ajax="false" class="btn btn-lg btn-primary btn-block" />
+
+					
+
+					<h:commandButton id="reset" action="#{userMB.reset}"
+						value="Réinitialiser" ajax="false" class="btn btn-lg btn-primary btn-block" />
+
+
+				</h:form>
+
+			</div>
+		</div>
+
+		<hr></hr>
+	</div>
+
+	<ui:include src="components/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

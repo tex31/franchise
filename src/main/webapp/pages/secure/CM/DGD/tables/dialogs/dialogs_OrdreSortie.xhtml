@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+<style>
+	div.devise{
+		padding-right : 10% !important;
+	}
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+<h:head></h:head>
+<ui:include src="/pages/unsecure/components/header.xhtml">
+	<ui:param name="title" value="Formulaire Ordre Sortie" />
+</ui:include>
+
+
+ 	<div class="col-md-1"></div>
+
+
+	<h:form>
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;padding-bottom: 50px;">
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+ 			
+ 			<div class="col-md-3">
+ 				<br/>
+ 				(3) ..................<br/>
+ 				(4) ..................<br/>
+ 				
+ 				<!-- <p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.ordreS.dirc}" style="font-size: 15px;">
+                        <f:selectItems value="#{siseBean.mapDirection(docbean.curentOpeationSortieToPdf.direction, docbean.curentOpeationSortieToPdf.date)}" />
+                 </p:selectOneMenu>
+ 				<h:outputText value="#{docbean.curentOpeationSortieToPdf.direction.quatre}" /> --><!--p:inputText value="#{JasperTableExampleBean.ordreS.num6}" style="text-align: center;width: 80%"></p:inputText --><br></br>
+ 			</div>
+ 			<div class="col-md-6">
+ 				
+ 				<!--  h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/mada.png" /-->
+                    
+                <div class="row">
+                	<div class="col-lg-10 col-lg-offset-1 " style="padding-left:5%;"><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu id="devise" value="#{JasperTableExampleBean.ordreS.filamatra}">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                    </p:selectOneMenu>	                 
+                </f:view></div>
+ 				<br/>
+ 			</div>
+
+ 			<div class="col-md-3">
+ 				<br/>
+ 				Modèle n°7
+ 			</div>
+ 		<div class="col-md-12">
+ 			<div class="col-md-3" style="font-size: 11px!important;">
+ 				 (1) Numéro de chapitre<br></br>
+ 				 (2) Libelé de chapitre<br></br>
+
+ 			</div>
+
+ 			<div class="col-md-6" style="text-align: center;">
+ 				BUDGET GENERAL<br/>
+ 				SECTION : <p:inputText value="#{docbean.curentOpeationSortieToPdf.direction.budget}" style="text-align: center;width: 80%"></p:inputText>
+ 				
+ 			</div>
+
+			<div class="col-md-3">
+ 				
+ 			</div> 	
+
+ 		</div>	
+
+ 		<div class="col-md-12">	
+
+ 			<div class="col-md-1"></div>
+
+ 			<div class="col-md-10" style="text-align: center;">
+ 				
+ 				CHAPITRE (1) <p:inputText value="#{JasperTableExampleBean.ordreS.chapitre}" style="text-align: center;width: 30%"></p:inputText> ARTICLE <p:inputText value="#{JasperTableExampleBean.ordreS.article}" style="text-align: center;width: 30%"></p:inputText> <br></br>
+ 				PARAGRAPHE <p:inputText value="#{JasperTableExampleBean.ordreS.paragraphe}" style="text-align: center;width: 30%"></p:inputText><br></br>
+				(2) : <p:inputText value="#{JasperTableExampleBean.ordreS.num2}" style="text-align: center;width:30%;"></p:inputText>
+ 			</div>
+
+
+
+
+ 			<div class="col-md-1"></div>
+
+ 		</div>
+
+
+ 			<div class="col-md-12">
+ 				<div class="col-md-3">
+ 				Numéro d'ordre du journal(2) :<br/>
+ 				 #{docbean.curentOpeationSortieToPdf.numSortie}
+ 				 </div>
+
+ 			</div>
+
+
+ 			<div class="col-md-12">
+ 				
+ 				<div class="col-md-3"></div>
+
+                <div class="col-md-6" style="text-align: center;">
+                    
+                    <h:selectOneMenu value="#{JasperTableExampleBean.ordreS.approOuService}" style="text-align: center;">
+			          <f:selectItem itemLabel="MATERIEL EN APPROVISIONNEMENT" itemValue="MATERIEL EN APPROVISIONNEMENT" />
+			          <f:selectItem itemLabel="MATERIEL EN SERVICE" itemValue="MATERIEL EN SERVICE" />
+			      </h:selectOneMenu> 
+                </div>
+
+                <div class="col-md-3"></div>
+ 			</div>
+			
+
+ 			<div class="col-md-12" style="text-align: center; margin-top:2em;margin-bottom:2em">
+ 				
+ 				<h:graphicImage width="30%"
+                    value="/pages/unsecure/assets/images/sortie.png" /><br></br>
+
+ 			
+ 			</div>
+
+ 			<div class="col-md-12">
+			<p>
+ 			Seront portés en sortie dans les écritures du comptable ..Dépositaire.. les matières et objets ci-après.<br></br> 
+ 			Désignés provenant de(**)  #{docbean.curentOpeationSortieToPdf.direction.designation} <br/>
+ 			Distribués à (*)  #{docbean.curentOpeationSortieToPdf.mat.design.origine}
+			</p>
+ 		</div>
+
+<table style="text-align: center">
+                <tr class="entreeo" style="text-align: center">
+                    <th colspan="2"  style="border-bottom: none;text-align: center">Numéro</th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th colspan="3" style="text-align: center">Décompte</th>
+                    <th style="border-bottom: none;"></th>
+
+                </tr>
+                <tr class="entreeo">
+                    <th colspan="2" style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                    <th style="border-bottom: none;"></th>
+                    <th colspan="2" style="text-align: center">Valeurs</th>
+                    <th style="border-bottom: none;border-top: none"></th>
+                </tr>
+                <tr class="entreeo" >
+                    <th style="text-align: center">Du folio du grand livre </th>
+                    <th style="text-align: center"> de nomenclature somaire</th>
+                    <th style="border-top: none;text-align: center">Désignation des matériels et objets</th>
+
+                    <th style="border-top: none;text-align: center">Espèce des unités</th>
+                    <th style="border-top: none;text-align: center">Quantité</th>
+                    <th style="border-top: none;text-align: center">Prix unitaire</th>
+                    <th>Partielle</th>
+                    <th style="text-align: center">Par numéro de nomenclature somaire</th>
+                    <th style="border-top: none;text-align: center">Numéro de la pièce justificative de sortie ou indication de référence</th>
+                </tr>
+
+        
+
+                <tr class="entreeo">    
+                    <td><p:inputText value="#{JasperTableExampleBean.ordreS.numFolio}" style="text-align: center;"></p:inputText>  </td>
+                    <td> #{docbean.curentOpeationSortieToPdf.mat.design.nomenMat.nomenclature}</td>
+                    <td>#{docbean.curentOpeationSortieToPdf.mat.design.nomenMat.designation}, #{docbean.curentOpeationSortieToPdf.mat.design.typematerieladd.designation} , #{docbean.curentOpeationSortieToPdf.mat.design.renseignement}</td>
+                    <td>#{docbean.curentOpeationSortieToPdf.mat.design.especeUnite}</td>
+                    <td>1</td>
+                    <c:if test="#{docbean.curentOpeationSortieToPdf.mat['class'].simpleName eq 'MaterielEx'}">
+                    <td>
+                    	<h:outputText value="#{docbean.curentOpeationSortieToPdf.mat.design.pu}" >
+ 							 <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber> 
+ 						</h:outputText>
+                    </td>
+                    </c:if>
+
+                    <c:if test="#{docbean.curentOpeationSortieToPdf.mat['class'].simpleName eq 'MaterielNouv'}">
+                    <td>
+                    	<h:outputText value="#{docbean.curentOpeationSortieToPdf.mat.design.pu}" >
+ 							 <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber> 
+ 						</h:outputText>
+                    </td>
+                    </c:if>
+
+                    <c:if test="#{docbean.curentOpeationSortieToPdf.mat['class'].simpleName eq 'MaterielEx'}">
+                    <td>
+                    	<h:outputText value="#{1*docbean.curentOpeationSortieToPdf.mat.design.pu}" >
+ 							 <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber> 
+ 						</h:outputText>
+                    </td>
+                    </c:if>
+
+                    <c:if test="#{docbean.curentOpeationSortieToPdf.mat['class'].simpleName eq 'MaterielNouv'}">
+                    <td>
+                    	<h:outputText value="#{1*docbean.curentOpeationSortieToPdf.mat.design.pu}" >
+ 							 <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber> 
+ 						</h:outputText>
+                    </td>
+                    </c:if>
+
+                    <td>
+                    	<h:outputText value="#{1*docbean.curentOpeationSortieToPdf.mat.design.pu}" >
+ 							 <f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber> 
+ 						</h:outputText>
+                    </td>
+                    <td>#{docbean.curentOpeationSortieToPdf.mat.reference} - #{docbean.curentOpeationSortieToPdf.mat.design.refFacture}</td>
+                </tr>
+
+        
+
+            </table>
+
+ 			<br></br><br></br><br></br><br></br>
+
+ 			Arrêté le présent ordre de sortie à  <p:inputText value="#{JasperTableExampleBean.ordreS.ordre}" style="text-align: center;" size="16"></p:inputText> article(s) évalué à la somme de <p:inputText value="#{JasperTableExampleBean.ordreS.somme}" style="text-align: center;"></p:inputText>  <br></br><br></br><br></br>
+
+ 			<div class="col-md-6">
+
+            A <h:outputText value="#{docbean.curentOpeationSortieToPdf.direction.trois}" />
+            , le  
+            <h:outputText value="#{docbean.curentOpeationSortieToPdf.date}">
+            	<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+            </h:outputText>
+             <br></br>
+			<p style="margin:2em;">
+				Le Comptable (2) <p:inputText value="#{JasperTableExampleBean.ordreS.comptable}" style="text-align: center; " size="20"></p:inputText>
+			</p>
+			<p>
+				(3)Le comptable ..Dépositaire.. délivrera et portera en sortie dans ses écritures les matières désignées et objets désignés ci-dessus.<br></br>
+			</p>	
+            <p>
+            	(3)Le comptable ..Dépositaire..  portera en sortie dans ses écritures les matières désignées  et objets désignés ci-dessus dont je certifie la conformité avec. <br></br>
+             A <h:outputText value="#{docbean.curentOpeationSortieToPdf.direction.trois}" /> , le 
+             <h:outputText value="#{docbean.curentOpeationSortieToPdf.date}">
+            	<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+            </h:outputText>
+             <br></br><br></br>
+			</p>
+ 			Le (4) <p:inputText value="#{JasperTableExampleBean.ordreS.num4}" style="text-align: center;"></p:inputText> 
+ 			<br/><br/><br/>
+ 			<p style="background-color:#F2F2F2;font-size: 11px!important;">
+				((1) En toute lettre<br/>
+				(2) Gestionnaire ou dépositaire<br/>
+				(3) Rayer, selon le cas la première et seconde formule. La seconde est maintenue <br/>dans le cas où la sortie est déja  effecutée et ou l'ordre de sortie constitue un certificat administratif<br/>
+				(4) Chef de service ou son délégué<br/>
+				(5) N'est pas utilisé s'il s'agit de certificat administratif<br/>
+				(6) Nom et qualité<br/>
+				(7) Caisse ou colis ou matières et objets<br/>
+				(8) La date de recepissé est celle qui doit figurer dans les écritures<br/>
+				</p> 
+
+ 			</div>
+
+ 			<div class="col-md-6">
+                (3) Les matières et objets désignés ci-dessus ont été délivrés et portés en sortie.<br></br>
+                (3) Les matières et objets désignés ci-dessus ont été  portés en sortie dans les écriture.<br></br>
+ 				A ................................
+ 				, le ...................................<br />
+ 				Le comptable (2) ................................... <br></br>
+ 				<br/><br/>
+ 				<p align="center">Déclaration de prise en charge</p>
+ 				<p>Le comptable déclare avoir reçu et pris en charge les matières et objets mentionnés dans le tableau ci-dessus</p>
+				<p>
+ 				A ..................................., le ...................................
+ 				 <br></br>
+				</p>
+				<p>
+ 				Le comptable <!-- strong>#{docbean.curentOpeationSortieToPdf.operateur.nomAgent}</strong -->  <br></br><br></br><br></br><br></br><br></br>
+				</p>
+ 			</div>
+				
+ 	</div>
+ 	<p:commandButton styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " type="submit" value="Exporter en PDF" ajax="false" action="#{JasperTableExampleBean.ordreSortieReport(docbean.curentOpeationSortieToPdf)}">
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.ordreS.budget}" value="#{docbean.curentOpeationSortieToPdf.direction.budget}" />
+ 	</p:commandButton><br/>
+	<p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px; " type="submit" value="Exporter en Word" ajax="false" action="#{JasperTableExampleBean.ordreSortieDoc(docbean.curentOpeationSortieToPdf)}">
+		<f:setPropertyActionListener target="#{JasperTableExampleBean.ordreS.budget}" value="#{docbean.curentOpeationSortieToPdf.direction.budget}" />
+	</p:commandButton>
+</h:form>
+#{gacBean.exity()}
+
+ 	<div class="col-md-1"></div>
+    
+
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

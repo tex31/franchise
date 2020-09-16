@@ -1,0 +1,440 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+</ui:include>
+
+	
+	
+ 	<div class="col-md-1"></div>
+
+
+
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				(3)...........<br></br>
+ 				(4)...........<br></br>
+
+ 			</div>
+
+ 			<div class="col-md-6">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/mada.png" />
+ 			</div>
+
+ 			<div class="col-md-3">
+ 				Modèle n°2
+ 			</div>
+ 		</div>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+
+ 			</div>
+
+ 			<div class="col-md-6" style="text-align: center;">
+ 				
+ 				BUDGET ............................................................
+ 			</div>
+
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+ 				
+ 				Article 33 de l'instruction Générale du 22 Juillet 1955<br></br><br></br>
+
+ 			</div>
+ 		</div>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+
+ 			</div>
+
+ 			<div class="col-md-6" style="text-align: center;">
+ 				
+ 				CHAPITRE ................................ ARTICLE..................................
+ 			</div>
+
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+ 				
+ 				(1)Numéro de chapitre<br></br>
+ 				 (2)Libelé de chapitre<br></br>
+
+
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-9">
+ 			(2).........................................................................................................
+ 		</div>
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+
+ 				 (3)Subdivision de chapitre<br></br>
+ 				 (4)Magasin ou matériel en service selon qu'il s'agit d'un matériel en approvisionnement ou en service<br></br>
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+
+ 			</div>
+
+ 			<div class="col-md-6">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/mate.png" />
+ 			</div>
+
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+ 				(5)Indication du magasin ou de la cathégorie du matériel en service auquel se rapporte le journal
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-9">
+ 			(3).........................................................................................................
+ 		</div>
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+ 				(6) Signature du chef de service ou de son délégué
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-9">
+ 			(4).........................................................................................................
+ 		</div>
+ 			<div class="col-md-3">
+ 				
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-9">
+ 			(5).........................................................................................................
+ 		</div>
+ 			<div class="col-md-3">
+ 				
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-1">
+
+ 			</div>
+
+ 			<div class="col-md-10">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/livre.png" />
+ 			</div>
+
+ 			<div class="col-md-1">
+ 				
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+ 			Nombre de feuilles : ......................................................A.....................................le....................
+ 		</div>
+
+
+ 		<br></br><br></br><br></br>
+
+ 		<table>
+ 				<tr class="entreeo">
+ 					<th>
+ 						Date de recensemnt
+ 					</th>
+ 					<th>
+ 						Numeros recensés
+ 					</th>
+ 					<th>
+ 						Signature du fonctionnaire recenseur
+ 					</th>
+ 				</tr>
+ 				<tr class="entreeo">
+ 					<td style="height: 300px">
+ 						
+ 					</td>
+ 					<td>
+ 						
+ 					</td>
+ 					<td>
+ 						
+ 					</td>
+ 				</tr>
+
+ 		</table>
+
+
+ 		<br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-9">
+ 				
+ 			</div>
+ 			<div class="col-md-3">
+ 				ANNEE ..#{gacBean.annee}........
+ 			</div>
+ 		</div>
+
+
+        <table>
+                <tr class="entreeo">
+                    <th style="border-bottom: none;">Numero d'ordre de la nomenclature</th>
+                    <th style="border-bottom: none;">Espèce des unités  </th>
+                    <th style="border-bottom: none;">Désignation des objets</th>
+                    <th style="border-bottom: none;"> Prix de l'unité</th>
+                    <th colspan="2">Existant au 1er Janvier 2017</th>
+                    <th style="border-bottom: none;">Mouvements effectués</th>
+
+                </tr>
+                <tr class="entreeo">
+                    <th style="border-top: none"></th>
+                    <th style="border-top: none"></th>
+                    <th style="border-top: none"></th>
+                    <th style="border-top: none"></th>
+                    <th >Quantité</th>
+                    <th >Valeurs</th>
+                    <th style="border-top: none"></th>
+                </tr>
+
+                
+        <!--c:forEach var="o" items="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"-->
+        <c:forEach var="o" items="#{suivieditionBean.listOperationEntree}">
+        <c:forEach var="materiel" items="#{o.listMat}">
+
+                <tr class="entreeo">    
+                    <td><h:outputText value="#{materiel.nomenMat.nomenclature}" /> </td>
+                    <td> <h:outputText value="#{materiel.especeUnite}" /></td>
+                    <td><h:outputText value="#{materiel.nomenMat.designation}, #{materiel.typematerieladd.designation} , #{materiel.renseignement}" /></td>
+                    <td><c:if test="#{materiel['class'].simpleName eq 'MaterielEx'}">
+                    <h:outputText value="#{materiel.pu}" />
+                    </c:if>
+
+                    <c:if test="#{materiel['class'].simpleName eq 'MaterielNouv'}">
+                    <h:outputText value="#{materiel.montant_facture}" />                    
+                </c:if>
+            </td>
+                    <td><h:outputText value="" />1</td>
+                    <td><h:outputText value="" /><c:if test="#{materiel['class'].simpleName eq 'MaterielEx'}">
+                    <h:outputText value="#{1*materiel.pu}" />
+                    </c:if>
+
+                    <c:if test="#{materiel['class'].simpleName eq 'MaterielNouv'}">
+                    <h:outputText value="#{1*materiel.montant_facture}" />                    
+                </c:if></td>
+                    <td>
+                        <c:set target="#{suivieditionBean}" property="materiel" value="#{materiel}" />
+
+                        <c:forEach var="op" items="#{suivieditionBean.listOperationAttributionByMateriel}">
+                            => #{op.detenteur.im}
+                        </c:forEach>
+                    </td>
+                </tr>
+
+        </c:forEach>
+
+    </c:forEach>
+
+            </table>
+
+
+
+
+
+    <br></br><br></br><br></br>
+
+
+            <table>
+                <tr class="entreeo">
+                    <th style="border-bottom: none;">Numero de pièce justificative</th>
+                    <th style="border-bottom: none;">Date des entrée et des sorties</th>
+                    <th style="border-bottom: none;">Origine des entrées et désignation des sotries</th>
+                    <th colspan="2">Entrées</th>
+                    <th colspan="2">Sortie</th>
+                    <th colspan="2">Reste au 31 Décembre 2017</th>
+
+                </tr>
+                <tr class="entreeo">
+                    <th style="border-top: none"></th>
+                    <th style="border-top: none"></th>
+                    <th style="border-top: none"></th>
+                    <th >Quantité</th>
+                    <th >Valeurs</th>
+                    <th >Quantité</th>
+                    <th >Valeurs</th>
+                    <th >Quantité</th>
+                    <th >Valeurs</th>
+                </tr>
+
+                
+        <!--c:forEach var="o" items="#{suivieditionBean.listOperationByDirectionByYearByDateAsc}"-->
+        <c:forEach var="o" items="#{suivieditionBean.listOperationEntree}">
+        <c:forEach var="materiel" items="#{o.listMat}">
+
+                <tr class="entreeo">    
+                    <td>
+                        <p:panel rendered="#{o['class'].simpleName eq 'OpEntree' }" >
+            
+                            #{o.numentree}
+                        </p:panel>
+                        <p:panel rendered="#{o['class'].simpleName eq 'OpSortie' }" >
+                            #{o.numSortie}
+                        </p:panel>
+
+
+                    </td>
+                    <td> <h:outputText value="#{o.date}" /></td>
+                    <td> 
+
+
+            <p:panel rendered="#{o['class'].simpleName eq 'OpEntree'}">
+
+                
+
+                    
+                    <p:panel rendered="#{materiel['class'].simpleName eq 'MaterielEx'}">
+                    
+                    #{materiel.direc.designation}
+                    </p:panel>
+
+                    <p:panel rendered="#{materiel['class'].simpleName eq 'MaterielNouv'}">
+                    
+                    #{materiel.fournisseur.designation}
+                    </p:panel>
+               
+
+                
+            </p:panel>
+            <p:panel rendered="#{o['class'].simpleName eq 'OpSortie' }" >
+                #{o.motifsortie.designation}
+            </p:panel>
+            
+                    </td>
+                    <td> <h:outputText value="" /></td>
+                    <td> <h:outputText value="" /></td>
+                    <td> <h:outputText value="" /></td>
+                    <td> <h:outputText value="" /></td>
+                    <td><h:outputText value="" />1</td>
+                    <td><h:outputText value="" /><c:if test="#{materiel['class'].simpleName eq 'MaterielEx'}">
+                    <h:outputText value="#{1*materiel.pu}" />
+                    </c:if>
+
+                    <c:if test="#{materiel['class'].simpleName eq 'MaterielNouv'}">
+                    <h:outputText value="#{1*materiel.montant_facture}" />                    
+                </c:if></td>
+                </tr>
+
+        </c:forEach>
+
+    </c:forEach>
+
+            </table>
+
+
+ 	</div>
+
+    <br></br><br></br><br></br><br></br><br></br><br></br>
+
+
+ 	<div class="col-md-1"></div>
+
+
+
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+   <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

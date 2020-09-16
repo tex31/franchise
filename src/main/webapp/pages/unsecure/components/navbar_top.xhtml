@@ -1,0 +1,504 @@
+
+<!-- .navbar -->
+<nav class="navbar navbar-light navbar-static-top" style="background-color: #145C8B "
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<div class="container-fluid">
+
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<header class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse" >
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar" style="background-color:#f8f7a3"></span> <span class="icon-bar" style="background-color:#f8f7a3"></span> <span
+					class="icon-bar" style="background-color:#f8f7a3"></span>
+			</button>
+
+			<h:link outcome="retour_choix_compta" immediate="true">
+
+				<h:graphicImage height="50px"
+					value="/pages/unsecure/assets/images/logo.jpeg" />
+
+			</h:link>
+
+		</header>
+
+
+		 
+		<div class="topnav">
+			<div class="btn-group position_login">
+					<h:form>
+						<ul class="nav navbar-nav" >
+						
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#CCC">
+									<i class="fa fa-user-circle-o"> </i> <h:outputText id="logName" value=" #{depositaireBean.currentAgent.im}" styleClass="nameLogin" />
+								</a>
+								<p:tooltip id="toolTipFade" for="logName" value="#{depositaireBean.currentAgent.nomAgent}" showEffect="explode" hideEffect="explode" position="bottom"/>
+								<ul class="dropdown-menu card_info_user" >
+									<li>			
+										<h:commandLink id="perso"
+						            		 value=""  styleClass="ui ui-icon-person">
+						            		<i class="fa fa-address-card"></i> Mon compte	<f:ajax onevent="oneventFunction" />		           	
+						    			</h:commandLink>
+									
+									</li>
+									<li>			
+										<h:link id="info_appli" outcome="docu" immediate="true" target="_blank"
+						            		 value=""  styleClass="">
+						            		<i class="fa fa-question-circle"></i>  Guide utilisateur	           	
+						    			</h:link>
+									
+									</li>
+									<li>
+										<h:commandLink action="#{loginMgmtBean.logout}"
+												data-toggle="tooltip" data-original-title="logout"
+												data-placement="bottom" id="logout">
+												<i class="fa fa-power-off"></i> Se déconnecter
+										</h:commandLink>
+										<!-- <p:tooltip id="toolTipFade" for="logout" value="Se déconnecter" position="bottom"/> -->
+									</li>
+		
+								</ul>
+							</li>
+							
+							
+		           		</ul>
+				</h:form>
+				
+			</div>
+		</div> 
+
+
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse" >
+
+			<!-- .nav -->
+
+			<h:form>
+
+
+				<ul class="nav navbar-nav" >
+					
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_CONSLOCAL'
+					}">
+						<li class="" ><h:commandLink
+									action="#{topMenuMB.goToDashboard}" immediate="true" style="color:#CCC">
+									Historique 
+								</h:commandLink></li>
+						
+					</c:if>
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+						or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+						}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" style="color:#CCC"> Tableau de bord <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+							
+								<li class="" ><h:commandLink
+										action="#{topMenuMB.goToDashboard}" immediate="true" style="color:#CCC">
+										Historique local
+									</h:commandLink></li>
+								<li class="" ><h:commandLink
+										action="#{topMenuMB.goToDashboardGeneral}" immediate="true" style="color:#CCC">
+										Historique général
+									</h:commandLink></li>
+							</ul>
+						</li>
+					</c:if>
+					
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_GAC'  or
+						topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'}">
+							<li class=""><h:commandLink
+									action="#{topMenuMB.goToDashboardCM}" immediate="true" style="color:#CCC">
+									Tableau de bord
+								</h:commandLink></li>
+					</c:if>
+				 
+				
+					
+					
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SE'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+					}">
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Saisie
+										des référentiels <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+					
+							<li>
+								<h:link value="Matériels"
+											outcome="saisie_ref" immediate="true" style="color:#CCC">
+									<f:param name="table" value="sr_materiels" />
+								</h:link>
+							</li>
+							<li>
+								<h:link value="Utilisateurs"
+											outcome="saisie_ref" immediate="true" style="color:#CCC">
+									<f:param name="table" value="sr_utilisateurs" />
+								</h:link>
+							</li>
+							<li>
+								<h:link value="Administratifs"
+											outcome="saisie_ref" immediate="true" style="color:#CCC">
+									<f:param name="table" value="sr_administratifs" />
+								</h:link>
+							</li>
+							<li>
+								<h:link value="Motifs"
+											outcome="saisie_ref" immediate="true" style="color:#CCC">
+									<f:param name="table" value="sr_motifs" />
+								</h:link>
+							</li>
+							<li>
+								<h:link value="Autres"
+											outcome="saisie_ref" immediate="true" style="color:#CCC">
+									<f:param name="table" value="sr_autres" />
+								</h:link>
+							</li>
+							
+						</ul>
+					</li>
+
+					</c:if>
+					
+					<!-- SAISIE MATERIELS DIRECTION -->
+
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_CONSLOCAL'
+					}">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Saisie des matériels <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							
+							<li><h:link value="Saisie
+						des matériels existants"
+									outcome="saisie_mat_ex" immediate="true" /></li>
+							<li><h:link value="Prise en charge" outcome="prise_en_charge" immediate="true" /></li>
+
+						</ul></li>
+
+					<!-- DETENTION -->
+			         <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'}">   
+			        
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Détenteur <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><h:link value="Attribution" outcome="attribution" immediate="true" /></li>
+							<li><h:link value="Détachement" outcome="detachement" immediate="true" /></li>
+
+						</ul></li>
+
+					<li><h:link value="Décharge" outcome="decharge" immediate="true" style="color:#CCC"/></li>
+					</c:if>
+				</c:if>
+				
+				<!-- SAISIE DES MATERIELS EN GENERAL -->
+				<c:if test="#{
+					 topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+					}">
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Saisie des matériels général <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							
+							<li><h:link value="Saisie
+						des matériels existants"
+									outcome="saisie_mat_exg" immediate="true" /></li>
+							<li><h:link value="Prise en charge" outcome="prise_en_chargeg" immediate="true" /></li>
+
+						</ul></li>
+				
+				</c:if>
+				
+					<!-- SUIVI DIRECTION -->
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' 
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_GAC'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_CONSLOCAL'
+					}">
+
+					<li class='dropdown '><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Suivi et édition des états
+							réglementaires <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+						<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+						or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+						or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_GAC'
+						or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+						or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+						}">
+							<li><h:link value="Traçabilité" outcome="tracabilite" immediate="true" /></li>
+						</c:if>
+							<li><h:link
+									value="Liste des matériels, statut et historique" outcome="liste_mat" immediate="true" /></li>
+							<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN'
+									or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+									or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+									or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+							}">
+						<li><h:link
+									value="Liste générale des matériels"
+									outcome="liste_mats" immediate="true" /></li>
+						</c:if>
+						
+							<li class="dropdown-submenu">
+								 <a tabindex="-1" href="#" >Edition des états et registres
+								réglementaire</a>
+								<!--  <li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" style="color:#CCC"> Edition des états et registres
+								réglementaire 
+									</a>-->
+								<!--  <h:link tableindex="-1" 
+											value="Edition des états et registres
+								réglementaire" outcome="edition_etats" immediate="true" ></h:link> -->
+									
+								<ul class="dropdown-menu">
+									<li><h:link tableindex="-1" 
+											value="Ordre d'entrée" outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="ordreEntree" /></h:link>
+									</li>
+									<li><h:link
+											value="Ordre de sortie" outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="ordreSortie" /></h:link>
+									</li>
+									<li><h:link
+											value="Journal"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="journal" /></h:link>
+									</li>
+									<li><h:link
+											value="Grand livre annuel"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="livreAnnuel" /></h:link>
+									</li>
+									<li><h:link
+											value="Etat appréciatif"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="etatAppreciatif" /></h:link>
+									</li>
+									<li><h:link
+											value="Inventaire"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="inventaire" /></h:link>
+									</li>
+									<li><h:link
+											value="Etat détenteur effectif"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="etatDetenteurEffectif" /></h:link>
+									</li>
+									<!--  
+									<li><h:link
+											value="Fournisseur"
+											outcome="edition_etats" immediate="true" >
+												<f:param name="table" value="fournisseursBdd" /></h:link>
+									</li> -->
+								</ul>
+								
+							</li>
+							
+						</ul></li>
+						
+
+					</c:if>
+					
+					<!-- SUIVIE GENERALE POUR DG et DRF -->
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DG'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DRF'
+					or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+					}">
+
+					<li class='dropdown '><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Suivi et édition des états
+							réglementaires général <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+						
+							<li><h:link value="Traçabilité général" outcome="tracabiliteG" immediate="true" /></li>
+						
+							<li><h:link
+									value="Liste générale des matériels, statut et historique" outcome="liste_mats" immediate="true" /></li>
+							
+						
+							<li class="dropdown-submenu">
+								<!-- <a tabindex="-1" href="#" >Edition des états et registres
+								réglementaire</a> -->
+								<h:link tableindex="-1" 
+											value="Edition des états et registres
+								réglementaire" outcome="edition_etatsG" immediate="true" ></h:link>
+									
+								<ul class="dropdown-menu">
+									<li><h:link tableindex="-1" 
+											value="Ordre d'entrée" outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="ordreEntree" /></h:link>
+									</li>
+									<li><h:link
+											value="Ordre de sortie" outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="ordreSortie" /></h:link>
+									</li>
+									<li><h:link
+											value="Journal"
+											outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="journal" /></h:link>
+									</li>
+									<li><h:link
+											value="Grand livre annuel"
+											outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="livreAnnuel" /></h:link>
+									</li>
+									<li><h:link
+											value="Etat appréciatif"
+											outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="etatAppreciatif" /></h:link>
+									</li>
+									<li><h:link
+											value="Inventaire"
+											outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="inventaire" /></h:link>
+									</li>
+									<li><h:link
+											value="Etat détenteur effectif"
+											outcome="edition_etatsG" immediate="true" >
+												<f:param name="table" value="etatDetenteurEffectif" /></h:link>
+									</li>
+									
+								</ul>
+							</li>
+							
+													
+						</ul></li>
+						
+
+					</c:if>
+
+					<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_GAC'}">
+
+					<li class='dropdown '><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" style="color:#CCC"> Validations <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><h:link value="Prise en charge" outcome="v_prise_en_charge" immediate="true"/></li>
+							<li><h:link value="Attribution" outcome="v_detenteur" immediate="true"/></li>
+							<li><h:link value="Décharge" outcome="v_decharge" immediate="true" /></li>
+							<li><h:link value="Détachement" outcome="v_detachement" immediate="true"/></li>
+
+
+						</ul></li>
+
+					</c:if>
+
+					<!-->li>
+						<a href="/pages/secure/choice.xhtml" style="color:#CCC">Comptabilité Administrative</a>
+					</li -->
+
+				</ul>
+
+			</h:form>
+			<!-- /.nav -->
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+
+	<p:dialog id="detail3" widgetVar="detail3"  header="Information de l'utilisateur" showEffect="explode" hideEffect="explode" width="450" height="350" minWidth="400" minHeight="250">
+		<br/>
+		<table class="table responsive-table ">
+
+                    <!--  <tr>
+                        <td><strong>Matricule</strong></td>
+                        <td>#{depositaireBean.currentAgent.im}</td>
+                        <td></td>
+                        <td><strong>Nom</strong></td>
+                        <td>#{depositaireBean.currentAgent.nomAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Direction</strong></td>
+                        <td>#{depositaireBean.currentAgent.direction.designation}</td>
+                        <td></td>
+                        <td><strong>Fonction</strong></td>
+                        <td>#{depositaireBean.currentAgent.roleAgent.designation}</td>
+                        <td></td>
+
+                        
+                    </tr>
+                     <tr>
+                        <td><strong>Poste</strong></td>
+                        <td>#{depositaireBean.currentAgent.posteny.designation}</td>
+                        <td></td>
+                        
+
+                        
+                    </tr> -->
+                    <tr>
+                    	<td><strong>Matricule</strong></td>
+                    	
+                    	<td align="left">#{depositaireBean.currentAgent.im}</td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Nom</strong></td>
+                    	
+                    	 <td align="left">#{depositaireBean.currentAgent.nomAgent}</td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Direction</strong></td>
+                    	
+                    	 <td align="left">#{depositaireBean.currentAgent.direction.designation}</td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Fonction</strong></td>
+                    	
+                    	 <td align="left">#{depositaireBean.currentAgent.roleAgent.designation}</td>
+                    </tr>
+                    <tr>
+                    	<td></td>
+                    	
+                    	<td align="left"></td>
+                    </tr>
+                    <!--<tr>
+                    	<td></td>
+                    	<td><a class="btn btn-primary" href="/pages/unsecure/update_pass.xhtml" style="color:#EEE">Mettre à jour mot de passe</a></td>
+                    	<td></td>
+                    </tr>-->
+        </table>
+        <!--  >div style="float: right"><a class="btn btn-primary" href="/pages/unsecure/update_pass.xhtml" style="color:#EEE"><i class=" fa fa-refresh"></i>  Mettre à jour le mot de passe</a></div-->
+		<div style="float: right">
+				<h:link value="" outcome="update_password" immediate="true"> 
+	   					<span class="btn btn-primary"  style="color:#EEE"><i class=" fa fa-refresh"></i>  Mettre à jour le mot de passe</span>
+   				</h:link>
+  		</div>
+	</p:dialog>
+<script>
+	$(function(){
+		var name = $('.nameLogin').text().substring(0,20);
+		$('.nameLogin').text(name);
+	});
+	function oneventFunction(data) {
+	    if (data.status === "success") {
+	    	PF('detail3').show();
+	    }
+	}
+	
+</script>
+
+</nav>
+

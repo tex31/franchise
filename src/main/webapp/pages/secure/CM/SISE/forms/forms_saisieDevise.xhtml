@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+ <h:head></h:head>
+
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 55px;
+	}
+</style>
+
+<div class="col-md-3"></div>
+<div class="box dark col-md-6">
+
+    <div class="body">
+
+        <h:form class="form-horizontal">
+
+            <p:messages id="messages" />
+			<br/>
+            <div class="form-group">
+            	<div class="row">
+					<div class="col-lg-6 ">	
+		                <label for="text1" class="control-label ">Devise *
+		                </label>
+					</div>
+	                <div class="col-lg-6" >
+					
+	                    <p:inputText   required="true"
+	                        value="#{siseBean.devise.designation}"
+	                        requiredMessage="Devise est obligatoire"
+	                        placeholder="Devise de la république" styleClass="form-control top" style="width=80%;"></p:inputText>
+	
+	                </div>
+	                
+                </div>
+                <br/>
+                <hr/>
+                <div class="row">
+					<div class="col-lg-6">
+						<p:outputLabel styleClass="control-label" for="annee_devise" value="Date du changement de devise" />
+					</div>
+	                
+						
+					<div class="col-lg-6">
+       					<p:calendar id="annee_devise"  value="#{siseBean.devise.dateExpire}" navigator="true" pattern="dd MMMM yyyy" required="true" locale="fr"/>
+   			 			<p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+       						<p:panelGrid id="display_devise" columns="2" columnClasses="label,value">
+     			 					 <h:outputText value="" />
+					            <h:outputText value="#{siseBean.devise.dateExpire}">
+					                <f:convertDateTime pattern="dd MMMM yyyy" locale="Locale.FRANCE"/>
+			                  	</h:outputText>
+      			 				</p:panelGrid>
+   						</p:dialog>
+               		 </div>
+	                
+                </div>
+                
+                
+              
+            </div>
+            <br/>
+			<hr></hr>
+       
+            <div class="form-group">
+                <label for="text1" class="control-label col-lg-4"></label>
+
+                <div class="col-lg-4">
+                    <h:commandLink id="btnSignId" action="#{siseBean.addDevise}" value=""
+                        class="btn btn-lg btn-primary btn-block">
+                        <i class="fa fa-plus"> </i>  Créer
+                    </h:commandLink>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+</div>
+
+<div class="col-md-4"></div>
+<script type="text/javascript">
+PrimeFaces.locales ['fr'] = { closeText: 'Fermer', prevText: 'Précédent', nextText: 'Suivant', monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ], monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ], dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'], dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'], dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'], weekHeader: 'Semaine', firstDay: 1, isRTL: false, showMonthAfterYear: false, yearSuffix:'', timeOnlyTitle: 'Choisir l\'heure', timeText: 'Heure', hourText: 'Heures', minuteText: 'Minutes', secondText: 'Secondes', currentText: 'Maintenant', ampm: false, month: 'Mois', week: 'Semaine', day: 'Jour', allDayText: 'Toute la journée' };
+</script>
+</html>

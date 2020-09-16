@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+    <ui:param name="title" value="Error page" />
+</ui:include>
+
+
+<h:body>
+
+<nav class="navbar navbar-light navbar-static-top" style="background-color: #145C8B; "
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <div class="container-fluid">
+
+	   
+		<div style=" display:inline-block !important; ">
+			<h:link>
+		
+		        	<h:graphicImage height="50px"
+		          value="/pages/unsecure/assets/images/logo.jpeg" />
+		
+	      	</h:link>
+		</div>
+	    <div class="topnav" style=" margin-left:85% !important; display:inline-block !important;">
+	
+				<div class="btn-group" style=" margin-top:7% !important; ">
+						<h:form>
+							<div>
+							<h:commandLink action="#{loginMgmtBean.logout}"
+								data-toggle="tooltip" data-original-title="Logout"
+								data-placement="bottom" >
+								<span class="btn btn-metis-1" style="color:white; font-size-adjust:0.6"><i class="fa fa-power-off"></i> Sortir </span>
+							</h:commandLink>
+							</div>
+			           		
+						</h:form>
+						
+					
+				</div>
+				
+		      
+	
+		</div>
+	
+	  		
+		    <!--  button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse" >
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar" style="background-color:#f8f7a3"></span> <span class="icon-bar" style="background-color:#f8f7a3"></span> <span
+					class="icon-bar" style="background-color:#f8f7a3"></span>
+			</button> -->
+			
+	
+
+    <!-->div class="collapse navbar-collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav">
+        <li>
+            <a href="/pages/secure/choice.xhtml">Réessayer</a>
+        </li>
+      </ul>
+    </div -->
+            
+
+    </div>
+	<ui:include src="/pages/unsecure/components/top_error.xhtml">
+    	<ui:param name="title" value="ERROR PAGE" />
+	</ui:include>
+</nav>
+	<h3>
+		<h:link value="" outcome="choix_compta" immediate="true"> 
+			Réessayer
+		</h:link> 
+	</h3>
+    <h4>Erreur interne de l'application</h4>
+    #{requestScope['error-message']}
+    <p>
+				<strong>Veuillez recharger la page désirée.</strong>
+				</p>
+	<p>
+		Veuillez contacter l'<strong>administrateur</strong> si le problème persiste.
+	</p>
+    <h4>Stack trace: Debug Information</h4>
+    <ul>
+        <ui:repeat value="#{requestScope['error-stack']}" var="stack">
+            <!-- li>#{stack.className} - #{stack.methodName} - #{stack.fileName} - #{stack} (#{stack.lineNumber})</li-->
+        	<li>#{stack}</li>
+        </ui:repeat>
+    </ul>
+    <h4>Cause: Debug Information</h4>
+    <ul>
+        <ui:repeat value="#{requestScope['error-cause']}" var="cause">
+            <li>#{cause}</li>
+        </ui:repeat>
+    </ul>
+
+  <ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+
+</h:body>
+</html>

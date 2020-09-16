@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+<style>
+	div.devise{
+		padding-right : 10% !important;
+	}
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+<h:head></h:head>
+<ui:include src="/pages/unsecure/components/header.xhtml">
+<ui:param name="title" value="Formulaire Etat détenteur effectif" />
+</ui:include>
+
+
+    <!--p:dialog id="detail" widgetVar="detail"-->
+<h:form>
+
+    <div   class="body collapse in table-responsive">
+
+
+        <div class="col-md-3">
+        			<!-- Logo 1 -->
+        </div>
+
+
+        <div class="col-md-6" style="text-align: center;">
+		<!-- 
+        <h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/top.png" /> -->
+            	<div class="row">
+                	<div><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu value="#{JasperTableExampleBean.pdfForm.filamatra}" appendTo="@this" style="width: 50% !important">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                       	
+                    </p:selectOneMenu>	                 
+                </f:view></div>
+ 				<br/>       
+        
+		</div>
+		<div class="col-md-3" style="text-align: right;">
+        			<!-- Logo 2 -->
+        </div>
+<div class="row">
+	 <div class="col-md-10 col-md-offset-1" style="text-align: center;">
+        <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+        	BUDGET GENERAL<br/>
+			SECTION : <p:inputText value="#{docbean.curentOpeationSortieToPdf.direction.budget}" style="text-align: center;width: 80%"></p:inputText> <br/>
+			CHAPITRE (1) <p:inputText value="#{JasperTableExampleBean.pdfForm.chapitre}" style="text-align: center;width: 30%"></p:inputText> ARTICLE <p:inputText value="#{JasperTableExampleBean.pdfForm.article}" style="text-align: center;width: 30%"></p:inputText> <br></br>
+			PARAGRAPHE <p:inputText value="#{JasperTableExampleBean.pdfForm.paragraphe}" style="text-align: center;width: 30%"></p:inputText><br></br>
+			-----------------------<br></br>
+            <!-- MINISTERE DES FINANCES ET DU BUDGET<br></br> -->
+            
+             <!-- SECRETARIAT GENERAL<br></br> -->
+            
+             <!-- DIRECTION GENERALE DES DOUANES<br></br> -->
+            
+            <f:view contentType="text/html"><p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.pdfForm.num3}" appendTo="@this" style="width: 40% !important">
+               <f:selectItems value="#{siseBean.mapDirection(docbean.curentOperationAttrToPdf.direction, docbean.curentOperationAttrToPdf.date)}"/>
+           </p:selectOneMenu></f:view><br></br>
+            ------------------<br></br>
+            <strong>ETAT DE DETENTEUR EFFECTIF #{docbean.curentOperationAttrToPdf.numerodet}</strong>
+
+        </div>
+		
+        <table class="table responsive-table" id="deteff">
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du dépositaire : </strong></td>
+    
+                        <td>#{docbean.curentOperationAttrToPdf.operateur.nomAgent}</td>
+                        <td>#{docbean.curentOperationAttrToPdf.operateur.posteny.designation}</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nom et fonction du détenteur effectif :</strong></td>
+                        <td>#{docbean.curentOperationAttrToPdf.detenteur.nomAgent}</td>
+                        <td>#{docbean.curentOperationAttrToPdf.detenteur.posteny.designation}</td>
+                    </tr>
+
+                    <tr>
+
+                        <table border="1">
+                            
+                            <tr>
+                                <th>DESIGNATION</th>
+                                <th>ESPECE DES UNITES</th>
+                                <th>PRIX UNITAIRE</th>
+                                <th>NOMBRE</th>
+                                <th>VALEUR TOTALE</th>
+                            </tr>
+                            <tr >
+                                <td align="left">#{docbean.curentOperationAttrToPdf.mat.design.nomenMat.designation} -
+                                #{docbean.curentOperationAttrToPdf.mat.design.nomenMat.nomenclature} - 
+                                #{docbean.curentOperationAttrToPdf.mat.design.marque.designation} - 
+                                #{docbean.curentOperationAttrToPdf.mat.design.renseignement} - 
+                                #{docbean.curentOperationAttrToPdf.mat.reference}
+                                 </td>
+                                <td align="left">#{docbean.curentOperationAttrToPdf.mat.design.especeUnite}</td>
+                                <td align="left">
+                                	<h:outputText value="#{docbean.curentOperationAttrToPdf.mat.design.pu}" >
+                                		<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                	</h:outputText>
+                                </td>
+                                <td align="left">1</td>
+                                <td align="left">
+                                	<h:outputText value="#{docbean.curentOperationAttrToPdf.mat.design.pu*1}" >
+                                		<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+                                	</h:outputText>
+                                </td>
+                               </tr> 
+                                
+                                
+                            
+                        </table>
+                    </tr>                    
+                    
+            </table>
+
+            <br></br><br></br><br></br>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">Arrêté le présent état de détenteur effectif au nombre de 
+            <p:inputText value ="#{JasperTableExampleBean.pdfForm.num1}"  style="text-align: center;"></p:inputText>
+            article(s) à une valeur de <p:inputText value="#{JasperTableExampleBean.pdfForm.num2}" style="text-align: center;"></p:inputText> Ariary.</div>
+
+            <div class="col-md-1"></div>
+
+            <br></br><br></br><br></br>
+
+
+            <div class="col-md-8"></div><div class="col-md-4"> 
+                #{docbean.curentOperationAttrToPdf.direction.trois}, le 
+                <h:outputText value="#{docbean.curentOperationAttrToPdf.date}">
+                	<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+             </h:outputText>  <br></br>
+                #{docbean.curentOperationAttrToPdf.operateur.nomAgent}
+            </div><br></br><br></br>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                Reconnu exact<br></br>
+                #{docbean.curentOperationAttrToPdf.detenteur.nomAgent}
+            </div>
+
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+
+			<p:commandButton styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " value="Exporter en PDF" ajax="false" action="#{JasperTableExampleBean.saisieMatexReport(docbean.curentOperationAttrToPdf)}">
+				<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{docbean.curentOpeationSortieToPdf.direction.budget}" />
+			 </p:commandButton>
+			<br/>
+			<p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px; " value="Exporter en Word" ajax="false" action="#{JasperTableExampleBean.saisieMatexDoc(docbean.curentOperationAttrToPdf)}">
+				<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{docbean.curentOpeationSortieToPdf.direction.budget}" />
+			 </p:commandButton>
+
+	 </div>
+	</div></h:form>
+	
+<script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+</html>

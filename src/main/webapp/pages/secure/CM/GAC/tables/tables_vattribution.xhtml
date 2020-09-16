@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+	
+
+
+    <p:dataTable   var="a" value="#{suivieditionBean.listOperationAttributionByDirection}" 
+    			currentPageReportTemplate="({currentPage} sur {totalPages})"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px" emptyMessage="Aucun résultat">
+        <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">ID</f:facet>
+            #{a.id}
+        </p:column>
+         <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">ID Materiel</f:facet>
+            #{a.mat.idMateriel}
+        </p:column>
+        <p:column styleClass="#{a.state}" headerText="Date" style="text-align: center; word-wrap: break-word;">
+        	
+        	<h:outputText value="#{a.date}" >
+            	<f:convertDateTime pattern="dd MMMM yyyy " timeZone="GMT+3"/>
+            </h:outputText>
+            -
+            <h:outputText value="#{a.time}" >
+            	<f:convertDateTime pattern="HH:mm" timeZone="GMT+3" />
+            </h:outputText>
+        	
+        </p:column>
+        <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Rérérence matériel</f:facet>
+            #{a.mat.reference}
+        </p:column>
+        <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">N° Série Matériel</f:facet>
+            #{a.mat.numSerie}
+        </p:column>
+         <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Détenteur</f:facet>
+            #{a.detenteur.im}
+        </p:column>
+        <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Etat" />
+            </f:facet>
+            <h:outputText value="#{dtFilterView.getOperationStateDes(a.state)}" />
+        </p:column>
+            <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+            
+            <f:facet name="header">
+                <h:outputText value="Validation" />
+            </f:facet>
+            <p:commandButton rendered="#{a.state eq 'WAITING' }" action="#{gacBean.setOpAttrToValidate(a)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-circle-check"/>
+            <p:commandButton action="#{gacBean.setOpAttrToValidate(a)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+        </p:column>
+        <p:column styleClass="#{a.state}" style="text-align: center; word-wrap: break-word;">
+        	<f:facet name="header">
+                <h:outputText value="Etat détenteur effectif" />
+            </f:facet>
+            <h:form>
+                <h:commandLink  action="#{docbean.generateDetenteur(a)}" target="_blank">
+                    <i class="fa fa-file-archive-o"></i>
+                </h:commandLink>
+                </h:form>
+        </p:column>
+
+    </p:dataTable>
+
+
+
+</div>
+
+<ui:include src="/pages/secure/CM/GAC/tables/dialogs/dialogs_vattribution.xhtml"></ui:include>
+
+</html>

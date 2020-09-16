@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+    <p:dataTable   var="d" value="#{suivieditionBean.listOperationSortieByDirection}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px" emptyMessage="Aucun résultat">
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">ID</f:facet>
+            #{d.id}
+        </p:column>
+        <p:column styleClass="#{d.state}" headerText="Date" style="text-align: center; word-wrap: break-word;">
+        	
+        	<h:outputText value="#{d.date}" >
+            	<f:convertDateTime pattern="dd MMMM yyyy " timeZone="GMT+3"/>
+            </h:outputText>
+            -
+            <h:outputText value="#{d.time}" >
+            	<f:convertDateTime pattern="HH:mm" timeZone="GMT+3" />
+            </h:outputText>
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Motif de sortie</f:facet>
+            #{d.motifsortie.designation}
+        </p:column>
+         <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">ID Matériel</f:facet>
+            #{d.mat.idMateriel}
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">N° Série Matériel</f:facet>
+            #{d.mat.numSerie}
+        </p:column>
+         <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Code Direction Destination</f:facet>
+            #{d.direc.codeDirection}
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Numéro d'operation</f:facet>
+            #{d.numoperation}
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Etat" />
+            </f:facet>
+            <h:outputText value="#{dtFilterView.getOperationStateDes(d.state)}" />
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+            
+            <f:facet name="header">
+                <h:outputText value="Validation" />
+            </f:facet>
+            <p:commandButton rendered="#{d.state eq 'WAITING' }" action="#{gacBean.setCurentopSortieForValidation(d)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-circle-check"/>
+            <p:commandButton action="#{gacBean.setCurentopSortieForValidation(d)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+        </p:column>
+        <p:column styleClass="#{d.state}" style="text-align: center; word-wrap: break-word;">
+        <f:facet name="header">
+                <h:outputText value="Ordre de sortie" />
+            </f:facet>
+        <h:form>
+                <h:commandLink  action="#{docbean.generateSortie(d)}" target="_blank">
+                    <i class="fa fa-file-archive-o"></i>
+                </h:commandLink>
+				</h:form>
+        </p:column>
+
+    </p:dataTable>
+
+<ui:include src="/pages/secure/CM/GAC/tables/dialogs/dialogs_vdecharge.xhtml"></ui:include>
+
+</div>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+    <ui:param name="title" value="Nomenclature" />
+</ui:include>
+
+<h:body class="  ">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <ui:include src="/pages/unsecure/components/navbar_top.xhtml"></ui:include>
+
+            <ui:include src="/pages/unsecure/components/top.xhtml">
+                <ui:param name="title" value="Nomenclature" />
+            </ui:include>
+
+        </div>
+
+        <!--ui:include src="/pages/unsecure/components/left.xhtml"-->
+            
+        <!--/ui:include-->
+
+        <!-- /#wrap -->
+
+        <div id="content">
+            <ui:include src="/pages/secure/CM/SISE/forms/forms_saisieNomenclature.xhtml"></ui:include>   
+            
+          
+                
+        
+        </div>
+
+    </div>
+
+    <ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+</h:body>
+</html>

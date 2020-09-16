@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+    <ui:param name="title" value="Saisie des réferentiels" />
+</ui:include>
+
+<style>
+	.zoom {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+	
+	.zoom-fab {
+	  display: inline-block;
+	  width: 40px;
+	  height: 40px;
+	  line-height: 40px;
+	  border-radius: 50%;
+	  background-color: #145C8B;
+	  vertical-align: middle;
+	  text-decoration: none;
+	  text-align: center;
+	  transition: 0.2s ease-out;
+	  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	  cursor: pointer;
+	  color: #FFF;
+	}
+	
+	.zoom-fab:hover {
+	  background-color: #f8f7a3;
+	  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+	}
+	
+	.zoom-btn-large {
+	  width: 60px;
+	  height: 60px;
+	  line-height: 60px;
+	}
+	
+	.zoom-menu {
+	  position: absolute;
+	  right: 70px;
+	  left: auto;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  height: 100%;
+	  width: 500px;
+	  list-style: none;
+	  text-align: right;
+	}
+	
+	.zoom-menu li {
+	  display: inline-block;
+	  margin-right: 10px;
+	}
+	
+	.zoom-card {
+	  position: absolute;
+	  right: 185px;
+	  bottom: 80px;
+	  transition: box-shadow 0.25s;
+	  padding: 24px;
+	  border-radius: 2px;
+	  background-color: #009688;
+	  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	  color: #FFF;
+	  text-align: center;
+	  width: 200px;
+      height: 70px;
+	}
+	
+	.zoom-card ul {
+	  -webkit-padding-start: 0;
+	  list-style: none;
+	  text-align: left;
+	}
+	
+	.zoom-btn-sm a{
+		color:white;
+	}
+	
+	.zoom-btn-sm { background-color: #145C8B; }
+
+	.zoom-btn-sm:hover { background-color: #145C8B; }
+	
+	.scale-transition { transition: transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important; }
+
+	.scale-transition.scale-out {
+	  transform: scale(0);
+	  transition: transform 0.2s !important;
+	}
+	
+	.scale-transition.scale-in { transform: scale(1); }
+
+</style>
+
+<h:head></h:head>
+
+<h:body class="  ">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <ui:include src="/pages/unsecure/components/navbar_top.xhtml"></ui:include>
+
+            <ui:include src="/pages/unsecure/components/top.xhtml">
+                <ui:param name="title" value="Saisie des référentiels" />
+            </ui:include>
+
+        </div>
+
+        <!--ui:include src="/pages/unsecure/components/left.xhtml"-->
+            
+        <!--/ui:include-->
+
+        <!-- /#wrap -->
+
+        <div id="content">
+        
+        	<ui:include src="/pages/secure/CM/SISE/content/content_saisieRef.xhtml">
+        		<ui:param name="table" value="#{param['table']}" />
+        	</ui:include> 
+        	
+        	<div class="zoom">
+  				<a class="zoom-fab zoom-btn-large" id="zoomBtn">Filtre</a>
+			  <ul class="zoom-menu">
+			    <li class="zoom-fab zoom-btn-sm zoom-btn-nomenclature scale-transition scale-out">
+			    	<h:link value="N" outcome="saisie_ref" immediate="true" style="text-color:white;">
+						<f:param name="table" value="nomenclature" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-type_materiel scale-transition scale-out">
+			    	<h:link value="TM" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="type_materiel" />
+					</h:link>
+				</li>
+			    <li class="zoom-fab zoom-btn-sm zoom-btn-etat scale-transition scale-out">
+			    	<h:link value="EM" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="etat" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-marques scale-transition scale-out">
+			    	<h:link value="M" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="marques" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-utilisateur scale-transition scale-out">
+			    	<h:link value="U" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="utilisateur" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-motif_acquisition scale-transition scale-out">
+			    	<h:link value="MA" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="motif_acquisition" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-motif_detachement scale-transition scale-out">
+			    	<h:link value="MD" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="motif_detachement" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-financement scale-transition scale-out">
+			    	<h:link value="Fin" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="financement" />
+					</h:link>
+				</li>
+				<!--  
+				<li class="zoom-fab zoom-btn-sm zoom-btn-fournisseur scale-transition scale-out">
+			    	<h:link value="Fou" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="fournisseur" />
+					</h:link>
+				</li> -->
+				<li class="zoom-fab zoom-btn-sm zoom-btn-fonction scale-transition scale-out">
+			    	<h:link value="Fon" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="fonction" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-poste scale-transition scale-out">
+			    	<h:link value="Pos" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="poste" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-devise scale-transition scale-out">
+			    	<h:link value="Dev" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="devise" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-direction scale-transition scale-out">
+			    	<h:link value="Dir" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="direction" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-motif_sortie scale-transition scale-out">
+			    	<h:link value="MS" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="motif_sortie" />
+					</h:link>
+				</li>
+				<li class="zoom-fab zoom-btn-sm zoom-btn-tous scale-transition scale-out">
+			    	<h:link value="Tout" outcome="saisie_ref" immediate="true" >
+						<f:param name="table" value="tous" />
+					</h:link>
+				</li>
+			  </ul>
+			  <div class="zoom-card scale-transition scale-out">
+			    <div class="zoom-card-content" style="color: #145C8B;">
+			      Liste des référentiels
+			    </div>
+			  </div>
+			  
+			</div>
+              
+        	
+        </div>
+
+    </div>
+
+    <ui:include src="/pages/unsecure/components/footer.xhtml"></ui:include>
+    
+    <script>
+
+	$(document).ready(function(){
+		
+		var query = window.location.search.substring(1);
+	    var vars2 = query.split("=");
+	    console.log(query);
+	    console.log(vars2);
+	     
+		if(query != null){
+			console.log("tafa");
+			function scrollToId(id){
+				var e=document.querySelector("#"+id);console.log(e,id);
+				var crn=cronf(function(o){
+					if((e.getBoundingClientRect().top &lt; -11 || e.getBoundingClientRect().top &gt; 11)
+						&amp;&amp; document.querySelector("html").scrollHeight-document.querySelector("html").clientHeight-11 >=document.querySelector("html").scrollTop
+							){
+						console.log(e.getBoundingClientRect().top);
+						if(e.getBoundingClientRect().top &lt; 0){
+							document.querySelector("html").scrollTop=0;
+						}
+						else{
+							document.querySelector("html").scrollTop+=e.getBoundingClientRect().top;
+						}
+					}
+					else{
+						o.stop=true;
+					}
+					console.log(o)
+				});
+			}
+			function cronf(f,dt,o){
+				if(!dt){ dt=100;}
+				if(!o){ o={};}
+				if(o.stop){return false;}
+				f(o);
+				setTimeout(function(){
+					cronf(f,dt,o)
+				},dt)
+				return o;
+			}
+			setTimeout(function(){
+				//scrollToId(vars2[1]);
+				scrollToId(vars2[2]);
+			},500)
+		}
+			
+	});
+
+	$('#zoomBtn').click(function() {
+		  $('.zoom-btn-sm').toggleClass('scale-out');
+		  if (!$('.zoom-card').hasClass('scale-out')) {
+		    $('.zoom-card').toggleClass('scale-out');
+		  }
+		});
+
+		$('.zoom-btn-sm').hover(function() {
+		  var btn = $(this);
+		  var card = $('.zoom-card');
+		  if ($('.zoom-card').hasClass('scale-out')) {
+		    $('.zoom-card').toggleClass('scale-out');
+		  }
+		  if (btn.hasClass('zoom-btn-nomenclature')) {
+		    card.css('background-color', '#f8f7a3');
+		    $('.zoom-card-content').text("Nomenclature");
+		  } else if (btn.hasClass('zoom-btn-type_materiel')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Type de matériel");
+		  } else if (btn.hasClass('zoom-btn-etat')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Etat de matériel");
+		  } else if (btn.hasClass('zoom-btn-marques')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Marques");
+		  } else if (btn.hasClass('zoom-btn-utilisateur')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Utilisateur");
+		  }	else if (btn.hasClass('zoom-btn-motif_acquisition')) {
+				  card.css('background-color', '#f8f7a3');
+				  $('.zoom-card-content').text("Motif d'acquisition");
+		  } else if (btn.hasClass('zoom-btn-motif_detachement')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Motif de détachement");
+	  	  } else if (btn.hasClass('zoom-btn-financement')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Financement");
+	  	  } else if (btn.hasClass('zoom-btn-fournisseur')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Fournisseur");
+	  	  } else if (btn.hasClass('zoom-btn-fonction')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Fonction");
+	  	  } else if (btn.hasClass('zoom-btn-poste')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Poste");
+	  	  } else if (btn.hasClass('zoom-btn-devise')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Devise");
+	  	  } else if (btn.hasClass('zoom-btn-direction')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Direction");
+	  	  } else if (btn.hasClass('zoom-btn-motif_sortie')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Motif de sortie");
+	  	  } else if (btn.hasClass('zoom-btn-tous')) {
+			  card.css('background-color', '#f8f7a3');
+			  $('.zoom-card-content').text("Tous les référentiels");
+	  	  }
+	  	 
+
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+</script> 
+
+</h:body>
+
+</html>

@@ -1,0 +1,84 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+
+    <p:dataTable   var="op" value="#{suivieditionBean.listOpESArtByDirection}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="100" style="margin-bottom:20px">
+        <f:facet name="header">
+        	JOURNAL DE LA COMPTABILITE ADMINISTRATIVE
+    	</f:facet>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+        <f:facet name="header">N° Ordre</f:facet>
+        <h:outputText value="#{op.id}" />
+            
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+        <f:facet name="header">Référence facture/décision</f:facet>
+            <h:outputText value="#{'à ajouter'}" />
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+          	<f:facet name="header">Origine/destinataire</f:facet>
+            <p:panel rendered="#{op['class'].simpleName eq 'OpEntreeArticle'}">
+					<h:outputText value="#{'fournisseur ou à ajouter'}" />
+		</p:panel>
+		<p:panel rendered="#{op['class'].simpleName eq 'OpSortieArticle'}">
+					<h:outputText value="#{op.beneficiaire.nomAgent}" />
+		</p:panel>
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Désignation des articles</f:facet>
+            <p:panel rendered="#{op['class'].simpleName eq 'OpEntreeArticle'}">
+					<h:outputText value="#{op.article.codeArticle.typeObjet.designation} ( #{op.article.codeArticle.designation})" />
+			</p:panel>
+			<p:panel rendered="#{op['class'].simpleName eq 'OpSortieArticle'}">
+					<h:outputText value="#{op.article.codeArticle.typeObjet.designation} ( #{op.article.codeArticle.designation})" />
+			</p:panel>
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Quantité</f:facet>
+            <p:panel rendered="#{op['class'].simpleName eq 'OpSortieArticle'}">
+					<h:outputText value="#{op.nombreToS}" />
+		</p:panel>
+		<p:panel rendered="#{op['class'].simpleName eq 'OpEntreeArticle'}">
+					<h:outputText value="#{op.article.nombre}" />
+		</p:panel>
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Montant</f:facet>
+            <p:panel rendered="#{op['class'].simpleName eq 'OpEntreeArticle'}">
+				<h:outputText value="#{op.article.prix}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+		</p:panel>
+		<p:panel rendered="#{op['class'].simpleName eq 'OpSortieArticle'}">
+				<h:outputText value="#{op.article.prix}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+		</p:panel>
+        </p:column>
+        <p:column style=" text-align: center; word-wrap: break-word;">
+            <f:facet name="header">Montant total</f:facet>
+            <p:panel rendered="#{op['class'].simpleName eq 'OpEntreeArticle'}">
+				<h:outputText value="#{op.article.prix*op.article.nombre}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+		</p:panel>
+		<p:panel rendered="#{op['class'].simpleName eq 'OpSortieArticle'}">
+				<h:outputText value="#{op.article.prix*op.nombreToS}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+		</p:panel>
+        </p:column>
+        
+
+    </p:dataTable>
+
+
+</div>
+
+</html>

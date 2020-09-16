@@ -1,0 +1,406 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+<h:head></h:head>
+<head>
+    <title>Etat Appreciatif</title>
+</head>
+<style>
+	div.devise{
+		padding-right : 0% !important;
+	}
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+
+<ui:include src="/pages/unsecure/components/header.xhtml">
+	<ui:param name="title" value="Formulaire Etat Appréciatif" />
+</ui:include>
+
+	
+<h:body>	
+ 	<div class="col-md-1"></div>
+
+
+	
+ 	<div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f; padding-bottom: 70px;">
+ 	<h:form>
+
+ 		<br></br><br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-3">
+ 				<br></br><br></br>
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/gauche.png" />
+
+ 			</div>
+
+ 			<div class="col-md-6" style="text-align: center;">
+ 			
+ 				<div class="row">
+                	<div class="col-lg-10 col-lg-offset-1 " style="padding-left:5%;"><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu value="#{JasperTableExampleBean.pdfForm.filamatra}">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                       	
+                    </p:selectOneMenu>	                 
+               </f:view> </div>
+ 				<br/>
+ 				
+ 				
+ 				(1)<p:inputText value="#{JasperTableExampleBean.pdfForm.num1}" style="text-align: center;width: 70%"></p:inputText><br></br>
+ 				
+
+            <br></br><br></br>
+
+            
+                
+                BUDGET GENERAL<br/> 
+                SECTION : <p:inputText value="#{EtatAppreciatifBean.section}" style="text-align: center;width:75%"></p:inputText> <br/>
+ 					
+            
+
+
+            <br></br><br></br>
+
+            
+                
+                CHAPITRE(2) <p:inputText value="#{JasperTableExampleBean.pdfForm.chapitre}" style="text-align: center;width: 25%"></p:inputText>
+ 				ARTICLE <p:inputText value="#{JasperTableExampleBean.pdfForm.article}" style="text-align: center;width: 25%"></p:inputText>
+ 				PARAGRAPHE <p:inputText value="#{JasperTableExampleBean.pdfForm.paragraphe}" style="text-align: center;width: 25%"></p:inputText>
+            
+
+            <br></br><br></br>
+
+
+        </div>
+
+            
+
+
+
+ 			<div class="col-md-3">
+ 				<br></br><br></br>
+ 				Modèle n°9
+
+                <br></br><br></br>
+
+                Instruction Générale du 22 Juillet 1955<br></br><br></br>
+ 			</div>
+ 		</div>
+
+
+ 		<div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+ 			<div class="col-md-6">
+ 			(3) <f:view contentType="text/html">
+ 				<p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.pdfForm.num3}" appendTo="@this" style="font-size: 15px;width: 80% !important">
+                        <f:selectItems value="#{siseBean.mapDirection(EtatAppreciatifBean.dir, docbean.curentOpeationSortieToPdf.date)}" />
+                 </p:selectOneMenu></f:view>
+ 			<!-- #{EtatAppreciatifBean.service}-->
+ 		</div>
+ 			<div class="col-md-3" style="font-size: 14px!important;">
+
+ 				 
+ 			</div>
+ 		</div>
+        <br></br><br></br>
+        <div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+            <div class="col-md-6">
+            (4) <p:inputText value="#{EtatAppreciatifBean.quatre}" style="text-align: center;width: 70%"></p:inputText>
+            </div>
+            <div class="col-md-3" style="font-size: 14px!important;">
+
+                 
+            </div>
+        </div>
+        <br></br><br></br>
+        <div class="col-md-12">
+            <div class="col-md-3" style="font-size: 14px!important;"></div>
+            <div class="col-md-6">
+            (5) <p:inputText value="#{JasperTableExampleBean.pdfForm.num5}" style="text-align: center;width: 70%"></p:inputText>
+ 			</div>
+            <div class="col-md-3" style="font-size: 14px!important;">
+
+                 
+            </div>
+        </div>
+
+
+ 		<div class="col-md-12">
+ 			<div class="col-md-1">
+
+ 			</div>
+
+ 			<div class="col-md-10" style="text-align: center;font-size: 25px; color: #444">
+ 				
+ 				<h:graphicImage width="100%"
+                    value="/pages/unsecure/assets/images/etat.png" /><br></br>
+                    <strong>effectués pendant l'année #{EtatAppreciatifBean.annee}</strong>
+ 			</div>
+
+ 			<div class="col-md-1" style="font-size: 14px!important;">
+ 				
+ 			</div>
+ 		</div>
+        <br></br><br></br><br></br><br></br>
+
+ 		<div class="col-md-12">
+            <br></br><br></br>
+ 			Ci-joint(6) <p:inputText value="#{JasperTableExampleBean.pdfForm.num6}" style="text-align: center;width: 50%"/> pièces justificatives<br></br><br></br>
+            Gestion de M. (7) <p:inputText value="#{JasperTableExampleBean.pdfForm.num7}" style="text-align: center;width: 50%"/> <br></br><br></br>
+            Du #{EtatAppreciatifBean.sdate} au  #{EtatAppreciatifBean.edate}
+            <!--  <p:inputText value="#{JasperTableExampleBean.pdfForm.num8}" style="text-align: center;width: 25%"/> au (8) <p:inputText value="#{JasperTableExampleBean.pdfForm.num9}" style="text-align: center;width: 25%"/> <br></br><br></br> -->
+         </div>
+
+		<div class = "col-md-12">
+			<p:dataTable var="c" value="#{EtatAppreciatifBean.liste}"
+    		currentPageReportTemplate="({currentPage} sur {totalPages})"
+			paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink}"
+			paginator="true" style="margin-bottom:20px;font-size:10px"
+			widgetVar="EtatAppreciatif"
+			id="etatAppreciatif"
+			sortBy="#{c[15]}" emptyMessage="Aucun résultat"			>
+			<f:facet name="header">
+       			 <span>ETAT APPRECIATIF </span>
+       			 
+    		</f:facet>
+			<p:columnGroup type="header" >
+			<p:row>
+				<p:column colspan="2" headerText="Justificatives" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column rowspan="2" headerText="Désignation sommaire des opérations" style="width:10%; text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 1 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 2 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 3 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 5 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column colspan="2" headerText=" 10 Opération à" style=" text-align: center; word-wrap: break-word;"/>
+				
+			</p:row>
+			<p:row>
+				<p:column  headerText="N°" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Date" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Charge" style=" text-align: center; word-wrap: break-word;"/>
+				<p:column  headerText="Décharge" style=" text-align: center; word-wrap: break-word;"/>
+				
+				
+				
+			</p:row>				
+			</p:columnGroup>
+
+			<p:column headerText="N°" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[1]}" />			
+			</p:column>
+			<p:column headerText="Date" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[15]}" >
+					<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Désignation sommaire des opérations" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[2]}" />			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[4] + c[16]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[6]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[7] + c[17]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[8]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[9] + c[18]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[10]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[11]+ c[19]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[12]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Charge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[13]+ c[20]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			<p:column headerText="Décharge" style=" text-align: center; word-wrap: break-word;"> 
+				<h:outputText value="#{c[14]}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>			
+			</p:column>
+			
+			
+		</p:dataTable>
+		</div>
+	
+
+
+
+ 		<br></br><br></br><br></br>
+
+
+
+<br></br><br></br><br></br>
+
+    <br/><br/>
+	<div class="col-md-12">
+	<p>
+	Arrêté à la somme de ( <h:outputText value="#{EtatAppreciatifBean.entrant}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>	 ) <p:inputText value="#{JasperTableExampleBean.pdfForm.somme}" style="text-align: center;width: 25%"/> en ce qui concerne les Entrées<br/>
+	A la somme de ( <h:outputText value="#{EtatAppreciatifBean.sortant}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>	  )<p:inputText value="#{JasperTableExampleBean.pdfForm.somme1}" style="text-align: center;width: 25%"/> en ce qui concerne les Sorties<br/>
+	Et à la somme de (<h:outputText value="#{EtatAppreciatifBean.entrant - EtatAppreciatifBean.sortant}" >
+					<f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber>
+				</h:outputText>	  ) <p:inputText value="#{JasperTableExampleBean.pdfForm.somme2}" style="text-align: center;width: 25%"/> Valeur restant au dernier jour de l’année<br/>
+	</p> <br/>
+	A #{EtatAppreciatifBean.trois}, le <p:inputText value="#{JasperTableExampleBean.pdfForm.date}" style="text-align: center;width: 25%"/> <br/> <br/>
+	<div class="col-md-9">LE GAC</div> <div class="col-md-3" style="text-align: center;">LE DEPOSITAIRE COMPTABLE</div>
+	<br></br><br></br><br></br>
+    		
+	
+	</div>
+	
+	<p:commandButton styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " action="#{JasperTableExampleBean.etatAppreciatifReport(EtatAppreciatifBean.liste)}" type="submit" value="Exporter en PDF" ajax="false" >
+    	<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.annee}" value="#{EtatAppreciatifBean.annee}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.lieu}" value="#{EtatAppreciatifBean.trois}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num4}" value="#{EtatAppreciatifBean.quatre}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num8}" value="#{EtatAppreciatifBean.sdate}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num9}" value="#{EtatAppreciatifBean.edate}" /> 
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{EtatAppreciatifBean.section}" />
+ 		
+    </p:commandButton>		
+	<br/>
+	<p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px; " action="#{JasperTableExampleBean.etatAppreciatifDoc(EtatAppreciatifBean.liste)}" type="submit" value="Exporter en Word" ajax="false" >
+		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.annee}" value="#{EtatAppreciatifBean.annee}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.lieu}" value="#{EtatAppreciatifBean.trois}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num4}" value="#{EtatAppreciatifBean.quatre}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num8}" value="#{EtatAppreciatifBean.sdate}" />
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.num9}" value="#{EtatAppreciatifBean.edate}" /> 
+ 		<f:setPropertyActionListener target="#{JasperTableExampleBean.pdfForm.budget}" value="#{EtatAppreciatifBean.section}" />
+ 		
+	</p:commandButton>
+	
+	</h:form>
+    #{gacBean.exity()}
+ 	</div>
+
+
+ 	<div class="col-md-1"></div>
+</h:body>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+
+    <script src="#{request.contextPath}/pages/unsecure/assets/lib/jquery/jquery.js"></script>
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-1.11.3.min.js"></script>
+  	<script src="#{request.contextPath}/pages/unsecure/assets/js/jquery-migrate-1.2.1.min.js"></script>	
+		
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/moment.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery-ui.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/fullcalendar.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.tablesorter.min.js"></script>
+	<script
+		src="#{request.contextPath}/pages/unsecure/assets/js/jquery.sparkline.min.js"></script>
+
+    <!--Bootstrap -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/screenfull/screenfull.js"></script>
+
+    <script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+
+
+    <!-- Metis core scripts -->
+    <script src="#{request.contextPath}/pages/unsecure/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <!--script src="assets/js/app.js"></script>
+
+                <script>
+                    $(function() {
+                      Metis.dashboard();
+                    });
+                </script-->
+
+    <!-- script src="#{request.contextPath}/pages/unsecure/assets/js/style-switcher.js"></script-->
+
+
+    <script type="text/javascript">
+
+                var nix = 0;
+
+            
+                (function($) {
+                    $(document).ready(function() {
+                        $('.list-inline li > a').click(function() {
+                            var activeForm = $(this).attr('href') + ' > form';
+                            //console.log(activeForm);
+                            $(activeForm).addClass('animated fadeIn');
+                            //set timer to 1 seconds, after that, unload the animate animation
+                            setTimeout(function() {
+                                $(activeForm).removeClass('animated fadeIn');
+                            }, 1000);
+                        });
+                    });
+
+                })(jQuery);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+                
+
+            </script>
+    <!--script-->
+
+</html>
+

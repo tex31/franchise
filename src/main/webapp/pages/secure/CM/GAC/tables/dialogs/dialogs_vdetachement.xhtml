@@ -1,0 +1,108 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+<h:head></h:head> 	
+	<p:growl id="growl" for="myerror" showDetail="true" sticky="true" redisplay="false"/>
+	
+    <p:dialog id="detail" widgetVar="detail" position = "center,top" closable="false" header="Détails validation détachement" showEffect="explode" hideEffect="explode" width="1250" height="450">
+
+    <h:form class="form-horizontal">
+            <p:commandButton actionListner="#{gacBean.exit()}" icon="ui-icon-delete"
+            style="valign:bottom;float:right;padding-right:20px" ajax="false"/>
+                        
+            </h:form>
+        
+        
+
+    <div   class="body collapse in table-responsive">
+
+        <table class="table responsive-table">
+
+            <table class="table responsive-table">
+                    <tr>
+                        <td><strong>Type de matériel</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.design.typematerieladd.designation}</td>
+                        <td></td>
+                        <td><strong>Immatriculation détenteur</strong></td>
+                        <td>#{gacBean.opDetToValidate.detenteur.im}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nomenclature</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.design.nomenMat.nomenclature}</td>
+                        <td></td>
+                        <td><strong>Nom détenteru</strong></td>
+                        <td>#{gacBean.opDetToValidate.detenteur.nomAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marque</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.design.marque.designation}</td>
+                        <td></td>
+                        <td><strong>Codification</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.code}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Référence</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.reference}</td>
+                        <td></td>
+                        <td><strong>Motif de sortie</strong></td>
+                        <td>#{gacBean.opDetToValidate.motifDettachement.designation}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Numéro de série</strong></td>
+                        <td>#{gacBean.opDetToValidate.mat.numSerie}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                       
+            </table>
+                        
+            </table>
+            
+          <div class="form-group">
+         	 <p:panel rendered="#{gacBean.opDetToValidate.state eq 'WAITING' }">
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-1">
+						<br/>
+						<h:form class="form-horizontal">
+                                <h:commandButton  action="#{gacBean.validateDetachement(gacBean.opDetToValidate)}" value="Valider"
+                                            class="btn btn-lg btn-primary btn-block"/>
+                        </h:form>
+					</div>
+					<div class="col-lg-4 ">
+	
+						<h:form>
+
+                                <label for="text1" >Motif de refus
+                                        </label>
+
+                                <h:inputText value="#{gacBean.motif}" 
+                                            styleClass="form-control top"></h:inputText>
+
+                                <h:commandButton  action="#{gacBean.refuseDetachement(gacBean.opDetToValidate)}" value="Refuser"
+                                            class="btn btn-lg btn-warning btn-block">
+                                    
+                                </h:commandButton>
+
+                            
+                            </h:form>
+	
+					</div>
+				</div>
+			</p:panel>
+		 </div>
+            
+            
+        </div>
+        
+
+        
+
+    </p:dialog>
+
+</html>

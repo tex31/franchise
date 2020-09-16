@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+
+<div id="content">
+
+    <div>
+        <div class="box dark">
+            <header>
+            <div class="icons">
+                <i class="fa fa-edit"></i>
+            </div>
+            <h5>Prise en charge ACCEPTEE</h5>
+            <!-- .toolbar -->
+            <div class="toolbar">
+                <nav style="padding: 8px;"> <a href="javascript:;"
+                    class="btn btn-default btn-xs collapse-box"> <i
+                    class="fa fa-minus"></i>
+                </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                    <i class="fa fa-expand"></i>
+                </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                        <i class="fa fa-times"></i>
+                                    </a--> </nav>
+            </div>
+            <!-- /.toolbar --> </header>
+
+<p:growl id="growl" for="errorupload" showDetail="true" sticky="true" redisplay="false"/>
+<div   class="body collapse in table-responsive">
+	<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'
+            }">
+    <!--  <div class="row">
+		<div class="col-lg-2">
+	        <h:link value="" outcome="add_PriseEnCharge"
+	            class="btn btn-lg btn-primary btn-block " immediate="true" >
+          	 <i class="fa fa-plus-circle">  </i>   Ajouter 
+          	 </h:link>
+        </div>   
+        <hr></hr>
+		<br/>
+    </div>  -->   
+    </c:if>
+	<h:form id="formmodifmatnouv">
+	<p:growl for="deleteMaterielnouv" id="msgtableDeleteMaterielnouv" showDetail="true" sticky="true" redisplay="false"/>
+
+    <p:dataTable   var="materiel" value="#{suivieditionBean.listMaterielNouveauValide}"
+                 widgetVar="MaterielTableoui"
+                 id = "MaterielTableoui"
+                 currentPageReportTemplate="({currentPage} sur {totalPages})"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px"
+                 emptyMessage="Aucun resultat" 
+                 filterEvent="enter"
+                 
+                 >
+ 
+ 		<f:facet name="header">
+        Prise en charge acceptée
+   		 </f:facet>
+        <p:column filterBy="#{materiel.idMateriel}" filterMatchMode="contains" style="width:7%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{materiel.idMateriel}" />
+        </p:column> 
+        
+        <p:column filterBy="#{materiel.design.nomenMat}" headerText="Nomenclature"  filterMatchMode="exact" style="width:23%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTableoui').filter()" panelStyle="width:250px;" >
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listNomenclature}" var="type"
+								itemLabel="N#{type.nomenclature} - #{type.designation}"/>
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Nomenclature" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.nomenMat.nomenclature}" />
+        </p:column>
+        
+        <p:column filterBy="#{materiel.design.typematerieladd}" headerText="Type de matériel"  filterMatchMode="exact" style="width:23%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTableoui').filter()" panelStyle="width:250px;" filter="true" filterMatchMode="contains">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listTypeMateriel}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Type de matériel" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.typematerieladd.designation}" />
+        </p:column>
+        
+        <p:column headerText="Caractéristiques" style="width:23%; text-align: center; word-wrap: break-word;" >
+        	<f:facet name="header">
+                <h:outputText value="Caractéristiques" />
+            </f:facet> 
+            <h:outputText value="#{materiel.design.renseignement}" />
+        </p:column>
+        <p:column style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Marque" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.marque.designation}" />
+        </p:column>
+        <p:column  filterBy="#{materiel.reference}" filterMatchMode="contains" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Référence" />
+            </f:facet>
+           <h:outputText value=" #{materiel.reference}" />
+        </p:column>
+        <p:column filterBy="#{materiel.numSerie}" filterMatchMode="contains" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Numéro de série" />
+            </f:facet>
+            <h:outputText value="#{materiel.numSerie}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Caractéristique" />
+            </f:facet>
+            <h:outputText value="#{materiel.caract}" />
+        </p:column-->
+        <p:column style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Mode d'acquisition" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.modAcq.designation}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Financement" />
+            </f:facet>
+            <h:outputText value="#{materiel.financement.designation}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Montant sur la facture" />
+            </f:facet>
+            <h:outputText value="#{materiel.montant_facture}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Référence facture" />
+            </f:facet>
+            <h:outputText value="#{materiel.refFacture}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Fournisseur" />
+            </f:facet>
+            <h:outputText value="#{materiel.fournisseur.designation}" />
+        </p:column-->
+		<p:column filterBy="#{materiel.code}" filterMatchMode="contains" style="width:8%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Code" />
+            </f:facet>
+            <h:outputText value="#{materiel.code}" />
+        </p:column>
+        <p:column style="width:7%; text-align: center; word-wrap: break-word;">
+
+            <f:facet name="header">
+                <h:outputText value="Détail" />
+            </f:facet>
+            <p:commandButton  action="#{depositaireBean.setCurentMaterielNouv(materiel)}"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin" update=":detail"/>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or (topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' and materiel.isValidation)
+            }">
+             <p:commandButton  action="#{depositaireBean.setCurentMaterielNouv(materiel)}" update=":modifMatNouv"
+            oncomplete="PF('modifMatNouv').show()" icon="ui-icon-pencil"/>
+            </c:if>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or (topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' and materiel.isValidation)
+            }">
+            <p:commandButton  action="#{depositaireBean.deleteMaterielNouv(materiel)}"
+             icon="fa  fa-remove"
+            update=":formmodifmatnouv:msgtableDeleteMaterielnouv"
+       		oncomplete="PF('MaterielTableoui').filter()"
+            >
+            <p:confirm header="Confirmation" message="Etes-vous sure?" icon="ui-icon-alert" />
+       		</p:commandButton>
+            </c:if>
+        </p:column>
+    </p:dataTable>
+    
+    </h:form>
+</div> 
+</div>
+</div>
+</div>
+
+<div id="content">
+
+            
+        
+            <div>
+                <div class="box dark">
+                    <header>
+                    <div class="icons">
+                        <i class="fa fa-edit"></i>
+                    </div>
+                    <h5>Prise en charge NON ACCEPTEE</h5>
+                    <!-- .toolbar -->
+                    <div class="toolbar">
+                        <nav style="padding: 8px;"> <a href="javascript:;"
+                            class="btn btn-default btn-xs collapse-box"> <i
+                            class="fa fa-minus"></i>
+                        </a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                            <i class="fa fa-expand"></i>
+                        </a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                                <i class="fa fa-times"></i>
+                                            </a--> </nav>
+                    </div>
+                    <!-- /.toolbar --> </header>
+  
+<div   class="body collapse in table-responsive">
+	<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'
+            }">
+    <!--<div class="row">
+		<div class="col-lg-2">
+		  
+	        <h:link value="" outcome="add_PriseEnCharge"
+	            class="btn btn-lg btn-primary btn-block " immediate="true" >
+          	 <i class="fa fa-plus-circle">  </i>   Ajouter 
+          	 </h:link>
+        </div>     
+        <hr></hr>
+		<br/> 
+    </div>    -->
+    </c:if>   
+    
+    <h:form>
+
+
+    <p:dataTable   var="materiel" value="#{suivieditionBean.listMaterielNouveauNonValide}"
+                 widgetVar="MaterielTablenon"
+                 id ="MaterielTablenon"
+                 currentPageReportTemplate="({currentPage} sur {totalPages})"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px"
+                 emptyMessage="Aucun resultat"
+                 filterEvent="enter"
+                 >
+ 		<f:facet name="header">
+        Prise en charge non acceptée
+   		 </f:facet>
+        <p:column styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.idMateriel}" filterMatchMode="contains" style="width:7%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{materiel.idMateriel}" />
+        </p:column> 
+        <p:column styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.design.nomenMat}" headerText="Nomenclature"  filterMatchMode="exact" style="width:23%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTablenon').filter()" panelStyle="width:250px;" >
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listNomenclature}" var="type"
+								itemLabel="N#{type.nomenclature} - #{type.designation}"/>
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Nomenclature" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.nomenMat.nomenclature}" />
+        </p:column>
+        
+        <p:column styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.design.typematerieladd}" headerText="Type de matériel"  filterMatchMode="exact" style="width:23%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTablenon').filter()" panelStyle="width:250px;" filter="true" filterMatchMode="contains">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listTypeMateriel}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Type de matériel" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.typematerieladd.designation}" />
+        </p:column>
+        
+        <p:column  styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.reference}" filterMatchMode="contains" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Référence" />
+            </f:facet>
+           <h:outputText value=" #{materiel.reference}" />
+        </p:column>
+        <p:column styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.numSerie}" filterMatchMode="contains" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Numéro de série" />
+            </f:facet>
+            <h:outputText value="#{materiel.numSerie}" />
+        </p:column>
+        <p:column styleClass="#{materiel.myoperationEntree.state}" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Marque" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.marque.designation}" />
+        </p:column>
+        <p:column styleClass="#{materiel.myoperationEntree.state}" headerText="Caractéristiques" style="width:23%; text-align: center; word-wrap: break-word;" >
+        	<f:facet name="header">
+                <h:outputText value="Caractéristiques" />
+            </f:facet> 
+            <h:outputText value="#{materiel.design.renseignement}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Caractéristique" />
+            </f:facet>
+            <h:outputText value="#{materiel.caract}" />
+        </p:column-->
+        <p:column styleClass="#{materiel.myoperationEntree.state}" style="width:10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Mode d'acquisition" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.modAcq.designation}" />
+        </p:column>
+        
+		<p:column styleClass="#{materiel.myoperationEntree.state}" filterBy="#{materiel.code}" filterMatchMode="contains" style="width:8%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Code" />
+            </f:facet>
+            <h:outputText value="#{materiel.code}" />
+        </p:column>
+        <p:column styleClass="#{materiel.myoperationEntree.state}" style="width:9%; text-align: center; word-wrap: break-word;">
+        	<f:facet name="header" >
+                <h:outputText value="Validation GAC" />
+            </f:facet>
+            <h:outputText value="#{materiel.myoperationEntree.state == 'WAITING' ? 'En attente' : 'Déjà Refusée'}" />
+        </p:column>
+        
+        
+        <p:column styleClass="#{materiel.myoperationEntree.state}" style="width:7%; text-align: center; word-wrap: break-word;">
+
+            <f:facet name="header">
+                <h:outputText value="Détail" />
+            </f:facet>
+            <p:commandButton  action="#{depositaireBean.setCurentMaterielNouv(materiel)}"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin" update=":detail"/>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC'
+            }">
+             <p:commandButton  rendered="#{materiel.myoperationEntree.state=='WAITING'}" action="#{depositaireBean.setCurentMaterielNouv(materiel)}" update=":modifMatNouv"
+            oncomplete="PF('modifMatNouv').show()" icon="ui-icon-pencil"/>
+            </c:if>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or (topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' and materiel.isValidation)
+            }">
+            <p:commandButton  action="#{depositaireBean.deleteMaterielNouv(materiel)}"
+             icon="fa  fa-remove"
+            update=":formmodifmatnouv:msgtableDeleteMaterielnouv"
+       		oncomplete="PF('MaterielTablenon').filter()"
+            >
+            <p:confirm header="Confirmation" message="Etes-vous sure?" icon="ui-icon-alert" />
+       		</p:commandButton>
+            </c:if>
+        </p:column>
+    </p:dataTable>
+    
+    </h:form>
+    
+</div>
+</div>
+</div>
+</div>
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog styleClass="loader_dialog" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="">
+		<div align="center" class="">
+			<p:graphicImage style="width:35% !important; height:35% !important;" value="/pages/unsecure/assets/images/loading_small.gif" /> 
+		</div>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+
+<ui:include src="/pages/secure/CM/DC/tables/dialogs/dialogs_priseEnCharge.xhtml"></ui:include>
+<ui:include src="/pages/secure/CM/DC/tables/dialogs/dialogs_modifSaisieMatNouv.xhtml"></ui:include>
+
+
+</html>

@@ -1,0 +1,48 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+<div   class="body collapse in table-responsive">
+<c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+    <div class="col-lg-4">
+
+        <h:link value="" outcome="add_Service"
+            class="btn btn-lg btn-primary btn-block " immediate="true" >
+            <i class="fa fa-plus-circle">  </i>  Ajouter
+        </h:link>
+        <hr></hr>
+
+    </div>
+</c:if>
+
+    <p:dataTable   var="b" value="#{siseBean.listService}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginatorPosition="bottom"
+                 paginator="true" rows="10" style="margin-bottom:20px" emptyMessage="Aucun résultat">
+        <p:column>
+            <f:facet name="header">ID</f:facet>
+            #{b.id}
+        </p:column>
+        <p:column>
+            <f:facet name="header">Désignation</f:facet>
+            #{b.designation}
+        </p:column>
+        <p:column>
+            <f:facet name="header">Code</f:facet>
+            #{b.codeService}
+        </p:column>
+    </p:dataTable>
+
+
+
+</div>
+
+</html>

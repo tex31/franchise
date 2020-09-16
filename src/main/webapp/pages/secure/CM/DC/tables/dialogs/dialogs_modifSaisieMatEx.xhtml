@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+ <h:head></h:head>
+<style>
+	.info {
+	  position: fixed;
+	  bottom: 60px;
+	  right: 24px;
+	  height: 70px;
+	}
+</style>
+
+    <p:dialog id="modifMatex" widgetVar="modifMatex"  closable="false"
+    		  header   = "Modification d'un matériel existant" 
+              position = "center,top"
+              modal    = "true" showEffect="explode" hideEffect="explode" width="1300" height="700" minWidth="500" minHeight="250">
+        	<p:growl for="editmatexerror" redisplay="false" id="messagesgrowlmodify" showDetail="true" autoUpdate="true" />
+     
+		<div class="box dark col-md-12">
+
+    <div class="body">
+		
+        
+			<div class="row">
+				<div class="box dark col-md-3">
+					<div class="form-group">
+	
+						
+	                <!-- *********************************FILE UPLOAD ****************************************************-->
+				<!-- Changement des documents -->
+				<h:form  prependId="false"
+                				enctype="multipart/form-data"
+                				id="formfordoconly">
+						<p:messages id="docuploaderror" showDetail="true" autoUpdate="true" />
+			            <p:outputPanel id="testContainer">
+						
+			               <p:dataTable id="docIdmodif" var="row"
+			                             value="#{depositaireBean.documentList}" editable="true"
+			                             editMode="cell" widgetVar="documentTable">                
+			                			                
+			              <p:column headerText="Enregistrement de Document(s)">
+                        	<p:panel rendered="#{!row.uploaded}">
+                            <p:fileUpload value="#{depositaireBean.document}"
+                                          fileUploadListener="#{depositaireBean.uploadDoc_Advanced}"
+                                          mode="advanced" dragDropSupport="false" update="docIdmodif,@this"
+                                          sizeLimit="1000000"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png|txt|pdf|doc|docx)$/">
+                                <f:attribute name="docObj" value="#{row}"></f:attribute>
+                                Document accepté : gif, jpeg, png, txt, pdf, doc, docx
+                            </p:fileUpload>
+                            
+                        	</p:panel>
+                        	<p:panel rendered="#{row.uploaded}">
+                            Document  Transféré -      
+                            	<h:commandLink
+                                title="remove" value=""
+                                actionListener="#{depositaireBean.removeDoc(row)}" update="docIdmodif,@this"
+                                immediate="true"
+                                ajax="true" process="@this,uploaddoc" class="btn btn-sm btn-warning">
+                                <i class="fa fa-close"> </i> Enlever document
+                            	</h:commandLink>
+                       
+                        		</p:panel>
+                   			 </p:column>
+			                
+			                </p:dataTable>
+			                
+			           
+			            </p:outputPanel>
+			            <br />
+            			<div class="row">
+          					<div class="col-lg-6 col-lg-offset-3">
+                  				<p:commandButton value="Ajouter d'autres documents" process="@this"
+                                   update="docIdmodif" actionListener="#{depositaireBean.addNewDoc}"
+                                   ajax="true" />
+                     		</div>
+             			</div>
+             			<div class="row">
+	                			<div class="col-lg-12 col-lg-offset-0">
+	                				 <p:commandButton id="boutonDocUpd" value="Changer les documents" 						   
+									   styleClass="btn btn-lg btn-primary btn-block"
+									   actionListener="#{depositaireBean.upateMaterielDoc(depositaireBean.curentMaterielEx)}"
+					   					oncomplete="if (!args.validationFailed) PF('modifMatex').hide();" 
+					   					update=":formmodifmatex:materielTable" icon="ui-icon-refresh"/>
+	                			</div>
+	                		</div>
+	                	</h:form>
+			    <!-- End Changement des documents -->        
+			    <!-- **IMAGE UPLOAD** -->
+			            <!-- Form for image upload only -->
+						<h:form  prependId="false"
+                				enctype="multipart/form-data"
+                				id="formforimageonly">
+						<p:messages id="imageuploaderror" showDetail="true" autoUpdate="true" />
+						
+			    <!-- test if image already exist -->
+			    <p:panel rendered="#{depositaireBean.curentMaterielEx.design.image != null}">
+                                <h:graphicImage id="miniature" url="data:image/jpg;base64,#{depositaireBean.curentMaterielEx.design.image}"
+                                                width="75px" height="75px" title="#{depositaireBean.curentMaterielEx.reference}" library="images" onclick="PF('dlg').show();">
+                                </h:graphicImage>
+                                
+                               	<p:dialog id="large" widgetVar="dlg" resizable="f" height="530px" width="530px">
+								    <h:graphicImage  library="images" url="data:image/jpg;base64,#{depositaireBean.curentMaterielEx.design.image}" width="500px" height="300px"/>
+								</p:dialog>
+                </p:panel>
+                <p:dataTable id="imagemodId" var="rowIm"
+                             value="#{depositaireBean.imageList}" editable="true"
+                             editMode="cell" widgetVar="imageTable">
+
+                    <p:column headerText="Image">
+                        <p:panel rendered="#{!rowIm.uploaded}">
+                            <p:fileUpload 
+                                          fileUploadListener="#{depositaireBean.uploadIm_Advanced}"
+                                          mode="advanced" dragDropSupport="false" update="@this,imagemodId"
+                                          sizeLimit="1000000"
+                                          allowTypes="/(\.|\/)(gif|jpeg|tx|png|pdf)$/"
+                                          
+                                          >
+                                <f:attribute name="docObj" value="#{rowIm}"></f:attribute>
+                                Type d'image accepté : gif, jpeg, png
+                            </p:fileUpload>
+                            
+                        </p:panel>
+                        <p:panel rendered="#{rowIm.uploaded}">
+                            Image transféré -      
+                            <h:commandLink
+                                title="remove" value=" "
+                                actionListener="#{depositaireBean.removeDoc(rowIm)}" update="imagemodId"
+                                immediate="true"
+                                ajax="true" process="@this" class="btn btn-sm btn-warning " >
+                                <i class="fa fa-close"> </i> Enlever image
+                           	</h:commandLink>
+                        </p:panel>
+                    </p:column>
+                </p:dataTable> 
+                
+                		<div class="row">
+	                			<div class="col-lg-12 col-lg-offset-0">
+	                				 <p:commandButton id="boutonImageUpd" value="Changer image" 						   
+									   styleClass="btn btn-lg btn-primary btn-block"
+									   actionListener="#{depositaireBean.upateMaterielImage(depositaireBean.curentMaterielEx)}"
+					   					oncomplete="if (!args.validationFailed) PF('modifMatex').hide();" 
+					   					update=":formmodifmatex:materielTable" icon="ui-icon-refresh"/>
+	                			</div>
+	                		</div>
+               
+                </h:form><!-- END IMAGE UPLOAD -->
+			        <!-- *****************************END FILE UPLOAD **************************************** -->
+	            	</div>
+				</div>
+	            
+	        <h:form id="fileUpoadModifForm" class="form-horizontal" prependId="false"
+                enctype="multipart/form-data">
+
+            <p:messages id="messagesmodify" showDetail="true" autoUpdate="true" />
+	            <div class="box dark col-md-5">
+	            		<br/>
+	            		<c:if test="#{depositaireBean.curentMaterielEx.code == null}">
+						<div class = "row">
+							<div class="col-lg-4">
+								<label for="text1" class="control-label">Type de matériel *
+		                   	 	</label>
+							</div>
+		                    <div class="col-lg-6">
+		
+		                        <p:selectOneMenu id="zone"  styleClass="form-control top" converter="#{refConverter}"
+		                         value="#{depositaireBean.curentMaterielEx.design.typematerieladd}" panelStyle="width:250px;" >
+		                            <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+		                            <f:selectItems value="#{siseBean.groupeListTypeMateriel}" />
+		                        </p:selectOneMenu>
+		                    </div>
+						</div>
+	                    
+	                    <hr></hr>
+	                   </c:if>
+						<div class = "row">
+							<div class="col-lg-4">
+	
+			                    <label for="text1" class="control-label">Marque *
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">
+		
+			                    <p:selectOneMenu value="#{depositaireBean.curentMaterielEx.design.marque}" converter="#{refConverter}" 
+			                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+			                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+			                            <f:selectItems value="#{siseBean.listMarque}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+			                        <!-- <p:column>
+			                            <h:outputText value="#{t.designation}" />
+			                        </p:column> -->
+			                        
+			
+			                    </p:selectOneMenu>
+			
+		                    </div>
+	                	</div>
+	                	
+	                    <hr></hr>
+			
+						<div class = "row">
+							<div class="col-lg-4">		
+	
+			                    <label for="text1" class="control-label">Prix unitaire *
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">
+		
+		                        <p:inputText
+		                        value="#{depositaireBean.curentMaterielEx.design.pu}"
+		            
+		                        placeholder="Prix unitaire (en Ariary)" styleClass="form-control top">
+									<!-- f:convertNumber pattern="#,##0.###" currencySymbol=""></f:convertNumber-->									
+		                        </p:inputText>
+								(n)
+		                  	</div>
+	                    </div>
+	
+						<hr></hr>
+	
+						<div class = "row">
+							<div class="col-lg-4">	
+			                    <label for="text1" class="control-label">Caractéristiques
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">						
+								<p:inputTextarea value="#{depositaireBean.curentMaterielEx.design.renseignement}" rows="5" cols="25" counter="display" maxlength="250" counterTemplate="{0} restants" autoResize="false" />
+		    						<h:outputText id="display" />
+		
+		                    </div>
+	                    </div>
+	                    	
+						<hr></hr>
+	                	
+	                	<div class = "row">
+							<div class="col-lg-4">
+			
+			                    <label for="text1" class="control-label">Autre
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">
+		
+		                        <p:inputText
+		                        value="#{depositaireBean.curentMaterielEx.design.autre}"
+		                        placeholder="Autre" styleClass="form-control top"></p:inputText>
+		
+		               		</div>
+						 </div>
+						 <br/>
+				</div>
+				<div class="col-md-4">
+					<br/>
+					<div class = "row">
+							<div class="col-lg-4">
+	
+			                    <label for="text1" class="control-label ">Année d'acquisition *
+			                    </label>
+		                    </div>
+	
+		                    <div class="col-lg-6">
+		
+		                        <p:inputText  required="true"
+		                        value="#{depositaireBean.curentMaterielEx.design.anneeAcquisition}"
+		                        requiredMessage="Champ Année d'acquisition obligatoire"
+		                        placeholder="Année d'acquisition" styleClass="form-control top"></p:inputText>
+								(n)
+		                    </div>
+		                    
+						</div>
+						
+						<hr></hr>
+						
+						<div class = "row">
+							<div class="col-lg-4">
+			                    <label for="text1" class="control-label ">Origine *
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">
+		
+		                        <p:inputText
+		                        value="#{depositaireBean.curentMaterielEx.design.origine}"
+		                        placeholder="" styleClass="form-control top"></p:inputText>
+		
+		                    </div>
+						</div>
+						
+						<hr></hr>
+						
+						<div class = "row">
+							<div class="col-lg-4">
+	
+			                    <label for="text1" class="control-label ">Espèce des unités *
+			                    </label>
+							</div>
+		                    <div class="col-lg-6">
+		
+		                        <p:inputText  required="true"
+		                        value="#{depositaireBean.curentMaterielEx.design.especeUnite}"
+		                        requiredMessage="Champ Espèce des unités obligatoire"
+		                        placeholder="" styleClass="form-control top"></p:inputText>
+		
+		                    </div>
+	
+						</div>
+						
+						<hr></hr>
+	
+						<div class = "row">
+							<div class="col-lg-4">
+						
+			                    <label for="text1" class="control-label ">Etat *</label>
+							</div>
+			                <div class="col-lg-6">
+			
+			
+			                    <p:selectOneMenu value="#{depositaireBean.curentMaterielEx.etat}" converter="#{refConverter}" 
+			                         effect="fade" filter="true" filterMatchMode="startsWith" panelStyle="width:250px;" >
+			                        <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+			                            <f:selectItems value="#{siseBean.listEtatMateriel}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+			                        <!-- <p:column>
+			                            <h:outputText value="#{t.designation}" />
+			                        </p:column> -->
+			                        
+			
+			                    </p:selectOneMenu>
+			                </div>
+	                	</div>
+	                	
+	                	<hr></hr>
+				<!-- LES REFERENTIELS -->
+				<div class="row">
+					<p:panel>
+	             			<h:outputLabel for="reference" value="Référence:" />
+	                        <p:inputText id="reference" required="true"
+	                        value="#{depositaireBean.curentMaterielEx.reference}"
+	                        requiredMessage="Champ Référence obligatoire"
+	                        placeholder="Référence * (obligatoire)" styleClass="form-control top"></p:inputText>
+	                        </p:panel>
+	                        <hr></hr>
+	                        <p:panel>
+	                        <h:outputLabel for="numeroserie" value="Numéro de série" />
+	                            <p:inputText  required="true" id="numeroserie"
+	                        value="#{depositaireBean.curentMaterielEx.numSerie}"
+	                        requiredMessage="Champ Numéro de série obligatoire"
+	                        placeholder="Numéro de série * (obligatoire)" styleClass="form-control top"></p:inputText>
+	                        <hr></hr>
+	                        
+	              	</p:panel>
+				</div>
+	            <br/>
+				
+				
+				</div>            
+           	 	
+           	
+           	<div class="row">
+           		<div class="form-group col-md-12">
+           			<div class="row">
+           				<div class="col-lg-4">
+	           				 <label for="text1" class="control-label"></label>
+						</div>
+	                	<div class="col-lg-4">
+	                		<div class="row">
+	                			<div class="col-lg-12 col-lg-offset-0">
+	                				 <p:commandButton id="btnSignId" value="Mettre à jour" 						   
+									   styleClass="btn btn-lg btn-primary btn-block"
+									   actionListener="#{depositaireBean.updateMaterielExistant(depositaireBean.curentMaterielEx)}"
+					   					oncomplete="if (!args.validationFailed) PF('modifMatex').hide();" 
+					   					update=":formmodifmatex:materielTable" icon="ui-icon-refresh"/>
+	                			</div>
+	                		</div>
+		                    
+	   					</div>
+		                <div class="col-lg-4">
+		                	<div class="row">
+	                			<div class="col-lg-12 col-lg-offset-0">
+						            <h:commandLink action="#{depositaireBean.exit()}" value="" 
+						            class="btn btn-lg btn-primary btn-block"> <span style="color:#FFF;"><i class="fa fa-sign-out"></i> Cancel  </span>                   
+				            		</h:commandLink>
+			            		</div>
+		            		</div>
+		                </div>
+           			</div>
+           		</div>
+			</div>
+			</h:form>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="alert alert-info info">
+  <strong>( * ) </strong> : Champ obligatoire<br></br>
+  <strong>( n ) </strong> : Champ à valeur numérique <br></br>
+</div>
+		
+        
+    </p:dialog>
+
+</html>

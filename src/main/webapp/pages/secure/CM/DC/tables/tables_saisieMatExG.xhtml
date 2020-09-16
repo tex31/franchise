@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:pe="http://primefaces.org/ui/extensions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<h:head></h:head>
+
+<div   class="body collapse in table-responsive">
+	
+	
+    <h:form id="formmodifmatex">
+    <p:growl for="deleteMateriel" id="msgtableDeleteMateriel" showDetail="true" sticky="true" redisplay="false"/>
+    <p:tabView scrollable="true" id="allTable">
+		<c:forEach var="dir" items="${siseBean.listDirection}" varStatus="status">
+		<p:tab title="${dir.codeDirection}">
+    <p:dataTable   var="materiel" value="#{suivieditionBean.getListMaterielExistantFor(dir)}"
+                 widgetVar="MaterielTable#{dir.id}"
+                 id="materielTable#{dir.id}" 
+                 currentPageReportTemplate="({currentPage} sur {totalPages})"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="10" style="margin-bottom:20px"
+                 emptyMessage="Aucun resultat"
+                 filterEvent="enter" 
+                 
+                 >
+ 		<f:facet name="header">
+        Matériels Existants - #{dir.designation}
+   		 </f:facet>
+        <p:column filterBy="#{materiel.idMateriel}" filterMatchMode="contains" style="width: 7%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{materiel.idMateriel}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Prix Unitaire" />
+            </f:facet>
+            <h:outputText value="#{materiel.pu}" />
+        </p:column-->
+        <p:column filterBy="#{materiel.design.nomenMat}" headerText="Nomenclature"  filterMatchMode="exact" style="width: 20%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTable#{dir.id}').filter()" panelStyle="width:250px;">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listNomenclature}" var="type"
+								itemLabel="N#{type.nomenclature} - #{type.designation}"/>
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Nomenclature" />
+            </f:facet> 
+            <h:outputText value="#{materiel.design.nomenMat.nomenclature}" />
+        </p:column>
+        <p:column filterBy="#{materiel.design.typematerieladd}" headerText="Type de matériel"  filterMatchMode="exact" style="width:23%; text-align: center; word-wrap: break-word;">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('MaterielTable#{dir.id}').filter()" panelStyle="width:250px;" filter="true" filterMatchMode="contains">
+                    <f:selectItem itemLabel="Selectionner" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{siseBean.listTypeMateriel}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Type de matériel" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.typematerieladd.designation}" />
+        </p:column>
+        
+        
+        
+        
+        
+        <p:column filterBy="#{materiel.reference}" filterMatchMode="contains" style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Référence" />
+            </f:facet>
+            <h:outputText value="#{materiel.reference}" />
+        </p:column>
+        <p:column filterBy="#{materiel.numSerie}" filterMatchMode="contains" style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Numéro de série" />
+            </f:facet>
+            <h:outputText value="#{materiel.numSerie}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Autre" />
+            </f:facet>
+           <h:outputText value=" #{materiel.autre}" />
+        </p:column-->
+        
+        <p:column style="width:23%; text-align: center; word-wrap: break-word;">
+        	<f:facet name="header">
+                <h:outputText value="Caractéristiques" />
+            </f:facet> 
+            <h:outputText value="#{materiel.design.renseignement}" />
+        </p:column>
+        
+        
+        <p:column style="width: 7%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Etat" />
+            </f:facet>
+            <h:outputText value="#{materiel.etat.designation}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Caractéristiques" />
+            </f:facet>
+            <h:outputText value="#{materiel.caract}" />
+        </p:column-->
+        <p:column style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Marque" />
+            </f:facet>
+            <h:outputText value="#{materiel.design.marque.designation}" />
+        </p:column>
+        <p:column style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header">
+                <h:outputText value="Dépositaire" />
+            </f:facet>
+            <h:outputText value="#{materiel.dc.nomAgent}" />
+        </p:column>
+        <p:column filterBy="#{materiel.code}" filterMatchMode="contains" style="width: 10%; text-align: center; word-wrap: break-word;">
+            <f:facet name="header" >
+                <h:outputText value="Code" />
+            </f:facet>
+            <h:outputText value="#{materiel.code}" />
+        </p:column>
+        <!--p:column>
+            <f:facet name="header">
+                <h:outputText value="Documents" />
+            </f:facet>
+            <h:outputLink value="#{materiel.fileName}" >
+                Download back
+            </h:outputLink>
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Photo" />
+            </f:facet>
+            <h:graphicImage value="#{materiel.photo}" />
+        </p:column-->
+        <p:column style="width:7%; text-align: center; word-wrap: break-word;">
+
+            <f:facet name="header">
+                <h:outputText value="Détail" />
+            </f:facet>
+            <p:commandButton  action="#{depositaireBean.setCurentMaterielEx(materiel)}" update=":detail"
+            oncomplete="PF('detail').show()" icon="ui-icon-zoomin"/>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or (topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' and materiel.isValidation)
+            }">
+            <p:commandButton  action="#{depositaireBean.setCurentMaterielEx(materiel)}" update=":modifMatex"
+            oncomplete="PF('modifMatex').show()" icon="ui-icon-pencil"/>
+            </c:if>
+            <c:if test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            or (topMenuMB.curentAgent.roleAgent.role eq 'ROLE_DC' and materiel.isValidation)
+            }">
+            <p:commandButton  action="#{depositaireBean.deleteMaterielEx(materiel)}"
+             icon="fa  fa-remove"
+            update=":formmodifmatex:msgtableDeleteMateriel"
+       		oncomplete="PF('MaterielTable#{dir.id}').filter()"
+            >
+            <p:confirm header="Confirmation" message="Etes-vous sure?" icon="ui-icon-alert" />
+       		</p:commandButton>
+            </c:if>
+        </p:column>
+    </p:dataTable>
+    </p:tab>
+	</c:forEach >
+        
+     </p:tabView>
+    
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog styleClass="loader_dialog" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="">
+		<div align="center" class="">
+			<p:graphicImage style="width:35% !important; height:35% !important;" value="/pages/unsecure/assets/images/loading_small.gif" /> 
+		</div>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+    </h:form>
+</div>
+
+<ui:include src="/pages/secure/CM/DC/tables/dialogs/dialogs_saisieMatEx.xhtml"></ui:include>
+<ui:include src="/pages/secure/CM/DC/tables/dialogs/dialogs_modifSaisieMatExG.xhtml"></ui:include>
+
+</html>

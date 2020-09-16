@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<div class="body collapse in table-responsive">
+	<h:form id="formUser"
+		onkeypress="if (event.keyCode == 13) {return false; }">
+		<p:growl for="myerrorReferentiel" id="msgtableUser" showDetail="true"
+			sticky="true" redisplay="false" />
+		<c:if
+			test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+			<div class="col-lg-4">
+
+				<h:link value="" outcome="add_Utilisateur"
+					class="btn btn-primary btn-lg btn-block " immediate="true">
+					<i class="fa fa-plus-circle"> </i>  Ajouter
+		</h:link>
+				<hr></hr>
+
+			</div>
+		</c:if>
+		<p:dataTable var="f" value="#{userMB.userList}"
+			currentPageReportTemplate="({currentPage} sur {totalPages})"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters} "
+			paginatorPosition="bottom" paginator="true" rows="10"
+			style="margin-bottom:20px" emptyMessage="Aucun résultat"
+			id="tableUserMat" widgetVar="UserTable"
+			filterEvent="enter"
+			rowStyleClass="#{f.active eq false ? 'bg-dark' : 'bg-dark'}">
+			
+			<f:facet name="{Exporters}">
+            <h:commandLink>
+                <i class="fa fa-table">  </i> Excel
+                <p:dataExporter type="xls" target="tableUserMat" fileName="utilisateursigma" />
+            </h:commandLink>
+ 			<span>   </span>
+            <h:commandLink>
+            	<i class="fa fa-file">  </i> PDF
+            	
+                <p:dataExporter encoding="ISO-8859-1" type="pdf" target="tableUserMat" facetFontStyle="BOLD" 
+                fileName="utilisateursigma"
+                cellFontStyle="NORMAL"
+                tableTitle="Liste des utilisateurs"
+                preProcessor="#{dtFilterView.preProcessPDF}"
+                datasetPadding="4"/>
+            </h:commandLink>
+        </f:facet>
+			
+			<p:column id="imma" styleClass="state-#{f.active}" filterBy="#{f.im}"
+				filterEvent="onenter" filterDelay="9000" filterMatchMode="contains"
+				style="width: 5%; text-align: center; word-wrap: break-word;">
+				<f:facet name="header">Immatriculation</f:facet>
+			<h:outputText value="#{f.im}"></h:outputText>
+		</p:column>
+			<p:column styleClass="state-#{f.active}" filterBy="#{f.nomAgent}"
+				filterMatchMode="contains"
+				style="width: 5%; text-align: center; word-wrap: break-word;">
+				<f:facet name="header">Nom</f:facet>
+			<h:outputText value="#{f.nomAgent} #{f.prenomAgent}"></h:outputText>
+		</p:column>
+			<p:column styleClass="state-#{f.active}"
+				filterBy="#{f.roleAgent.designation}" filterMatchMode="contains"
+				style="width: 5%; text-align: center; word-wrap: break-word;">
+				<f:facet name="header">Fonction</f:facet>
+			<h:outputText value="#{f.roleAgent.designation}"></h:outputText>
+		</p:column>
+			<!--  ><p:column style="width: 5%; text-align: center; word-wrap: break-word;">
+			<f:facet name="header">Rôle</f:facet>
+			:#{f.roleAgent.role}
+		</p:column> -->
+			<p:column styleClass="state-#{f.active}"
+				filterBy="#{f.direction.designation}" filterMatchMode="contains"
+				style="width: 10%; text-align: center; word-wrap: break-word;">
+				<f:facet name="header">Direction</f:facet>
+			<h:outputText value="#{f.direction.designation}"></h:outputText>
+		</p:column>
+			<!--p:column>
+			<f:facet name="header">Service</f:facet>
+			#{f.service.designation}
+		</p:column-->
+			<p:column styleClass="state-#{f.active}"
+				filterBy="#{f.posteny.designation}" filterMatchMode="contains"
+				style="width: 5%; text-align: center; word-wrap: break-word;">
+				<f:facet name="header">Poste</f:facet>
+			<h:outputText value="#{f.posteny.designation}"></h:outputText>
+		</p:column>
+			<c:if
+				test="#{topMenuMB.curentAgent.roleAgent.role eq 'ROLE_ADMIN' 
+            or topMenuMB.curentAgent.roleAgent.role eq 'ROLE_SISE'
+            }">
+				<p:column exportable="false" styleClass="state-#{f.active}"
+					style="width: 3%; text-align: center; word-wrap: break-word;">
+					<p:commandButton action="#{userMB.setCurrentAgenttomodify(f)}"
+						update=":detailuser" oncomplete="PF('detailuser').show()"
+						icon="ui-icon-pencil" />
+					<div style="display: inline-block">
+						<p:commandButton action="#{siseBean.deleteUser(f)}"
+							icon="fa  fa-remove" update=":formUser:msgtableUser"
+							oncomplete="PF('UserTable').filter()">
+							<p:confirm header="Désactiver utilisateur"
+								message="Etes-vous sure?" icon="ui-icon-alert" />
+						</p:commandButton>
+					</div>
+				</p:column>
+			</c:if>
+		</p:dataTable>
+		
+
+	</h:form>
+
+</div>
+
+</html>

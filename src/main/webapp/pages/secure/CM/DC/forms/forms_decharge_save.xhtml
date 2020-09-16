@@ -1,0 +1,166 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+ <h:head></h:head>
+
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+    <div class="body">
+
+        <h:form class="form-horizontal">
+
+            <p:messages id="messages" />
+
+            <div class="form-group">
+
+
+
+                <label for="text1" class="control-label col-lg-4">Motif de sortie
+                </label>
+
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.motif}">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listMotifSortie}" var="m" itemLabel="#{m.designation}"/>
+                    </p:selectOneMenu>
+
+                <hr></hr>
+
+                </div>
+                
+                
+
+
+                <label for="text1" class="control-label col-lg-4">Matériel
+                </label>
+
+                <div class="col-lg-6">
+
+                    <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.materiel}"
+                    valueChangeListener="#{depositaireBean.onMaterielChange}">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.mistMateriel}" var="m" itemLabel="#{m.nomenclature}"/>
+                    </p:selectOneMenu>
+
+                <hr></hr>
+
+                </div>
+                
+                
+
+
+                <label for="text1" class="control-label col-lg-4">Marque
+                </label>
+
+                <div class="col-lg-6">
+
+                    <h:inputText value="#{depositaireBean.marq.designation}" 
+                        disabled="true"></h:inputText>
+
+                </div>
+                
+            <hr></hr>
+
+                <label for="text1" class="control-label col-lg-4">Référence
+                </label>
+
+                <div class="col-lg-6">
+
+                    <h:inputText value="#{depositaireBean.reference}"   
+                        disabled="true"></h:inputText>
+
+                </div>
+                
+                <hr></hr>
+
+                <label for="text1" class="control-label col-lg-4">Numer de série
+                </label>
+
+                <div class="col-lg-6">
+
+                    <h:inputText value="#{dechargeMB.numSerie}" 
+                        disabled="true"></h:inputText>
+
+                </div>
+                
+                <hr></hr>
+
+
+                 <label for="text1" class="control-label col-lg-4">Destination</label>
+
+                <div class="col-lg-6">
+
+                    <!--label for="text1" >Bureau</label>
+
+                    <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.destination}">
+                        <f:selectItem itemValue="#{null}" itemLabel="" /> 
+                            <f:selectItems value="#{siseBean.listBureau}" var="b" itemLabel="#{b.codeBureau}"/>
+                    </p:selectOneMenu-->
+
+                    <!--label for="text1" >Service</label>
+
+                    <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.destination}">
+                        <f:selectItem itemValue="#{null}" itemLabel="select" /> 
+                            <f:selectItems value="#{siseBean.listService}" var="b" itemLabel="#{b.codeService}"/>
+                    </p:selectOneMenu-->
+
+                    <label for="text1" >Direction</label>
+
+                    <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.destination}">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listDirection}" var="b" itemLabel="#{b.codeDirection}"/>
+                    </p:selectOneMenu>
+
+                <hr></hr>
+
+                </div>
+                
+                
+
+                <label for="text1" class="control-label col-lg-4">Pièce justificative
+                </label>
+
+                <div class="col-lg-6">
+
+                    <h:inputFile id="files" value="#{depositaireBean.file}"/>
+
+                <hr></hr>
+
+                </div>
+                
+                
+
+
+                <div class="col-lg-2"></div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="text1" class="control-label col-lg-4"></label>
+
+                <div class="col-lg-4">
+                    <h:commandButton id="btnSignId" action="#{depositaireBean.addDecharge}" value="Décharger"
+                        class="btn btn-lg btn-primary btn-block"/>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+
+ <h:head></h:head>
+
+
+<div class="col-lg-6" id="type">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Types d'objet</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CA/SISE/tables/tables_saisieTypeMat.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+
+
+<div class="col-lg-6" id="nom">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<!-- <h5>Codification des articles</h5> -->
+		<h5>Articles</h5>
+		<!-- .toolbar -->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!--a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a--> </nav>
+		</div>
+		<!-- /.toolbar --> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CA/SISE/tables/tables_saisieCodification.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+
+
+<!--  
+<div class="col-lg-6" id="marque">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Marques</h5>
+		<!-.toolbar ->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a-> </nav>
+		</div>
+		<!-/.toolbar -> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMarque.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+-->
+
+<!--  
+<div class="col-lg-6" id="user">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Liste bénéficiaires</h5>
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a-> </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieUtilisateurs.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+-->
+
+<!-- 
+<div class="col-lg-6" id="fin">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Financement</h5>
+		<!- .toolbar ->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a-> </nav>
+		</div>
+		<!- /.toolbar -> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieFinancement.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+-->
+<!--div class="col-lg-6" id="bureau">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Bureau</h5>
+		
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a>  </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CA/SISE/tables/tables_saisieBureau.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div-->
+
+<!-- 
+<div class="col-lg-6" id="acq">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Mode d'aquisitions</h5>
+		<!- .toolbar ->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a-> </nav>
+		</div>
+		<!- /.toolbar -> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieMotifAquisition.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+-->
+
+<!--  
+
+<div class="col-lg-6" id="fou">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Fournisseurs</h5>
+		<!- .toolbar ->
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> <!-a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                    <i class="fa fa-times"></i>
+                                </a-> </nav>
+		</div>
+		<!- /.toolbar -> </header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieFournisseur.xhtml"></ui:include>
+
+
+		</div>
+	</div>
+</div>
+-->
+
+<!--  
+<div class="col-lg-6" id="role">
+	<div class="box dark">
+		<header>
+		<div class="icons">
+			<i class="fa fa-edit"></i>
+		</div>
+		<h5>Fonction</h5>
+		
+		<div class="toolbar">
+			<nav style="padding: 8px;"> <a href="javascript:;"
+				class="btn btn-default btn-xs collapse-box"> <i
+				class="fa fa-minus"></i>
+			</a> <a href="javascript:;" class="btn btn-default btn-xs full-box">
+				<i class="fa fa-expand"></i>
+			</a> </nav>
+		</div>
+		</header>
+		<div class="body">
+
+			<ui:include src="/pages/secure/CM/SISE/tables/tables_saisieRole.xhtml"></ui:include>
+
+		</div>
+	</div>
+</div>
+
+<ui:include src="/pages/secure/CM/SISE/tables/dialogs/dialogs_useredit.xhtml"></ui:include>
+
+-->
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog styleClass="loader_dialog" widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="">
+		<div align="center" class="">
+			<p:graphicImage style="width:35% !important; height:35% !important;" value="/pages/unsecure/assets/images/loading_small.gif" /> 
+		</div>
+	</p:dialog>
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+</p:confirmDialog>
+
+</html>
+
+
+

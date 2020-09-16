@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+    <p:dialog id="detail" widgetVar="detail"  position = "center,top" closable="false" header="Détails du nouveau article" showEffect="explode" hideEffect="explode" width="1000" height="350" minWidth="400" minHeight="250">
+
+    <h:form class="form-horizontal">
+            <h:commandButton action="#{depositaireBean.exit()}" value="X" style="valign:bottom;float:right;padding-right:20px">
+                        
+            </h:commandButton>
+            </h:form>
+        
+
+    <div   class="body collapse in table-responsive">
+
+        <table class="table responsive-table">
+                    <tr>
+                        <td><strong>ID</strong></td>
+                        <td>#{depositaireBean.curentArticle.idArticle}</td>
+                        <td><strong>Type des objets</strong></td>
+                        <td>#{depositaireBean.curentArticle.codeArticle.typeObjet.designation}</td>
+                       
+                    </tr>
+                    <tr>
+                    	<td><strong>Article</strong></td>
+						<td>#{depositaireBean.curentArticle.codeArticle.designation}</td>
+						<!-- <td><strong>Fournisseur</strong></td>
+                        <td>#{depositaireBean.curentArticle.fournisseur.designation}</td> -->
+						<td><strong>Espece des unités</strong></td>
+                        <td>#{depositaireBean.curentArticle.especeunit}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Montant</strong></td>
+                        <td>
+                        	<h:outputText value="#{depositaireBean.curentArticle.prix}" ><f:convertNumber locale="fr_BE" currencySymbol="Ar "></f:convertNumber></h:outputText>
+                     	</td>	
+                        <td><strong>Nombre</strong></td>
+                        <td>#{depositaireBean.curentArticle.nombre}</td>
+                    </tr>
+                    
+                    <tr>
+                    	<td><strong>Caractéristique</strong></td>
+                        <td>#{depositaireBean.curentArticle.caracteristiqueArticle}</td>
+                        <td><strong>Marque</strong></td>
+                        <td>#{depositaireBean.curentArticle.marqueArticle}</td>
+                       
+                    </tr>
+                    
+                    <tr>
+                    	<td><strong>Origine</strong></td>
+                        <td>#{depositaireBean.curentArticle.origine}</td>
+                        <td><strong>Référence</strong></td>
+                        <td>#{depositaireBean.curentArticle.reference}</td>
+                       
+                    </tr>
+                    <tr>
+                    	<td><strong>Nombre restant</strong></td>
+                        <td>#{depositaireBean.calculNombreRestant(depositaireBean.curentArticle)}</td>
+                        <td><strong>Validité</strong></td>
+                        <td>#{depositaireBean.curentArticle.validation}</td>
+                    </tr>
+
+        </table>
+    </div>
+                    
+    </p:dialog>
+
+</html>

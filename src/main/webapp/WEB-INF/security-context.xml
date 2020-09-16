@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+			 xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- Enable method level Spring Security by annotations -->
+	<sec:global-method-security
+			pre-post-annotations="enabled" />
+	<sec:http auto-config="true" use-expressions="true">
+		<!-- Page level Spring Security : Intercept access to resources in /** 
+		<sec:intercept-url pattern="/**" 	access="permitAll"  />-->
+		<!-- Page level Spring Security : Intercept access to resources in /pages/secure/** -->
+		<!-- ADMIN-->
+		<sec:access-denied-handler ref="my403" />
+		<sec:intercept-url pattern="/pages/secure/admin/**"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS','ROLE_SISE','ROLE_DG', 'ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/admin/**"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS','ROLE_SISE','ROLE_DG', 'ROLE_DRF','ROLE_CONSLOCAL')" />
+
+		<sec:intercept-url pattern="/pages/template/common/**"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS','ROLE_DC','ROLE_GAC','ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+
+		<sec:intercept-url pattern="/pages/secure/choice.xhtml"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS','ROLE_DC','ROLE_GAC','ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/user/**"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS','ROLE_DC','ROLE_GAC','ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						   
+		<sec:intercept-url pattern="/pages/secure/CM/ComptaMatiere.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS', 'ROLE_GAC', 'ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+
+		<sec:intercept-url pattern="/pages/secure/CA/ComptaAdmin.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS', 'ROLE_GAC', 'ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern=" /pages/secure/admin/adminCA.xhtml"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS', 'ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						   
+		<!-- CONSULTATION GENERALE -->
+		<sec:intercept-url pattern="/pages/secure/CM/DC/saisieMatExG.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DC/priseEnChargeG.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/tracabiliteG.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/listeMatStatGeneral.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/editionEtatsG.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" />
+		<sec:intercept-url pattern="/pages/secure/CA/DGD/listeMatStatHistoG.xhtml"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_DG','ROLE_DRF')" /> 
+						   			  
+
+		<!-- SAISIE DES REFERENCES -->
+		<sec:intercept-url pattern="/pages/secure/CM/SISE/saisieRef.xhtml"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS', 'ROLE_SISE','ROLE_DRF','ROLE_DG')" />
+		<sec:intercept-url pattern="/pages/secure/CA/SISE/saisieRef.xhtml"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS', 'ROLE_SISE','ROLE_DRF','ROLE_DG')" />
+						   
+		<!-- GAC-->
+		<sec:intercept-url pattern="/pages/secure/CM/GAC/**"
+						   access="hasAnyRole('ROLE_GAC','ROLE_ADMIN')" />
+						   
+		
+						   
+		<sec:intercept-url pattern="/pages/secure/CA/GAC/**"
+						   access="hasAnyRole('ROLE_GAC','ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/gac/**"
+						   access="hasAnyRole('ROLE_GAC','ROLE_ADMIN')" />
+
+		<!-- DEPOSITAIRE COMPTABLE -->
+		
+		<sec:intercept-url pattern="/dc/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DC/saisieMatEx.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE', 'ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DC/priseEnCharge.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE', 'ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						   
+		<sec:intercept-url pattern="/pages/secure/CA/DC/saisieMatEx.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE', 'ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/pages/secure/CA/DC/priseEnCharge.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE', 'ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						
+		<sec:intercept-url pattern="/pages/secure/CA/DC/decharge.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN')" />
+						   
+		
+		<sec:intercept-url pattern="/pages/secure/CM/DC/decharge.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DC/attribution.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DC/detachement.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN')" />				   
+		
+		<sec:intercept-url pattern="/pages/secure/CM/DC/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE')" />
+						   
+		<sec:intercept-url pattern="/pages/secure/CA/DC/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE')" />
+		
+		
+		<sec:intercept-url pattern="/operation/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_CONS','ROLE_SISE','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />				   
+		
+						   
+		<!-- EDITION DES DOCUMENTS -->
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/tables/dialogs/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+
+		
+		<!-- CONSULTATION-->
+		
+		<sec:intercept-url pattern="/tracabilite/comptabilite-matiere/suivi/tracabilite"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		
+		
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/listeMatStatHisto.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/editionEtats.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		
+		<sec:intercept-url pattern="/pages/secure/CM/tables/dialogs/dialogs_grandLivre.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/pages/secure/CM/tables/dialogs/dialogs_saisieMatEx1.xhtml"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						   				   
+		<sec:intercept-url pattern="/pages/secure/CM/DGD/**"
+						   access="hasAnyRole('ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+						   
+		<sec:intercept-url pattern="/pages/secure/CA/DGD/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_DRF','ROLE_CONSLOCAL')" />
+		<sec:intercept-url pattern="/suivis/**"
+						   access="hasAnyRole('ROLE_DC','ROLE_CONS','ROLE_ADMIN','ROLE_SISE','ROLE_GAC','ROLE_DG','ROLE_DRF','ROLE_CONSLOCAL')" />
+		
+		
+		
+						   
+						   
+		<!-- SISE-->
+		<sec:intercept-url pattern="/pages/secure/CM/SISE/**"
+						   access="hasAnyRole('ROLE_SISE','ROLE_ADMIN')" />
+						   
+						   <sec:intercept-url pattern="/pages/secure/CA/SISE/**"
+						   access="hasAnyRole('ROLE_SISE','ROLE_ADMIN')" />
+		<!-- ALL -->
+		<sec:intercept-url pattern="/pages/secure/**"
+						   access="hasAnyRole('ROLE_ADMIN','ROLE_CONS')" />
+						   
+						
+
+		<!-- Page level Spring Security : Permit access to resources in /pages/unsecure/** -->
+		<sec:intercept-url pattern="/pages/unsecure/**"
+						   access="permitAll" />
+		<sec:intercept-url pattern="/docs/**"
+						   access="permitAll" />
+
+		<!-- Page level Spring Security : Permit access to resources in /resources/** -->
+		<sec:intercept-url pattern="/resources/**"
+						   access="permitAll" />
+		<sec:intercept-url pattern="/pages/template/unsecure/**"
+						   access="permitAll" />
+
+		<!-- Page level Spring Security : Intercept access to resources in /** -->
+		<sec:intercept-url pattern="/**" 	access="permitAll"  />
+
+		<!-- Page level Spring Security : Enable Primefaces -->
+		<sec:intercept-url pattern="/javax.faces.resource/**"
+						   access="permitAll" />
+
+
+
+		<!-- Define login page for Spring Security -->
+		<sec:form-login login-page="/pages/unsecure/login.xhtml" />
+
+		<!-- Define logout properties for Spring Security -->
+		<sec:logout invalidate-session="true" delete-cookies="true"
+					logout-success-url="/"></sec:logout>
+	</sec:http>
+
+	<!-- Set customUserDetailsService class as the authentication Manager for
+		Spring Security -->
+	<beans:bean id="customAuthenticationProvider" class="com.douane.security.CustomAuthenticationProvider"/>
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider ref="customAuthenticationProvider">
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<!-- Inject authentication Manager to our LoginBean -->
+	<beans:bean id="loginBean" name="loginBean"
+				class="com.douane.managed.bean.LoginBean" scope="prototype">
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="userManagedBean" name="userManagedBean"
+				class="com.douane.managed.bean.UserManagedBean" scope="prototype">
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="my403"
+				class="com.douane.exception.CustomAccessDeniedHandler">
+		<beans:property name="message" value="403" />
+	</beans:bean>
+
+
+</beans:beans>

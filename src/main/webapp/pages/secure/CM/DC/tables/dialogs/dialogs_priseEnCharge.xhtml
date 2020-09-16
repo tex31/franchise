@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+    <p:dialog id="detail" widgetVar="detail" position = "center,top" closable="false" header="Détails du matériel prise en charge" showEffect="explode" hideEffect="explode" width="1000" height="600" minWidth="400" minHeight="250">
+
+    <h:form class="form-horizontal">
+            <p:commandButton actionListner="#{depositaireBean.exit()}" icon="ui-icon-delete"
+            style="valign:bottom;float:right;padding-right:20px" ajax="false"/>
+                        
+            </h:form>
+        
+
+    <div   class="body collapse in table-responsive">
+    
+    <br /><br />
+
+        <table class="table responsive-table">
+        			<!-- <tr>
+                        <td><strong>ID</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.idMateriel}</td>
+                    </tr> -->
+                    <tr>
+                        <!--  <td><strong>Type de matériel</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.nomenMat.designation}</td> -->
+                        <td><strong>ID</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.idMateriel}</td>
+                        <td></td>
+                        <td><strong>Financement</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.financement.designation}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Type de matériel - Nomenclature</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.typematerieladd.designation} - #{depositaireBean.curentMaterielNouv.design.nomenMat.nomenclature}</td>
+                        <td></td>
+                        <td><strong>Prix unitaire</strong></td>
+                        <td>
+                            <h:outputText value="#{depositaireBean.curentMaterielNouv.design.pu}" >
+                            <f:convertNumber locale="fr_BE"></f:convertNumber>
+                            </h:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marque</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.marque.designation}</td>
+                        <td></td>
+                        <td><strong>Référence pj</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.refFacture}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Référence</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.reference}</td>
+                        <td></td>
+                        <td><strong>Document</strong></td>
+                        <td>
+
+                            <c:if test="#{depositaireBean.filedownload ne null}" >
+                                <h:form>
+                                    <p:commandButton id="downloadLink" value="Télécharger" ajax="false" icon="ui-icon-document"> 
+                                        <f:setPropertyActionListener target="#{depositaireBean.fileZipPath}" value="delete" />
+                                        <p:fileDownload value="#{depositaireBean.filedownload}" />
+                                        <!-- i class="fa fa-file-archive-o"></i-->
+                                    </p:commandButton>
+                                </h:form>
+                            </c:if>
+
+                         </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td><strong>Numéro de Série</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.numSerie}</td>
+                        <td></td>
+                        <td><strong>Fournisseur</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.fournisseur.designation}</td>
+                    </tr>
+					-->
+                    <tr>
+                        <td><strong>Autre</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.autre}</td>
+                        <td></td>
+                        <td><strong>Numéro de série</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.numSerie}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Caractéristique</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.renseignement}</td>
+                        <td></td>
+                        <td><strong>Etat</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.etat.designation}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode d'acquisition</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.modAcq.designation}</td>
+                        <td></td>
+                        <td><strong>Année d'acquisition</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.anneeAcquisition}</td>
+                    </tr>
+                    <tr>
+                    	<td><strong>Codification</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.code}</td>
+                    	<td></td>
+                    	<td><strong>Détenteur</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.detenteur.im} - #{depositaireBean.curentMaterielNouv.detenteur.nomAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Origine</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.design.origine}</td>
+                        <td></td>
+                        <td><strong>Dépositaire</strong></td>
+                        <td>#{depositaireBean.curentMaterielNouv.dc.im} - #{depositaireBean.curentMaterielNouv.dc.nomAgent}</td>
+                    </tr>
+                    <tr>
+                    	<td><strong>QRCODE</strong></td>
+                        <td>
+            				<p:barcode value="${depositaireBean.curentMaterielNouv.direc.designation} /
+                            ${depositaireBean.curentMaterielNouv.detenteur != null ? depositaireBean.curentMaterielNouv.detenteur.im : 'Aucun'}
+                            - ${depositaireBean.curentMaterielNouv.detenteur != null ? depositaireBean.curentMaterielNouv.detenteur.nomAgent : 'Aucun'}
+                            /
+            				${depositaireBean.curentMaterielNouv.design.typematerieladd.designation  } /
+            				${depositaireBean.curentMaterielNouv.design.pu} /
+            				${depositaireBean.curentMaterielNouv.numSerie} /
+            				${depositaireBean.curentMaterielNouv.design.anneeAcquisition}" type="qr"
+            				height="200px" width="200px"
+            				/>
+            			</td>
+           				<td></td>
+                        <td><strong>Image</strong></td>
+                        <td>
+                            <p:panel rendered="#{depositaireBean.curentMaterielNouv.design.image != null}">
+                                <h:graphicImage url="data:image/jpg;base64,#{depositaireBean.curentMaterielNouv.design.image}"
+                                                width="75px" height="75px" library="images" onclick="PF('dlg').show();">
+                                </h:graphicImage>
+                                 <p:dialog widgetVar="dlg" resizable="f" height="530px" width="530px" >
+								    <h:graphicImage  library="images" url="data:image/jpg;base64,#{depositaireBean.curentMaterielNouv.design.image}" width="500px" height="300px"/>
+								 </p:dialog>
+                            </p:panel>
+                        </td>           
+                    </tr>
+                         
+            </table>
+        </div>
+    </p:dialog>
+
+</html>

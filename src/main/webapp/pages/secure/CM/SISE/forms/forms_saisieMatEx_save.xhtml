@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html" 
+    xmlns:p="http://primefaces.org/ui"
+    >
+
+ <h:head></h:head>
+
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+    <div class="body">
+
+        <h:form class="form-horizontal">
+
+            <p:messages id="messages" />
+
+            <div class="form-group">
+
+
+                    <label for="text1" class="control-label col-lg-4">Type de Matériel
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.typemateriel}" 
+                    valueChangeListener="#{depositaireBean.onTypeMaterielChange}">
+                            <f:selectItem itemValue="#{null}" itemLabel="Selectionner" /> 
+                            <f:selectItems value="#{siseBean.listNomenclature}" var="type" itemLabel="#{type.designation}"/>
+                        </p:selectOneMenu>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+                    <label for="text1" class="control-label col-lg-4">Nomenclature
+                    </label>
+
+                    <div class="col-lg-6">
+
+                    <!--h:selectOneMenu  styleClass="form-control top" value="#{saisieMatExMB.nomenclature}">
+                        <f:selectItem itemValue="#{null}" itemLabel="select" /> 
+                            <f:selectItems value="#{saisieNomMB.nomlenclatureList}" var="nomenclature" itemLabel="#{nomenclature.nomenclature}"/>
+
+                    </h:selectOneMenu-->
+
+                        <h:inputText value="#{depositaireBean.nomencl}" 
+                        disabled="true"></h:inputText>
+
+                    <hr></hr>
+
+                    </div>
+
+
+                    
+                
+                    
+
+
+                    <label for="text1" class="control-label col-lg-4">Marque
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.marq}">
+                            <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listMarque}" var="marque" itemLabel="#{marque.designation}"/>
+                        </p:selectOneMenu>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+
+                    <label for="text1" class="control-label col-lg-4">Prix Unitaire
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:inputText  required="true"
+                        value="#{depositaireBean.unitPrice}"
+                        requiredMessage=""
+                        placeholder="Prix unitaire" styleClass="form-control top"></p:inputText>
+
+                    <hr></hr>
+
+                    </div>
+                
+                
+
+                    <label for="text1" class="control-label col-lg-4">Référence
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:inputText required="true"
+                        value="#{depositaireBean.reference}"
+                        requiredMessage=""
+                        placeholder="Référence" styleClass="form-control top"></p:inputText>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+                    <label for="text1" class="control-label col-lg-4">Numero de Série
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:inputText  required="true"
+                        value="#{depositaireBean.numSerie}"
+                        requiredMessage=""
+                        placeholder="Numero de série" styleClass="form-control top"></p:inputText>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+
+                    <label for="text1" class="control-label col-lg-4">Caractéristiques
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:inputText id="caratceristique" required="true"
+                        value="#{depositaireBean.carac}"
+                        requiredMessage=""
+                        placeholder="Caractéristiques" styleClass="form-control top"></p:inputText>
+
+                        <hr></hr>
+
+                    </div>
+                    
+                    
+
+                
+
+                    <label for="text1" class="control-label col-lg-4">Autre
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:inputText  required="true"
+                        value="#{depositaireBean.renseignement}"
+                        requiredMessage=""
+                        placeholder="Autre" styleClass="form-control top"></p:inputText>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+                    <label for="text1" class="control-label col-lg-4">Etat
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <p:selectOneMenu  styleClass="form-control top" value="#{depositaireBean.etat}">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listEtat}" var="etat" itemLabel="#{etat.designation}"/>
+                        </p:selectOneMenu>
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+
+                    <label for="text1" class="control-label col-lg-4">Pièces justificatives
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <h:inputFile  value="#{depositaireBean.file}"/>
+
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+                    <label for="text1" class="control-label col-lg-4">Photo
+                    </label>
+
+                    <div class="col-lg-6">
+
+                        <h:inputFile  value="#{depositaireBean.photo}"/>
+
+                    <hr></hr>
+
+                    </div>
+                
+                    
+
+
+
+                    <div class="col-lg-2"></div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="text1" class="control-label col-lg-4"></label>
+
+                <div class="col-lg-4">
+                    <h:commandLink id="btnSignId" action="#{depositaireBean.addMateriel}" value=""
+                        class="btn btn-lg btn-primary btn-block">
+                        <i class="fa fa-plus"> </i>  Créer
+                    </h:commandLink>
+                </div>
+
+                <div class="col-lg-4"></div>
+
+            </div>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

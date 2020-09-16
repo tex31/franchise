@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+
+ <h:head></h:head>
+<div class="col-md-4"></div>
+<div class="box dark col-md-4">
+
+	<div class="body">
+
+		<h:form id="myform">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+
+					<h:outputLabel for="name" styleClass="col-md-6"
+						value="Nom et prénom : " />
+					<p:inputText id="name" styleClass="col-md-6" value="#{userMB.name}"
+						required="true">
+
+					<hr></hr>
+
+						<p:ajax event="blur" update="nameMsg" />
+					</p:inputText>
+					<p:message id="nameMsg" for="name" display="icon" />
+
+					<hr></hr>
+
+
+					<h:outputLabel for="im" styleClass="col-md-6"
+						value="Imatriculation : " />
+					<p:inputText id="im" styleClass="col-md-6" value="#{userMB.im}"
+						required="true">
+					</p:inputText>
+
+					<hr></hr>
+
+					<!-- User role 
+					<h:outputLabel for="designation" styleClass="col-md-6"
+								   value="Designation  du role : " />
+					<p:inputText id="designation" styleClass="col-md-6" value="#{userMB.designation}"
+								 required="true">
+					</p:inputText>
+					<h:outputLabel for="role" styleClass="col-md-6"
+								   value="Code du role : " />
+					<p:inputText id="role" styleClass="col-md-6" value="#{userMB.role}"
+								 required="true">
+					</p:inputText>
+
+					<hr></hr>-->
+					
+					<!-- User role with liste-->
+					<h:outputLabel styleClass="col-md-6" 
+						value="Fonction " />
+
+					<p:selectOneMenu value="#{userMB.roleuser}" converter="#{useriConverter}" panelStyle="width:180px"  style="width:160px"
+                         effect="fade" var="t" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listUseri}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column>
+
+                    </p:selectOneMenu>
+
+                    <hr></hr>
+
+
+					<h:outputLabel styleClass="col-md-6" for="username"
+						value="Login : " />
+					<p:inputText id="username" styleClass="col-md-6"
+						value="#{userMB.username}" required="true">
+
+					<hr></hr>
+
+						<p:ajax event="blur" update="usernameMsg" />
+					</p:inputText>
+					<p:message id="usernameMsg" for="username" display="icon" />
+
+					<hr></hr>
+
+
+					<h:outputLabel for="password1" styleClass="col-md-6"
+						value="Mot de passe : " />
+					<p:password id="password1" styleClass="col-md-6"
+						value="#{userMB.password}" match="password2" required="true">
+					</p:password>
+
+					<hr></hr>
+
+
+					<h:outputLabel styleClass="col-md-6" for="password2"
+						value="Retaper mot de passe : " />
+					<p:password id="password2" styleClass="col-md-6"
+						value="#{userMB.password}" required="true">
+					</p:password>
+
+					<hr></hr>
+
+					<!-- DIRECTION -->
+					<h:outputLabel styleClass="col-md-6" 
+						value="Direction " />
+
+					<p:selectOneMenu value="#{userMB.direction}" converter="#{refConverter}" panelStyle="width:180px"  style="width:160px"
+                         effect="fade" var="t" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listDirection}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column>
+
+                    </p:selectOneMenu>
+
+                    <hr></hr>
+                    <!-- SERVICE -->
+					<!--h:outputLabel styleClass="col-md-6" 
+						value="Service " />
+
+					<p:selectOneMenu value="#{userMB.service}" converter="#{refConverter}" panelStyle="width:180px"  style="width:160px"
+                         effect="fade" var="t" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="select" /> 
+                            <f:selectItems value="#{siseBean.listService}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column>
+
+                    </p:selectOneMenu>
+
+                    <hr></hr-->
+                    <!-- POSTE -->
+					<h:outputLabel styleClass="col-md-6" 
+						value="Poste " />
+
+					<p:selectOneMenu value="#{userMB.poste}" converter="#{refConverter}" panelStyle="width:180px"  style="width:160px"
+                         effect="fade" var="t" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" /> 
+                            <f:selectItems value="#{siseBean.listPoste}" var="theme" itemLabel="#{theme.designation}" itemValue="#{theme}" />
+                        <p:column>
+                            <h:outputText value="#{t.designation}" />
+                        </p:column>
+
+                    </p:selectOneMenu>
+
+                    <hr></hr>
+
+					<h:commandButton id="addUser" action="#{userMB.addAgentCA}"
+						value="S'enregistrer" ajax="false" class="btn btn-lg btn-primary btn-block" />
+
+					
+
+					<h:commandButton id="reset" action="#{userMB.reset}"
+						value="Réinitialiser" ajax="false" class="btn btn-lg btn-primary btn-block" />
+
+
+				</h:form>
+
+	</div>
+
+</div>
+
+<div class="col-md-4"></div>
+
+</html>

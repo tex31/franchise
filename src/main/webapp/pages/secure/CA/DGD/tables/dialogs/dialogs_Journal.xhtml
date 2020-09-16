@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    >
+    
+<h:head></h:head>
+
+<style>
+	
+	.fa span{
+	  display: inline-block !important;
+	}
+</style>
+	<ui:include src="/pages/unsecure/components/header.xhtml">
+		<ui:param name="title" value="Formulaire Journal" />
+	</ui:include>
+	<div class="col-md-1"></div>
+	<h:form><div class="col-md-10" style="font-size: 18px!important;color: #5f5f5f;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+			<div class="col-md-12">
+				<!--  <h:graphicImage width="100%"
+                  value="/pages/unsecure/assets/images/mada.png" /> -->
+                <div class="row">
+                	<div class="col-lg-10 col-lg-offset-1 " style="padding-left:5%;"><h3><b>REPOBLIKAN ' I  MADAGASIKARA</b></h3></div>
+ 				</div>
+ 				<div class="row devise"><f:view contentType="text/html">
+					<p:selectOneMenu value="#{JasperTableExampleBean.journal.filamatra}" appendTo="@this">
+                        <f:selectItems value="#{siseBean.mapDevise}" />
+                    </p:selectOneMenu>	                 
+                </f:view></div>
+ 				<br/>
+            </div>
+             <div class="col-md-12" style="text-align: center;">
+             	#{siseBean.direction}
+             	COMPTABILITE ADMINISTRATIVE<br></br><br/>
+             	<div class="col-md-6">Service : 
+             	<f:view contentType="text/html">
+ 				<p:selectOneMenu id="directionint" value="#{JasperTableExampleBean.journal.num3}" appendTo="@this" style="font-size: 15px;">
+                        <f:selectItems value="#{siseBean.mapDirection(JournalABean.direc, JournalABean.datF)}" />
+                 </p:selectOneMenu></f:view>
+             	<!-- #{JournalABean.direction}-->
+             	</div> 
+             	<div class="col-md-6">Bureau : #{JournalABean.trois}</div><br></br>
+ 				</div>
+ 		</div>
+ 		<div class="col-md-1"></div>
+         
+		<div class="col-md-12">
+	 		<div class="col-md-12">
+	 		Commencé le : <h:outputText value="#{JournalABean.dateD}"/> Terminé le : <h:outputText value="#{JournalABean.dateF}"/>
+        	</div><br/><br/>
+	 		<div class="col-md-12">
+	 		<p:dataTable   var="row" value="#{JournalABean.liste}"
+    			currentPageReportTemplate="({currentPage} sur {totalPages})" emptyMessage="Aucun resultat" 
+                 paginator="false"
+                 sortBy="#{row[1]}"
+                 >
+         <f:facet name="header">
+        	JOURNAL DE LA COMPTABILITE ADMINISTRATIVE        	
+    	</f:facet>
+        
+        <p:column headerText="N° d’ordre" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[0]}" />
+        </p:column>
+        <p:column headerText="Date des opérations" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[1]}">
+                	<f:convertDateTime pattern="dd MMMM yyyy" locale="fr-Fr" timeZone="GMT+3"/>
+             </h:outputText>
+        </p:column>
+        <p:column headerText="Référence facture/décision" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[2]}" />
+        </p:column>
+        <p:column headerText="Origine/destinataire" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[3]}" />
+        </p:column>
+        <p:column headerText="Désignation des articles" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[4]}" />
+        </p:column>
+        <p:column headerText="Quantité" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[5]}" />
+        </p:column>
+        <p:column headerText="Montant" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[6]}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+        </p:column>
+        <p:column headerText="Montant total" style=" text-align: center; word-wrap: break-word;">
+        	<h:outputText value="#{row[7]}" ><f:convertNumber locale="fr_BE" currencySymbol=""></f:convertNumber></h:outputText>
+        </p:column>
+       
+    </p:dataTable>
+	 		</div>
+ 		</div>
+ 		
+ 		<div class="col-md-3">
+ 		<p>Arrété le présent journal <p:inputText value="#{JasperTableExampleBean.journal.arrete}"></p:inputText> </p>
+ 			<br/><p:commandButton styleClass="ui-priority-primary fa fa-file"  style="width:200px; height:50px; " action="#{JasperTableExampleBean.journalReport(JournalABean.dateD, JournalABean.dateF, JournalABean.liste)}" type="submit" value="Exporter en PDF" ajax="false" >
+	 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.lieu}" value="#{JournalABean.trois}" />
+	 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num4}" value="#{JournalABean.quatre}" />
+ 			</p:commandButton>
+ 			<br/><p:commandButton styleClass="ui-priority-primary fa fa-file-word-o"  style="width:200px;  height:50px; " action="#{JasperTableExampleBean.journalDoc(JournalABean.dateD, JournalABean.dateF, JournalABean.liste)}" type="submit" value="Exporter en Word" ajax="false" >
+	 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.lieu}" value="#{JournalABean.trois}" />
+	 			<f:setPropertyActionListener target="#{JasperTableExampleBean.journal.num4}" value="#{JournalABean.quatre}" />
+ 			</p:commandButton>
+ 		</div>
+</div>
+<div class="col-mid-1"></div>
+
+</h:form>
+<script
+        src="#{request.contextPath}/pages/unsecure/assets/lib/jquery_ui/js/jquery-ui.js"></script>
+</html>

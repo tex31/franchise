@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+<h:head></h:head>
+<p:growl id="growl" for="myerror" showDetail="true" sticky="true" redisplay="false" />
+
+<p:dialog id="detail" widgetVar="detail" position = "center,top" closable="true" header="Détails Traçabilité prise en charge" showEffect="explode" hideEffect="explode"  width="1250" height="400">
+
+    <h:form class="form-horizontal">
+        <h:form class="form-horizontal">
+            <p:commandButton actionListner="#{gacBean.exit()}" icon="ui-icon-delete"
+            style="valign:bottom;float:right;padding-right:20px" ajax="false"/>
+                        
+            </h:form>
+    </h:form>
+
+    <div   class="body collapse in table-responsive"> 
+        <p:tabView>
+
+
+            <c:forEach var="mat" items="#{suivieditionBean.currentOpEntree.listMat}">
+
+                <p:tab title="#{mat.design.typematerieladd.designation}">
+
+                    <table class="table responsive-table">
+                        <tr>
+                            <td><strong>Type de matériel</strong></td>
+                            <td>#{mat.design.typematerieladd.designation}</td>
+                            <td><strong>Nomenclature</strong></td>
+                            <td>#{mat.design.nomenMat.nomenclature}</td>
+                            <td><strong>Marque</strong></td>
+                            <td>#{mat.design.marque.designation}</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Référence</strong></td>
+                            <td>#{mat.reference}</td>
+                            <td><strong>Numéro de série</strong></td>
+                            <td>#{mat.numSerie}</td>
+                            
+                        </tr>
+
+                        <c:if test="#{mat['class'].simpleName eq 'MaterielNouv' }">
+
+                            <tr>
+                                <td><strong>Prix unitaire </strong></td>
+                                <td>
+		                        	<h:outputText value="#{mat.design.pu}" ><f:convertNumber locale="fr_BE" currencySymbol="Ar "></f:convertNumber></h:outputText>
+		                     	</td>
+                                <td><strong>Financement</strong></td>
+                                <td>#{mat.design.financement.designation}</td>
+                                <td><strong>Référence pj</strong></td>
+                                <td>#{mat.design.refFacture}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mode d'acquisition</strong></td>
+                                <td>#{mat.design.modAcq.designation}</td>
+                                <!-- 
+                                <td><strong>Fournisseur</strong></td>
+                                <td>#{mat.design.fournisseur.designation}</td>
+                                -->
+                                <td><strong>Caractéristique</strong></td>
+                            	<td>#{mat.design.renseignement}</td>
+                                <td><strong>Dépositaire</strong></td>
+                                <td>#{mat.dc.im} - #{mat.dc.nomAgent}</td>
+                            </tr>
+
+                        </c:if>
+
+                        <tr>
+                           	<td><strong>Origine</strong></td>
+                        	<td>#{mat.design.origine}</td>
+                            <td><strong>Image</strong></td>
+                            <td>
+                                <p:panel rendered="#{mat.design.image != null}">
+                                    <h:graphicImage url="data:image/jpg;base64,#{mat.design.image}"
+                                                    width="100px" height="75px" library="images" onclick="PF('dlg').show();"></h:graphicImage>
+                                                    
+                                     	<p:dialog widgetVar="dlg" resizable="f" height="330px" width="530px">
+								    		<h:graphicImage  library="images" url="data:image/jpg;base64,#{mat.design.image}" width="500px" height="300px"/>
+								 		</p:dialog>
+                                </p:panel>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </p:tab>
+            </c:forEach>
+
+        </p:tabView>
+    </div>
+
+
+
+</p:dialog>
+
+
+
+
+</html>
